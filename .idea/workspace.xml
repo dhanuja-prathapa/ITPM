@@ -75,26 +75,26 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="975" y="301" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1581909168714" />
-    <state width="914" height="232" key="GridCell.Tab.0.bottom" timestamp="1581925600642">
+    <state width="914" height="232" key="GridCell.Tab.0.bottom" timestamp="1582003858982">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="232" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1581925600642" />
-    <state width="914" height="232" key="GridCell.Tab.0.center" timestamp="1581925600642">
+    <state width="914" height="232" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1582003858982" />
+    <state width="914" height="232" key="GridCell.Tab.0.center" timestamp="1582003858982">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="232" key="GridCell.Tab.0.center/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1581925600642" />
-    <state width="914" height="232" key="GridCell.Tab.0.left" timestamp="1581925600627">
+    <state width="914" height="232" key="GridCell.Tab.0.center/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1582003858982" />
+    <state width="914" height="232" key="GridCell.Tab.0.left" timestamp="1582003858982">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="232" key="GridCell.Tab.0.left/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1581925600627" />
-    <state width="914" height="232" key="GridCell.Tab.0.right" timestamp="1581925600642">
+    <state width="914" height="232" key="GridCell.Tab.0.left/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1582003858982" />
+    <state width="914" height="232" key="GridCell.Tab.0.right" timestamp="1582003858982">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="232" key="GridCell.Tab.0.right/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1581925600642" />
-    <state x="716" y="430" key="NewPhpFileDialog" timestamp="1581926288430">
+    <state width="914" height="232" key="GridCell.Tab.0.right/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1582003858982" />
+    <state x="716" y="430" key="NewPhpFileDialog" timestamp="1582015896708">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="716" y="430" key="NewPhpFileDialog/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1581926288430" />
+    <state x="716" y="430" key="NewPhpFileDialog/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1582015896708" />
     <state x="716" y="430" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1581871191601" />
     <state x="964" y="193" key="com.jetbrains.php.test.PhpNewTestDialog" timestamp="1581871243582">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -104,5 +104,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="851" y="254" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1581871703269" />
+    <state x="259" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1582029696429">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="259" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.498.1366.738@0.0.1920.1050" timestamp="1582029696429" />
   </component>
 </project>
