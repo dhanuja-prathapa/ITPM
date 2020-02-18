@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="/css/style.css" >
     <title>ITPM WE-43</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <header>
@@ -35,7 +34,6 @@ $nid = array_fill(1,sizeof($codes),0);
 $nop = array_fill(1,sizeof($codes),0);
 $nnv = array_fill(1,sizeof($codes),0);
 $nsl = array_fill(1,sizeof($codes),0);
-
 //Analysis
 sizeCal($codes);
 calCs();

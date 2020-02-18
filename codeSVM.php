@@ -28,7 +28,7 @@ function subOpCount($word,$linesno){
         global $nid;
         $nid[$linesno] += 3;
         return ($count * 2);
-    }else if ($count = (substr_count($word,"++") + substr_count($word,"--")) != 0){
+    }if ($count = (substr_count($word,"++") + substr_count($word,"--")) != 0){
         return $count;
     }
     else return 0;
@@ -40,6 +40,14 @@ function sizeCal ($codes)
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
         foreach ($words as $word) {
+            $string_data = file_get_contents("keywords.txt");
+            $pattern= unserialize($string_data);
+
+            foreach ($pattern as $i){
+            if($count = preg_match_all($i,$word) != 0){
+                $nkw[$linesno] += $count;
+            }
+            }
             switch ($word) {
                 //keywords
                 case 'continue':
@@ -57,7 +65,6 @@ function sizeCal ($codes)
                 case 'false':
                 case 'true':
                 case 'void':
-                case 'public':
                 case 'import':
                     $nkw[$linesno]++;
                     break;
