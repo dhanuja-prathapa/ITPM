@@ -4,6 +4,7 @@
     <link rel='icon' href='favicon.ico' type='image/x-icon'/ >
     <title>ITPM WE-43</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
