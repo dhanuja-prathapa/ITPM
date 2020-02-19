@@ -3,6 +3,7 @@
 <head>
     <title>ITPM WE-43</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <header>
