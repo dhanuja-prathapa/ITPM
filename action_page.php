@@ -56,3 +56,4 @@ foreach ($codes as $line){
 //Close the table row and the table
 echo "</table>";?></div>
 </main>
+<?php include "footer.php"; ?>
