@@ -11,7 +11,7 @@
 <header>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-            <a href="/" class="navbar-brand d-flex align-items-center">
+            <a href="/ITPM" class="navbar-brand d-flex align-items-center">
                 <strong>IT Project Management</strong>
             </a>
         </div>
