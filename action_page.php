@@ -19,6 +19,13 @@ $nid = array_fill(1,sizeof($codes),0);
 $nop = array_fill(1,sizeof($codes),0);
 $nnv = array_fill(1,sizeof($codes),0);
 $nsl = array_fill(1,sizeof($codes),0);
+
+//define arrays for control structures
+$ccs = array_fill(1,sizeof($codes),0);
+$wtcs = array_fill(1,sizeof($codes),0);
+$nc = array_fill(1,sizeof($codes),0);
+$ccspps = array_fill(1,sizeof($codes),0);
+
 //Analysis
 sizeCal($codes);
 calCs();
@@ -54,6 +61,24 @@ foreach ($codes as $line){
 }
 
 //Close the table row and the table
-echo "</table>";?></div>
+echo "</table><br>";
+
+//heading for control structure table
+echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>
+";
+//defining columns for the control structure table
+echo "<table class=\"table table-bordered table-striped \">";
+echo "<thead class=\"thead-dark\">";
+echo "<tr>";
+echo "<th style='width: 7%' scope=\"col\">Line no</th>";
+echo "<th scope=\"col\">Program statements</th>";
+echo "<th scope=\"col\">Wtcs</th>";
+echo "<th scope=\"col\">NC</th>";
+echo "<th scope=\"col\">Ccspps</th>";
+echo "<th scope=\"col\">Ccs</th>";
+echo "</tr>";
+echo "</thead>";
+
+?></div>
 </main>
 <?php include "footer.php"; ?>
