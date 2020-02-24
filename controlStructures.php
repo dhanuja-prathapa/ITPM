@@ -1,16 +1,44 @@
-function for($codes){
-global $nkw,$nop,$nid,$nnv,$nsl;
+<?php
+
+function calCcs(){
+
+
+
+}
+
+function findForLoops($codes){
+    global $ccs,$wtcs,$nc,$ccspps;
+
     $linesno = 1;
+    $ifFoundthis = false;
+    $ifFoundprev = false;
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
         foreach ($words as $word) {
-            $string_json = file_get_contents("javaKey.json");
-            $pattern = json_decode($string_json,TRUE);
-            foreach ($pattern as $i){
-            if($count = preg_match_all($i,$word) != 0){
-                $nkw[$linesno] += $count;
+            checkFor($word,$linesno);
             }
-            }
+            nestedIf($linesno);
+
+        $linesno++;
         }
     }
+function checkFor($word,$linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis;
+    if($word == 'for'){
+        $nc[$linesno]++;
+        $wtcs[$linesno] += 3; 
+        $ifFoundthis = true;
+    }else{
+        $ifFoundthis = false;
+    }
 }
+function nestedIf($linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
+    if ($ifFoundprev == true && $ifFoundthis == true){
+        $ccspps[$linesno] += 3;
+    }else{
+        $ifFoundprev = $ifFoundthis;
+    }
+}
+
+?>

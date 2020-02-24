@@ -6,6 +6,7 @@
     <h5 style="text-align: center;"> Displaying the complexity of a program due to size</h5><br>
 <?php
 require 'codeSVM.php';
+require 'controlStructures.php';
 //Getting the code
 $code = $_POST['code'];
 //separating the lines
@@ -66,6 +67,8 @@ echo "</table><br>";
 //heading for control structure table
 echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>
 ";
+
+findForLoops($codes);
 //defining columns for the control structure table
 echo "<table class=\"table table-bordered table-striped \">";
 echo "<thead class=\"thead-dark\">";
@@ -79,6 +82,22 @@ echo "<th scope=\"col\">Ccs</th>";
 echo "</tr>";
 echo "</thead>";
 
+$lineno = 1;
+foreach ($codes as $line){
+    echo "<tr>";
+    echo "<th scope= \"row\">$lineno</th>";
+    echo "<td>$line</td>";
+    echo "<td>$wtcs[$lineno]</td>";
+    echo "<td>$nc[$lineno]</td>";
+    echo "<td>$ccspps[$lineno]</td>";
+    echo "<td>$ccs[$lineno]</td>";
+    echo "</tr>";
+    $lineno++;
+
+    echo "</table><br>";
+
+}
 ?></div>
+
 </main>
 <?php include "footer.php"; ?>
