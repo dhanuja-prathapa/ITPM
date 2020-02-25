@@ -3,3 +3,5 @@
 .idea/workspace.xml
 ITPM.code-workspace.rej
 ITPM.code-workspace
+.buildpath
+.project
