@@ -27,13 +27,15 @@
         $nc = array_fill(1, sizeof($codes), 0);
         $ccspps = array_fill(1, sizeof($codes), 0);
 
+        $TABLE_START = "<tr>";
+        $TABLE_END = "</tr>";
         //Analysis
         sizeCal($codes);
         calCs();
         //Open the table and its first row
         echo "<table class=\"table table-bordered table-striped \">";
         echo "<thead class=\"thead-dark\">";
-        echo "<tr>";
+        echo $TABLE_START;
         echo "<th style='width: 7%' scope=\"col\">Line no</th>";
         echo "<th scope=\"col\">Program statements</th>";
         echo "<th scope=\"col\">Nkw</th>";
@@ -42,13 +44,13 @@
         echo "<th scope=\"col\">Nnv</th>";
         echo "<th scope=\"col\">Nsl</th>";
         echo "<th scope=\"col\">Cs</th>";
-        echo "</tr>";
+        echo $TABLE_END;
         echo "</thead>";
 
         //Add empty <td>'s to even up the amount of cells in a row:
         $lineno = 1;
         foreach ($codes as $line) {
-            echo "<tr>";
+            echo $TABLE_START;
             echo "<th scope= \"row\">$lineno</th>";
             echo "<td>$line</td>";
             echo "<td>$nkw[$lineno]</td>";
@@ -57,7 +59,7 @@
             echo "<td>$nnv[$lineno]</td>";
             echo "<td>$nsl[$lineno]</td>";
             echo "<td>$cs[$lineno]</td>";
-            echo "</tr>";
+            echo $TABLE_END;
             $lineno++;
         }
 
@@ -65,38 +67,37 @@
         echo "</table><br>";
 
         //heading for control structure table
-        echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>
-";
+        echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>";
 
         findForLoops($codes);
         //defining columns for the control structure table
         echo "<table class=\"table table-bordered table-striped \">";
         echo "<thead class=\"thead-dark\">";
-        echo "<tr>";
+        echo $TABLE_START;
         echo "<th style='width: 7%' scope=\"col\">Line no</th>";
         echo "<th scope=\"col\">Program statements</th>";
         echo "<th scope=\"col\">Wtcs</th>";
         echo "<th scope=\"col\">NC</th>";
         echo "<th scope=\"col\">Ccspps</th>";
         echo "<th scope=\"col\">Ccs</th>";
-        echo "</tr>";
+        echo $TABLE_END;
         echo "</thead>";
 
         $lineno = 1;
         foreach ($codes as $line) {
-            echo "<tr>";
+            echo $TABLE_START;
             echo "<th scope= \"row\">$lineno</th>";
             echo "<td>$line</td>";
             echo "<td>$wtcs[$lineno]</td>";
             echo "<td>$nc[$lineno]</td>";
             echo "<td>$ccspps[$lineno]</td>";
             echo "<td>$ccs[$lineno]</td>";
-            echo "</tr>";
+            echo $TABLE_END;
             $lineno++;
 
-            echo "</table><br>";
         }
+        echo "</table><br>";
         ?>
     </div>
 </main>
-<?php include "footer.php"; ?>
+<?php include "footer.php"; ?> 
