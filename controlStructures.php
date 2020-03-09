@@ -34,11 +34,9 @@ function checkFor($word,$linesno){
 }
 function nestedIf($linesno){
     global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
-    if ($ifFoundprev == true && $ifFoundthis == true){
+    if ($ifFoundprev && $ifFoundthis){
         $ccspps[$linesno] += 3;
     }else{
         $ifFoundprev = $ifFoundthis;
     }
 }
-
-?>
