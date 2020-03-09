@@ -1,8 +1,10 @@
 <?php
 
 function calCcs(){
-
-
+    global $ccs, $wtcs, $nc, $ccspps;
+    for ($i = 1; $i <= sizeof($ccs); $i++) {
+        $ccs[$i] =  ($wtcs[$i] * $nc[$i]) + $ccspps[$i];
+    }
 
 }
 

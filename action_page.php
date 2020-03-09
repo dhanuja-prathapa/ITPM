@@ -32,6 +32,8 @@
         //Analysis
         sizeCal($codes);
         calCs();
+        
+
         //Open the table and its first row
         echo "<table class=\"table table-bordered table-striped \">";
         echo "<thead class=\"thead-dark\">";
@@ -70,6 +72,8 @@
         echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>";
 
         findForLoops($codes);
+        calCcs();
+
         //defining columns for the control structure table
         echo "<table class=\"table table-bordered table-striped \">";
         echo "<thead class=\"thead-dark\">";
