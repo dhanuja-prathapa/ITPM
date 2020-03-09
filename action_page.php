@@ -5,10 +5,13 @@
     <div style="margin-left: 20%;margin-right:20%">
         <h5 style="text-align: center;"> Displaying the complexity of a program due to size</h5><br>
         <?php
+
         require 'codeSVM.php';
         require 'controlStructures.php';
+
         //Getting the code
         $code = $_POST['code'];
+
         //separating the lines
         $codes = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $code);
         $codes = explode("\n", $codes);
@@ -29,10 +32,10 @@
 
         $TABLE_START = "<tr>";
         $TABLE_END = "</tr>";
+
         //Analysis
         sizeCal($codes);
         calCs();
-        
 
         //Open the table and its first row
         echo "<table class=\"table table-bordered table-striped \">";
@@ -98,10 +101,9 @@
             echo "<td>$ccs[$lineno]</td>";
             echo $TABLE_END;
             $lineno++;
-
         }
         echo "</table><br>";
         ?>
     </div>
 </main>
-<?php include "footer.php"; ?> 
+<?php include "footer.php"; ?>
