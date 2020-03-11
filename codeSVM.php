@@ -72,9 +72,6 @@ function sizeCal($codes)
                     break;
 
                     //operators
-                case '>':
-                case '>=':
-                case '<':
                 case '-':
                 case '*':
                 case '/':

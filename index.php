@@ -1,7 +1,6 @@
-<html>
 <?php include "header.php"; ?>
-<body>
 
+<body>
 <main style="margin-left: 20%;margin-right: 20%;"><br><br>
   <form action="action_page.php" id="form1" method="post" class="rounded" style="padding: 4%;background-color: #f5f5f5">
     <h2>Paste the Code Here</h2>
@@ -29,5 +28,5 @@
 </main><br><br>
 
 </body>
+
 <?php include "footer.php"; ?>
-</html>
