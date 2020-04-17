@@ -9,8 +9,27 @@
         require 'codeSVM.php';
         require 'controlStructures.php';
 
+        //file upload
+
+        // Check if image file is a actual image or fake image
+        if(isset($_POST['submit'])){
+            $name       = $_FILES['file']['name'];
+            $temp_name  = $_FILES['file']['tmp_name'];
+            if(isset($name) and !empty($name)){
+                $location = 'uploads/';
+                if(move_uploaded_file($temp_name, $location.$name)){
+                }
+            } else {
+                echo 'You should select a file to upload !!';
+            }
+            /** @var TYPE_NAME $filepath */
+            $filepath = 'uploads/'.$name;
+            $code = file_get_contents($filepath);
+        }
+
+
         //Getting the code
-        $code = $_POST['code'];
+        //$code = $_POST['code'];
 
         //separating the lines
         $codes = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $code);
