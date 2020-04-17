@@ -19,7 +19,7 @@ function findForLoops($codes){
         foreach ($words as $word) {
             checkFor($word,$linesno);
             }
-            nestedIf($linesno);
+            nestedFor($linesno);
 
         $linesno++;
         }
@@ -34,7 +34,7 @@ function checkFor($word,$linesno){
         $ifFoundthis = false;
     }
 }
-function nestedIf($linesno){
+function nestedFor($linesno){
     global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
     if ($ifFoundprev && $ifFoundthis){
         $ccspps[$linesno] += 3;
