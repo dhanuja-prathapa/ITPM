@@ -64,3 +64,7 @@ body {
     text-transform: capitalize;
     text-align: center;
 }
+
+.uploadicon{
+    max-width: 200px;
+}

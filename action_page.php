@@ -18,10 +18,18 @@
             if(isset($name) and !empty($name)){
                 $location = 'uploads/';
                 if(move_uploaded_file($temp_name, $location.$name)){
-                    echo 'File uploaded successfully';
+                   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                   echo 'File uploaded successfully';
+                   echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+                   echo '<span aria-hidden="true">&times;</span>';
+                   echo '</button>';
+                   echo '</div>';
+
                 }
             } else {
+                echo '<div class="alert alert-danger" role="alert">';
                 echo 'You should select a file to upload !!';
+                echo '</div>';
             }
             /** @var TYPE_NAME $filepath */
             $filepath = 'uploads/'.$name;
