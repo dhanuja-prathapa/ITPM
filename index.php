@@ -12,7 +12,7 @@
         <span class="input-group-text">Upload</span>
       </div>
       <div class="custom-file">
-        <input type="file" class="custom-file-input" name="file" id="file">
+        <input type="file" class="custom-file-input" name="file" id="file" required>
         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
       </div>
     </div>
