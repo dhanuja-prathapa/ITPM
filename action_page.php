@@ -3,7 +3,7 @@
     <!-- Dhanuja Ranawake part -->
     <br><br>
     <div style="margin-left: 20%;margin-right:20%">
-        <h5 style="text-align: center;"> Displaying the complexity of a program due to size</h5><br>
+        <!--<h5 style="text-align: center;"> Displaying the complexity of a program due to size</h5>--><br>
         <?php
 
         require 'codeSVM.php';
@@ -64,7 +64,17 @@
         //Analysis
         sizeCal($codes);
         calCs();
-
+        echo'<div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                   <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Complexity of a program due to Size
+                   </button>
+                   </h2>
+                </div>';
+        echo '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">';
         //Open the table and its first row
         echo "<table class=\"table table-bordered table-striped \">";
         echo "<thead class=\"thead-dark\">";
@@ -98,13 +108,27 @@
 
         //Close the table row and the table
         echo "</table><br>";
+        echo ' </div>
+              </div>
+             </div>
+            </div>';
 
         //heading for control structure table
-        echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>";
+  // echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>";
 
         findForLoops($codes);
         calCcs();
-
+        echo'
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                   <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                           Complexity of a program due to Control Structures
+                   </button>
+                   </h2>
+                </div>';
+        echo '<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">';
         //defining columns for the control structure table
         echo "<table class=\"table table-bordered table-striped \">";
         echo "<thead class=\"thead-dark\">";
@@ -131,6 +155,10 @@
             $lineno++;
         }
         echo "</table><br>";
+        echo ' </div>
+    </div>
+  </div>
+  </div>';
         ?>
     </div>
 </main>
