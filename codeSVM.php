@@ -1,8 +1,28 @@
 <?php
 function numericalVal($lines,$linesno)
 {
+    global $nnv, $stringOpen, $stringClose;
+     $stringOpen = false;
+     $stringClose = true;
     //Need to implement a function to ignore the values in string literals
-    return (preg_match_all('!\d+!', $lines));
+    $words = explode(" ", $lines);
+    foreach ($words as $word) {
+        if (substr_count($word, '"')>0){
+            $stringOpen = !$stringOpen;
+            $stringClose = !$stringClose;
+            continue;
+        }
+        if($stringClose && !$stringOpen){
+
+            $value = preg_match('!\d+!', $word);
+            $nnv[$linesno] += $value;
+        }else{
+
+        }
+    }
+
+
+    //return (preg_match_all('!\d+!', $lines));
 }
 
 function calCs()
@@ -72,52 +92,13 @@ function sizeCal($codes)
                     $nid[$linesno]++;
                     break;
 
-                    //operators
-                case '-':
-                case '*':
-                case '/':
-                case '%':
-                case '++':
-                case '--':
-                case '==':
-                case '!=':
-                case '<=':
-                case '&&':
-                case '||':
-                case '!':
-                case '|':
-                case '^':
-                case '~':
-                case '<<':
-                case '>>':
-                case '>>>':
-                case '<<<':
-                case ',':
-                case '->':
-                case '.':
-                case '::':
-                case '+=':
-                case '-=':
-                case '*=':
-                case '/=':
-                case '=':
-                case '>>>=':
-                case '|=':
-                case '&=':
-                case '%=':
-                case '<<=':
-                case '>>=':
-                case '^=':
-                case '+':
-                    $nop[$linesno]++;
-                    break;
-
                 default:
                     $nop[$linesno] += subOpCount($word, $linesno);
             }
         }
         $nsl[$linesno] += stringLiterals($lines);
-        $nnv[$linesno] += numericalVal($lines,$linesno);
+    //    $nnv[$linesno] += numericalVal($lines,$linesno);
+        numericalVal($lines,$linesno);
         findNid($lines, $linesno);
         $linesno++;
     }
