@@ -16,13 +16,8 @@ function numericalVal($lines,$linesno)
 
             $value = preg_match('!\d+!', $word);
             $nnv[$linesno] += $value;
-        }else{
-
         }
     }
-
-
-    //return (preg_match_all('!\d+!', $lines));
 }
 
 function calCs()
