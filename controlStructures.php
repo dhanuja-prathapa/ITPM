@@ -9,11 +9,12 @@ function calCcs(){
 }
 
 function findForLoops($codes){
-    global $ccs,$wtcs,$nc,$ccspps;
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
 
     $linesno = 1;
     $ifFoundthis = false;
     $ifFoundprev = false;
+
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
         foreach ($words as $word) {
@@ -23,22 +24,22 @@ function findForLoops($codes){
 
         $linesno++;
         }
+
     }
 function checkFor($word,$linesno){
-    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis;
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis, $ifFoundprev;
     if($word == 'for'){
         $nc[$linesno]++;
         $wtcs[$linesno] += 3; 
         $ifFoundthis = true;
-    }else{
-        $ifFoundthis = false;
     }
 }
 function nestedFor($linesno){
     global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
     if ($ifFoundprev && $ifFoundthis){
         $ccspps[$linesno] += 3;
-    }else{
-        $ifFoundprev = $ifFoundthis;
+
     }
+        $ifFoundprev = $ifFoundthis;
+        $ifFoundthis = false;
 }
