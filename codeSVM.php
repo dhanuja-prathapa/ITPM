@@ -1,6 +1,7 @@
 <?php
-function numericalVal($lines)
+function numericalVal($lines,$linesno)
 {
+    //Need to implement a function to ignore the values in string literals
     return (preg_match_all('!\d+!', $lines));
 }
 
@@ -116,7 +117,7 @@ function sizeCal($codes)
             }
         }
         $nsl[$linesno] += stringLiterals($lines);
-        $nnv[$linesno] += numericalVal($lines);
+        $nnv[$linesno] += numericalVal($lines,$linesno);
         findNid($lines, $linesno);
         $linesno++;
     }

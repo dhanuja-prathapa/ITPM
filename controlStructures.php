@@ -30,7 +30,7 @@ function checkFor($word,$linesno){
     global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis, $ifFoundprev;
     if($word == 'for'){
         $nc[$linesno]++;
-        $wtcs[$linesno] += 3; 
+        $wtcs[$linesno] += 3;
         $ifFoundthis = true;
     }
 }
@@ -40,6 +40,42 @@ function nestedFor($linesno){
         $ccspps[$linesno] += 3;
 
     }
-        $ifFoundprev = $ifFoundthis;
-        $ifFoundthis = false;
+    $ifFoundprev = $ifFoundthis;
+    $ifFoundthis = false;
 }
+function checkIF($word,$linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis, $ifFoundprev;
+    if($word == 'for'){
+        $nc[$linesno]++;
+        $wtcs[$linesno] += 3;
+        $ifFoundthis = true;
+    }
+}
+function nestedIF($linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
+    if ($ifFoundprev && $ifFoundthis){
+        $ccspps[$linesno] += 3;
+
+    }
+    $ifFoundprev = $ifFoundthis;
+    $ifFoundthis = false;
+}
+
+function checkSWITCH($word,$linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis, $ifFoundprev;
+    if($word == 'for'){
+        $nc[$linesno]++;
+        $wtcs[$linesno] += 3;
+        $ifFoundthis = true;
+    }
+}
+function nestedSWITCH($linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
+    if ($ifFoundprev && $ifFoundthis){
+        $ccspps[$linesno] += 3;
+
+    }
+    $ifFoundprev = $ifFoundthis;
+    $ifFoundthis = false;
+}
+
