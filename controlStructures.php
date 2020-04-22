@@ -81,7 +81,6 @@ function checkSWITCH($word,$linesno){
         $wtcs[$linesno] += 2;
         $switchthis = true;
         $prevline = $linesno -1;
-        print_r($ccs);
         if($ccs[$prevline] != 0){
             $ccspps[$linesno] += $ccs[$prevline];
         }
