@@ -8,7 +8,7 @@ function calCcs(){
 
 }
 
-function findForLoops($codes){
+function findControlStructure($codes){
     global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis,$ifFoundprev;
 
     $linesno = 1;
@@ -19,8 +19,10 @@ function findForLoops($codes){
         $words = explode(" ", $lines);
         foreach ($words as $word) {
             checkFor($word,$linesno);
+            checkIF($word,$linesno);
             }
             nestedFor($linesno);
+            nestedIF($linesno);
 
         $linesno++;
         }
@@ -45,9 +47,9 @@ function nestedFor($linesno){
 }
 function checkIF($word,$linesno){
     global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis, $ifFoundprev;
-    if($word == 'for'){
+    if($word == 'if'){
         $nc[$linesno]++;
-        $wtcs[$linesno] += 3;
+        $wtcs[$linesno] += 2;
         $ifFoundthis = true;
     }
 }
@@ -63,9 +65,9 @@ function nestedIF($linesno){
 
 function checkSWITCH($word,$linesno){
     global $ccs,$wtcs,$nc,$ccspps,$ifFoundthis, $ifFoundprev;
-    if($word == 'for'){
+    if($word == 'switch'){
         $nc[$linesno]++;
-        $wtcs[$linesno] += 3;
+        $wtcs[$linesno] += 2;
         $ifFoundthis = true;
     }
 }

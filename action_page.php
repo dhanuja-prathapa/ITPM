@@ -116,7 +116,7 @@
         //heading for control structure table
   // echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>";
 
-        findForLoops($codes);
+        findControlStructure($codes);
         calCcs();
         echo'
             <div class="card">
