@@ -7,6 +7,7 @@ function numericalVal($lines,$linesno)
     //Need to implement a function to ignore the values in string literals
     $words = explode(" ", $lines);
     foreach ($words as $word) {
+
         if (substr_count($word, '"')>0){
             $stringOpen = !$stringOpen;
             $stringClose = !$stringClose;
@@ -69,6 +70,10 @@ function sizeCal($codes)
     $linesno = 1;
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
+        if(preg_match("@//@",$lines,$match)>0){
+            $linesno++;
+            continue;
+        }
         foreach ($words as $word) {
             $string_json = file_get_contents("javaKey.json");
             $pattern = json_decode($string_json, TRUE);

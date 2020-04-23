@@ -9,7 +9,7 @@ function calCcs(){
 }
 
 function findControlStructure($codes){
-    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev,$forthis,$forprev,$switchprev,$switchthis;
+    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev,$forthis,$forprev,$switchprev,$switchthis,$brackets;
 
     $linesno = 1;
     $ifthis = false;
@@ -18,23 +18,24 @@ function findControlStructure($codes){
     $forprev = false;
     $switchthis = false;
     $switchprev= false;
+    $brackets = array_fill(1, sizeof($codes), 0);
 
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
         foreach ($words as $word) {
             checkFor($word,$linesno);
-            checkIF($word,$linesno);
+            //checkIF($word,$linesno);
             checkSWITCH($word,$linesno);
             calCcs();
             }
             nestedFor($linesno);
-            nestedIF($linesno);
+            nestedIF($linesno,$lines);
             calCcs();
 
         $linesno++;
-        }
-
     }
+
+}
 function checkFor($word,$linesno){
     global $ccs,$wtcs,$nc,$ccspps,$forthis, $forprev;
     if(preg_match("/for/",$word)> 0){
@@ -62,16 +63,24 @@ function checkIF($word,$linesno){
         $ifthis = true;
     }
 }
-function nestedIF($linesno){
-    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev;
-    if ($ifprev && $ifthis){
-        $prevline = $linesno -1;
-        $newccs = $ccs[$prevline];
-        $ccspps[$linesno] += $newccs;
-
+function nestedIF($linesno,$lines){
+    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev, $brackets;
+    if(preg_match("/if/",$lines)>0) {
+        if (preg_match("/{/", $lines) > 0) {
+            $brackets++;
+        }
+        if (preg_match("/}/", $lines) > 0) {
+            $brackets--;
+        }
     }
-    $ifprev = $ifthis;
-    $ifthis = false;
+//    if ($ifprev && $ifthis){
+//        $prevline = $linesno -1;
+//        $newccs = $ccs[$prevline];
+//        $ccspps[$linesno] += $newccs;
+//
+//    }
+//    $ifprev = $ifthis;
+//    $ifthis = false;
 }
 
 function checkSWITCH($word,$linesno){
@@ -96,5 +105,12 @@ function nestedSWITCH($linesno){
     }
     $switchprev = $switchthis;
     $switchthis = false;
+}
+
+
+function bracketcount($linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev,$forthis,$forprev,$switchprev,$switchthis,$brackets;
+    if(preg_match())
+
 }
 

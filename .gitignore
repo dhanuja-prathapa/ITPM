@@ -18,3 +18,5 @@ ITPM.code-workspace
 img/download-btn.gif
 css/download-btn.gif
 *.jpg
+*.java
+*.txt
