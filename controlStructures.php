@@ -2,7 +2,7 @@
 
 function calCcs()
 {
-    global $ccs, $wtcs, $nc, $ccspps;
+    global $ccs, $wtcs, $nc, $ccspps, $colons;
     for ($i = 1; $i <= sizeof($ccs); $i++) {
         $ccs[$i] = ($wtcs[$i] * $nc[$i]) + $ccspps[$i];
     }
@@ -11,16 +11,12 @@ function calCcs()
 
 function findControlStructure($codes)
 {
-    global $brackets, $ifarray, $switcharray, $forarray, $casearray;
+    global $brackets, $ifarray, $switcharray, $forarray, $casearray, $colons;
 
     $linesno = 1;
-    $ifthis = false;
-    $ifprev = false;
-    $forthis = false;
-    $forprev = false;
-    $switchthis = false;
-    $switchprev = false;
     $brackets = 0;
+    $colons = 0;
+
     $ifarray = array_fill(0, sizeof($codes), 0);
     $switcharray = array_fill(0, sizeof($codes), 0);
     $forarray = array_fill(0, sizeof($codes), 0);
@@ -31,12 +27,11 @@ function findControlStructure($codes)
         calCcs();
         $linesno++;
     }
-
 }
 
 function bracketcount($lines, $linesno)
 {
-    global $brackets, $ifarray, $switcharray, $casearray, $forarray;
+    global $brackets, $ifarray, $switcharray, $forarray;
     if (preg_match("/{/", $lines) > 0) {
         $brackets += 1;
 
@@ -46,9 +41,9 @@ function bracketcount($lines, $linesno)
         $ifarray[$brackets] = 0;
         $switcharray[$brackets] = 0;
         $forarray[$brackets] = 0;
-        $casearray[$brackets] = 0;
         $brackets -= 1;
     }
+
     if (preg_match("@//@", $lines) == 0) {
         checkIF($lines, $linesno, $brackets);
         checkSWITCH($lines, $linesno, $brackets);
@@ -60,11 +55,13 @@ function bracketcount($lines, $linesno)
 
 function checkIF($lines, $linesno, $brackets)
 {
-    global $ccs, $wtcs, $nc, $ccspps, $ifarray, $casearray, $switcharray;
+    global $ccs, $wtcs, $nc, $ccspps, $ifarray, $casearray, $switcharray, $newccs, $colons;
     if (preg_match("/if/", $lines) > 0 || preg_match("/else if/", $lines) > 0) {
+        print_r($casearray[$colons]);
         $andCount = (preg_match("/&&/", $lines));
         $nc[$linesno] += $andCount + 1;
         $wtcs[$linesno] += 2;
+
         $ifarray[$brackets] = $linesno;
         $prevbracket = $brackets - 1;
 
@@ -72,11 +69,10 @@ function checkIF($lines, $linesno, $brackets)
             $newccs = $ccs[$ifarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
-        if ($switcharray[$brackets] != 0) {
-            $newccs = $ccs[$casearray[$brackets]];
+        if ($switcharray[$prevbracket] != 0) {
+            $newccs = $ccs[$casearray[$colons]];
             $ccspps[$linesno] += $newccs;
         }
-
     }
 }
 
@@ -98,10 +94,12 @@ function checkSWITCH($lines, $linesno, $brackets)
 
 function checkCASE($lines, $linesno, $brackets)
 {
-    global $ccs, $wtcs, $nc, $ccspps, $switcharray;
+    global $ccs, $wtcs, $nc, $ccspps, $switcharray, $colons, $casearray;
     if (preg_match("/case/", $lines) > 0) {
+        $colons++;
         $nc[$linesno]++;
         $wtcs[$linesno] += 1;
+        $casearray[$colons] = $linesno;
 
         if ($switcharray[$brackets] != 0) {
             $newccs = $ccs[$switcharray[$brackets]];
@@ -112,7 +110,7 @@ function checkCASE($lines, $linesno, $brackets)
 
 function checkFor($lines, $linesno, $brackets)
 {
-    global $ccs, $wtcs, $nc, $ccspps, $forarray;
+    global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons;
     if (preg_match("/for/", $lines) > 0) {
         $nc[$linesno]++;
         $wtcs[$linesno] += 3;
