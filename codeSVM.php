@@ -74,6 +74,7 @@ function sizeCal($codes)
             $linesno++;
             continue;
         }
+        checkpublic($lines,$linesno);
         foreach ($words as $word) {
             $string_json = file_get_contents("javaKey.json");
             $pattern = json_decode($string_json, TRUE);
@@ -100,5 +101,20 @@ function sizeCal($codes)
         numericalVal($lines,$linesno);
         findNid($lines, $linesno);
         $linesno++;
+    }
+}
+
+function checkpublic($lines,$linesno){
+    global $nkw,$nid;
+    if (preg_match("/public/",$lines)>0){
+        $nkw[$linesno]++;
+        $nid[$linesno]++;
+        $string_json = file_get_contents("javaReturn.json");
+        $pattern = json_decode($string_json, TRUE);
+        foreach ($pattern as $i) {
+            if ($count = preg_match_all($i, $lines) != 0) {
+                $nkw[$linesno] += $count;
+            }
+        }
     }
 }
