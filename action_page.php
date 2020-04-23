@@ -69,7 +69,7 @@
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Complexity of a Program Due To Size
+                          Complexity of The Program Due To Size
                    </button>
                    </h2>
                 </div>';
@@ -123,7 +123,7 @@
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                           Complexity of a Program Due To Control Structures
+                           Complexity of The Program Due To Control Structures
                    </button>
                    </h2>
                 </div>';
@@ -165,12 +165,55 @@
                 <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                           Complexity of a Program Due To All Factors
+                           Complexity of The Program Due Inheritance
                    </button>
                    </h2>
                 </div>
           ';
             echo '<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">';
+            //defining columns for the inheritance table
+            echo "<table class=\"table table-bordered table-striped \">";
+            echo "<thead class=\"thead-dark\">";
+            echo $TABLE_START;
+            echo "<th style='width: 7%' scope=\"col\">Count</th>";
+            echo "<th scope=\"col\">Class Name</th>";
+            echo "<th scope=\"col\">No of direct inheritances</th>";
+            echo "<th scope=\"col\">No of indirect inheritances</th>";
+            echo "<th scope=\"col\">Total inheritances</th>";
+            echo "<th scope=\"col\">Ci</th>";
+            echo $TABLE_END;
+            echo "</thead>";
+
+            $lineno = 1;
+            foreach ($codes as $line) {
+                echo $TABLE_START;
+                echo "<th scope= \"row\">$lineno</th>";
+                echo "<td>class name</td>";
+                echo "<td>value1</td>";
+                echo "<td>value2</td>";
+                echo "<td>value3</td>";
+                echo "<td>ci</td>";
+                echo $TABLE_END;
+                $lineno++;
+            }
+            echo "</table><br>";
+            echo ' </div>
+              </div>
+             </div>
+            </div>';
+
+            echo ' <div class="accordion" id="accordionExample">
+                <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                   <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                           Complexity of The Program Due To All Factors
+                   </button>
+                   </h2>
+                </div>
+          ';
+            echo '<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body">';
             //defining columns for the all factor table
             echo "<table class=\"table table-bordered table-striped \">";
@@ -205,7 +248,6 @@
               </div>
              </div>
             </div>';
-
             ?>
         </div>
     </main>
