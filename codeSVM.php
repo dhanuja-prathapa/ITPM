@@ -97,7 +97,6 @@ function sizeCal($codes)
             }
         }
         $nsl[$linesno] += stringLiterals($lines);
-    //    $nnv[$linesno] += numericalVal($lines,$linesno);
         numericalVal($lines,$linesno);
         findNid($lines, $linesno);
         $linesno++;

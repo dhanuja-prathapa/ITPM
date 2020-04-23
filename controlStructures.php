@@ -22,10 +22,8 @@ function findControlStructure($codes){
     $ifarray = array_fill(0,sizeof($codes),0);
 
     foreach ($codes as $lines) {
-        $words = explode(" ", $lines);
         bracketcount($lines,$linesno);
             calCcs();
-
         $linesno++;
     }
 
@@ -66,12 +64,16 @@ function bracketcount($lines,$linesno){
         $ifarray[$brackets] = 0;
         $brackets -= 1;
     }
-    checkIF($lines,$linesno,$brackets);
+    if(preg_match("@//@",$lines) == 0) {
+        checkIF($lines, $linesno, $brackets);
+
+
+    }
 
 }
 
 function checkIF($lines,$linesno,$brackets){
-    global $ccs,$wtcs,$nc,$ccspps,$ifthis, $ifprev, $ifarray;
+    global $ccs,$wtcs,$nc,$ccspps, $ifarray;
     if(preg_match("/if/",$lines)> 0){
         $nc[$linesno]++;
         $wtcs[$linesno] += 2;
