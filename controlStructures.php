@@ -9,7 +9,7 @@ function calCcs(){
 }
 
 function findControlStructure($codes){
-    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev,$forthis,$forprev,$switchprev,$switchthis,$brackets;
+    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev,$forthis,$forprev,$switchprev,$switchthis,$brackets, $ifarray;
 
     $linesno = 1;
     $ifthis = false;
@@ -18,18 +18,12 @@ function findControlStructure($codes){
     $forprev = false;
     $switchthis = false;
     $switchprev= false;
-    $brackets = array_fill(1, sizeof($codes), 0);
+    $brackets = 0;
+    $ifarray = array_fill(0,sizeof($codes),0);
 
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
-        foreach ($words as $word) {
-            checkFor($word,$linesno);
-            //checkIF($word,$linesno);
-            checkSWITCH($word,$linesno);
-            calCcs();
-            }
-            nestedFor($linesno);
-            nestedIF($linesno,$lines);
+        bracketcount($lines,$linesno);
             calCcs();
 
         $linesno++;
@@ -44,44 +38,8 @@ function checkFor($word,$linesno){
         $forthis = true;
     }
 }
-function nestedFor($linesno){
-    global $ccs,$wtcs,$nc,$ccspps,$forthis,$forprev;
-    if ($forprev && $forthis){
-        $prevline = $linesno -1;
-        $newccs = $ccs[$prevline];
-        $ccspps[$linesno] += $newccs;
 
-    }
-    $forprev = $forthis;
-    $forthis = false;
-}
-function checkIF($word,$linesno){
-    global $ccs,$wtcs,$nc,$ccspps,$ifthis, $ifprev;
-    if(preg_match("/if/",$word)> 0){
-        $nc[$linesno]++;
-        $wtcs[$linesno] += 2;
-        $ifthis = true;
-    }
-}
-function nestedIF($linesno,$lines){
-    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev, $brackets;
-    if(preg_match("/if/",$lines)>0) {
-        if (preg_match("/{/", $lines) > 0) {
-            $brackets++;
-        }
-        if (preg_match("/}/", $lines) > 0) {
-            $brackets--;
-        }
-    }
-//    if ($ifprev && $ifthis){
-//        $prevline = $linesno -1;
-//        $newccs = $ccs[$prevline];
-//        $ccspps[$linesno] += $newccs;
-//
-//    }
-//    $ifprev = $ifthis;
-//    $ifthis = false;
-}
+
 
 function checkSWITCH($word,$linesno){
     global $ccs,$wtcs,$nc,$ccspps,$switchthis, $switchprev;
@@ -95,22 +53,35 @@ function checkSWITCH($word,$linesno){
         }
     }
 }
-function nestedSWITCH($linesno){
-    global $ccs,$wtcs,$nc,$ccspps,$switchthis,$switchprev;
-    if ($switchprev && $switchthis){
-        $prevline = $linesno -1;
-        $newccs = $ccs[$prevline];
-        $ccspps[$linesno] += $newccs;
+
+
+function bracketcount($lines,$linesno){
+    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev,$forthis,$forprev,$switchprev,$switchthis,$brackets, $ifarray;
+    if(preg_match("/{/",$lines)>0){
+        $brackets += 1;
 
     }
-    $switchprev = $switchthis;
-    $switchthis = false;
-}
+    if(preg_match("/}/",$lines)>0){
 
-
-function bracketcount($linesno){
-    global $ccs,$wtcs,$nc,$ccspps,$ifthis,$ifprev,$forthis,$forprev,$switchprev,$switchthis,$brackets;
-    if(preg_match())
+        $ifarray[$brackets] = 0;
+        $brackets -= 1;
+    }
+    checkIF($lines,$linesno,$brackets);
 
 }
 
+function checkIF($lines,$linesno,$brackets){
+    global $ccs,$wtcs,$nc,$ccspps,$ifthis, $ifprev, $ifarray;
+    if(preg_match("/if/",$lines)> 0){
+        $nc[$linesno]++;
+        $wtcs[$linesno] += 2;
+        $ifarray[$brackets] = $linesno;
+        $prevbracket = $brackets - 1;
+
+        if ($ifarray[$prevbracket] != 0) {
+            $newccs = $ccs[$ifarray[$prevbracket]];
+            $ccspps[$linesno] += $newccs;
+        }
+
+    }
+}
