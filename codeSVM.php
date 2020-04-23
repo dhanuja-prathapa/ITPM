@@ -108,7 +108,9 @@ function checkpublic($lines,$linesno){
     global $nkw,$nid;
     if (preg_match("/public/",$lines)>0){
         $nkw[$linesno]++;
-        $nid[$linesno]++;
+        if(preg_match("/class/",$lines) == 0) {
+            $nid[$linesno]++;
+        }
         $string_json = file_get_contents("javaReturn.json");
         $pattern = json_decode($string_json, TRUE);
         foreach ($pattern as $i) {
