@@ -19,7 +19,7 @@
                 $location = 'uploads/';
                 if(move_uploaded_file($temp_name, $location.$name)){
                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                   echo 'File uploaded successfully';
+                   echo 'File Uploaded Successfully';
                    echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
                    echo '<span aria-hidden="true">&times;</span>';
                    echo '</button>';
@@ -69,7 +69,7 @@
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Complexity of a program due to Size
+                          Complexity of a Program Due To Size
                    </button>
                    </h2>
                 </div>';
@@ -123,7 +123,7 @@
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                           Complexity of a program due to Control Structures
+                           Complexity of a Program Due To Control Structures
                    </button>
                    </h2>
                 </div>';
@@ -156,9 +156,54 @@
         }
         echo "</table><br>";
         echo ' </div>
-    </div>
-  </div>
-  </div>';
+               </div>
+               </div>
+               </div>';
+
+        echo'<div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                   <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                           Complexity of a Program Due To All Factors
+                   </button>
+                   </h2>
+                </div>';
+        echo '<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">';
+        //defining columns for the all factor table
+        echo "<table class=\"table table-bordered table-striped \">";
+        echo "<thead class=\"thead-dark\">";
+        echo $TABLE_START;
+        echo "<th style='width: 7%' scope=\"col\">Line no</th>";
+        echo "<th scope=\"col\">Program statements</th>";
+        echo "<th scope=\"col\">Cs</th>";
+        echo "<th scope=\"col\">Cv</th>";
+        echo "<th scope=\"col\">Cm</th>";
+        echo "<th scope=\"col\">Ccs</th>";
+        echo "<th scope=\"col\">TCps</th>";
+        echo $TABLE_END;
+        echo "</thead>";
+
+        $lineno = 1;
+        foreach ($codes as $line) {
+            $tcps = $cs[$lineno] + $cs[$lineno] +$cs[$lineno] + $ccs[$lineno];
+            echo $TABLE_START;
+            echo "<th scope= \"row\">$lineno</th>";
+            echo "<td>$line</td>";
+            echo "<td>$cs[$lineno]</td>";
+            echo "<td>$cs[$lineno]</td>";
+            echo "<td>$cs[$lineno]</td>";
+            echo "<td>$ccs[$lineno]</td>";
+            echo "<td>$tcps</td>";
+            echo $TABLE_END;
+            $lineno++;
+        }
+        echo "</table><br>";
+        echo ' </div>
+              </div>
+             </div>
+            </div>';
+
         ?>
     </div>
 </main>
