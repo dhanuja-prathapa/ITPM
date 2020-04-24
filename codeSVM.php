@@ -148,7 +148,7 @@ function checkformethods($lines, $lineno){
 
 function ifswitch($lines,$lineno){
     if((preg_match('/\((.*?)\)/i', $lines,$inputpar) != 0) && (preg_match("/if/",$lines) > 0)){
-        print_r($inputpar);
+        
     }
 
 }
