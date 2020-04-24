@@ -285,6 +285,7 @@
 
             //inheritance begins
                 inhcal($codes,$inhSize);
+                calinh();
             echo ' <div class="accordion" id="accordionExample">
                 <div class="card">
                 <div class="card-header" id="headingThree">
@@ -356,13 +357,13 @@
 
             $lineno = 1;
             foreach ($codes as $line) {
-                $tcps = $cs[$lineno] + $cs[$lineno] + $cs[$lineno] + $ccs[$lineno];
+                $tcps = $cs[$lineno] + $cv[$lineno] + $cm[$lineno] + $ccs[$lineno];
                 echo $TABLE_START;
                 echo "<th scope= \"row\">$lineno</th>";
                 echo "<td>$line</td>";
                 echo "<td>$cs[$lineno]</td>";
-                echo "<td>$cs[$lineno]</td>";
-                echo "<td>$cs[$lineno]</td>";
+                echo "<td>$cv[$lineno]</td>";
+                echo "<td>$cm[$lineno]</td>";
                 echo "<td>$ccs[$lineno]</td>";
                 echo "<td>$tcps</td>";
                 echo $TABLE_END;
