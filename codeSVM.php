@@ -39,23 +39,24 @@ function stringLiterals($lines)
     }
 }
 
-function findNid($lines, $linesno)
-{
-    if (substr_count($lines, "System.out.") != 0) {
-
-        if ($nidcount = (substr_count($lines, "+") + substr_count($lines, "-") + substr_count($lines, "/") + substr_count($lines, "*")) != 0) {
-            global $nid;
-            $nid[$linesno] += $nidcount;
-        }
-    }
-}
+//function findNid($lines, $linesno)
+//{
+//    if (substr_count($lines, "System.out.") != 0) {
+//
+//        if ($nidcount = (substr_count($lines, "+") + substr_count($lines, "-") + substr_count($lines, "/") + substr_count($lines, "*")) != 0) {
+//            global $nid;
+//            $nid[$linesno] += $nidcount;
+//        }
+//    }
+//}
 
 function subOpCount($word, $linesno)
 {
-    if ($count = substr_count($word, "System.out.") != 0) {
+    if (substr_count($word, "System.out.") != 0) {
+
         global $nid;
         $nid[$linesno] += 3;
-        return ($count * 2);
+        return 2;
     }
     if ($count = (substr_count($word, "++") + substr_count($word, "--")) != 0) {
         return $count;
@@ -66,6 +67,7 @@ function subOpCount($word, $linesno)
 
 function sizeCal($codes)
 {
+    methCal($codes);
     global $nkw, $nop, $nid, $nnv, $nsl;
     $linesno = 1;
     foreach ($codes as $lines) {
@@ -75,14 +77,31 @@ function sizeCal($codes)
             continue;
         }
         checkpublic($lines,$linesno);
+        checkformethods($lines,$linesno);
+        ifswitch($lines,$linesno);
+        if(($count = substr_count($lines,".")) > 0){
+            if(preg_match("/import/",$lines) == 0)
+            $nop[$linesno] += $count;
+        }
         foreach ($words as $word) {
             $string_json = file_get_contents("javaKey.json");
+            $op_json = file_get_contents("javaOp.json");
             $pattern = json_decode($string_json, TRUE);
+            $op_pattern = json_decode($op_json,TRUE);
             foreach ($pattern as $i) {
                 if ($count = preg_match_all($i, $word) != 0) {
                     $nkw[$linesno] += $count;
                 }
             }
+
+                if (preg_match_all('/=/', $word) != 0) {
+                    $nop[$linesno] += 1;
+                }
+                if(preg_match('/,/', $word, $result) != 0){
+                    print_r($result);
+                }
+
+
             switch ($word) {
                     //keywords
 
@@ -94,12 +113,12 @@ function sizeCal($codes)
                     break;
 
                 default:
-                    $nop[$linesno] += subOpCount($word, $linesno);
+                  subOpCount($word, $linesno);
             }
         }
         $nsl[$linesno] += stringLiterals($lines);
         numericalVal($lines,$linesno);
-        findNid($lines, $linesno);
+        //findNid($lines, $linesno);
         $linesno++;
     }
 }
@@ -107,10 +126,7 @@ function sizeCal($codes)
 function checkpublic($lines,$linesno){
     global $nkw,$nid;
     if (preg_match("/public/",$lines)>0){
-        $nkw[$linesno]++;
-        if(preg_match("/class/",$lines) == 0) {
-            $nid[$linesno]++;
-        }
+
         $string_json = file_get_contents("javaReturn.json");
         $pattern = json_decode($string_json, TRUE);
         foreach ($pattern as $i) {
@@ -119,4 +135,20 @@ function checkpublic($lines,$linesno){
             }
         }
     }
+}
+
+function checkformethods($lines, $lineno){
+    global $methods, $nid;
+
+    if (preg_match('/' . implode('|', $methods) . '/',$lines,$found)>0){
+        $nid[$lineno] += 1;
+    }
+
+}
+
+function ifswitch($lines,$lineno){
+    if((preg_match('/\((.*?)\)/i', $lines,$inputpar) != 0) && (preg_match("/if/",$lines) > 0)){
+        print_r($inputpar);
+    }
+
 }
