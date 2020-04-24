@@ -98,7 +98,7 @@ function sizeCal($codes)
                     $nop[$linesno] += 1;
                 }
                 if(preg_match('/,/', $word, $result) != 0){
-                    print_r($result);
+                    $nop[$linesno] += 1;
                 }
 
 
@@ -148,7 +148,7 @@ function checkformethods($lines, $lineno){
 
 function ifswitch($lines,$lineno){
     if((preg_match('/\((.*?)\)/i', $lines,$inputpar) != 0) && (preg_match("/if/",$lines) > 0)){
-        
+
     }
 
 }

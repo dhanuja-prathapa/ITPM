@@ -10,6 +10,7 @@
         require 'controlStructures.php';
         require 'codeVariable.php';
         require 'codeMethods.php';
+        require 'inheritance.php';
         //file upload
 
         // Check if image file is a actual image or fake image
@@ -73,6 +74,14 @@
         $wtcs = array_fill(1, sizeof($codes), 0);
         $nc = array_fill(1, sizeof($codes), 0);
         $ccspps = array_fill(1, sizeof($codes), 0);
+
+        //define arrays for inheritance
+        $inhSize = substr_count($code,"class");
+        $classname = array_fill(1,$inhSize,0);
+        $ndi =  array_fill(1,$inhSize,0);
+        $nidi =  array_fill(1,$inhSize,0);
+        $ti =  array_fill(1,$inhSize,0);
+        $ci =  array_fill(1,$inhSize,0);
 
         $TABLE_START = "<tr>";
         $TABLE_END = "</tr>";
@@ -274,6 +283,8 @@
                </div>
                </div>';
 
+            //inheritance begins
+                inhcal($codes,$inhSize);
             echo ' <div class="accordion" id="accordionExample">
                 <div class="card">
                 <div class="card-header" id="headingThree">
@@ -299,17 +310,17 @@
             echo $TABLE_END;
             echo "</thead>";
 
-            $lineno = 1;
-            foreach ($codes as $line) {
+
+            for ($i = 1; $i <= $inhSize; $i++) {
                 echo $TABLE_START;
-                echo "<th scope= \"row\">$lineno</th>";
-                echo "<td>class name</td>";
-                echo "<td>value1</td>";
-                echo "<td>value2</td>";
-                echo "<td>value3</td>";
-                echo "<td>ci</td>";
+                echo "<th scope= \"row\">$i</th>";
+                echo "<td>$classname[$i]</td>";
+                echo "<td>$ndi[$i]</td>";
+                echo "<td>$nidi[$i]</td>";
+                echo "<td>$ti[$i]</td>";
+                echo "<td>$ci[$i]</td>";
                 echo $TABLE_END;
-                $lineno++;
+
             }
             echo "</table><br>";
             echo ' </div>
