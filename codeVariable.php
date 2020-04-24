@@ -68,9 +68,12 @@ function checkVar($lines, $linesno, $brackets){
             foreach ($pattern as $i) {
                 if (preg_match($i, $lines) != 0) {
                     $wvs[$linesno] += 1;
-                    $words = explode(" ", $lines);
+                    $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);
                     $arraySize = sizeof($words);
-                    $npdtv[$linesno] += ($arraySize - 1);
+                    if(preg_match('/\((.*?)\)/i',$lines,$found)){$npdtv[$linesno] = 1;}
+                    else {
+                        $npdtv[$linesno] += ($arraySize - 1);
+                    }
                     $composite = false;
                 }
             }
