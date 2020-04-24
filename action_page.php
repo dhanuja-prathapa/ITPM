@@ -146,7 +146,7 @@
                 <div class="card-header" id="heading3">
                     <h2 class="mb-0">
                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                          Complexity of a program Due to Variables
+                          Complexity of The Program Due to Variables
                    </button>
                    </h2>
                 </div>';
@@ -194,7 +194,7 @@
                 <div class="card-header" id="heading4">
                     <h2 class="mb-0">
                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
-                          Complexity of a program Due to Methods
+                          Complexity of The Program Due to Methods
                    </button>
                    </h2>
                 </div>';
