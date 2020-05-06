@@ -23,9 +23,9 @@ function numericalVal($lines,$linesno)
 
 function calCs()
 {
-    global $nkw, $nop, $nid, $nnv, $nsl, $cs;
+    global $nkw,$wkw, $nop,$wop, $nid,$wid, $nnv,$wnv, $nsl,$wsl, $cs;
     for ($i = 1; $i <= sizeof($cs); $i++) {
-        $cs[$i] = $nkw[$i] + $nid[$i] + $nop[$i] + $nnv[$i] + $nsl[$i];
+        $cs[$i] = ($nkw[$i] * $wkw) + ($nid[$i] * $wid) + ($nop[$i] * $wop) + ($nnv[$i] * $wnv) + ($nsl[$i] * $wsl);
     }
 }
 

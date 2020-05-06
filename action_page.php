@@ -52,13 +52,18 @@
         $nop = array_fill(1, sizeof($codes), 0);
         $nnv = array_fill(1, sizeof($codes), 0);
         $nsl = array_fill(1, sizeof($codes), 0);
+        $wkw = $_POST["Wkw"];
+        $wid = $_POST["Wid"];
+        $wop = $_POST["Wop"];
+        $wnv = $_POST["Wnv"];
+        $wsl = $_POST["Wsl"];
 
         //define arrays for variables
         $wvs = array_fill(1,sizeof($codes), 0);
         $npdtv = array_fill(1,sizeof($codes), 0);
         $npctv = array_fill(1,sizeof($codes), 0);
         $cv = array_fill(1,sizeof($codes), 0);
-        $wpdtv = 1;
+        $wpdtv = $_POST["Wpdtv"];
         $wcdtv = $_POST["Wcdtv"];
 
         //define arrays for methods
@@ -66,8 +71,8 @@
         $npdtp = array_fill(1,sizeof($codes), 0);
         $ncdtp = array_fill(1,sizeof($codes), 0);
         $cm = array_fill(1,sizeof($codes), 0);
-        $wpdtp = 1;
-        $wcdtp = 2;
+        $wpdtp = $_POST["Wpdtp"];
+        $wcdtp = $_POST["Wcdtp"];
 
         //define arrays for control structures
         $ccs = array_fill(1, sizeof($codes), 0);

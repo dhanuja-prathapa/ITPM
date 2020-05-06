@@ -23,23 +23,23 @@
                   <div class="row">
                      <div class="form-group col-6">
                          <label class="btn btn-secondary" for="Wkw" data-toggle="tooltip" data-placement="left" title="Weight due to keywords">Wkw</label>
-                         <input type="number" class="form-control" id="Wkw" value="1">
+                         <input type="number" class="form-control" name="Wkw" id="Wkw" value="1">
                       </div>
                       <div class="form-group col-6">
                           <label class="btn btn-secondary" for="Wid" data-toggle="tooltip" data-placement="left" title="Weight due to identifiers">Wid</label>
-                          <input type="number" class="form-control" id="Wid" value="1">
+                          <input type="number" class="form-control" name="Wid" id="Wid" value="1">
                       </div>
                       <div class="form-group col-6">
                           <label class="btn btn-secondary" for="Wop" data-toggle="tooltip" data-placement="left" title="Weight due to operators">Wop</label>
-                          <input type="number" class="form-control" id="Wop" value="1">
+                          <input type="number" class="form-control" name="Wop" id="Wop" value="1">
                       </div>
                       <div class="form-group col-6">
                           <label class="btn btn-secondary" for="Wnv" data-toggle="tooltip" data-placement="left" title="Weight due to numerical values or numbers">Wnv</label>
-                          <input type="number" class="form-control" id="Wnv" value="1">
+                          <input type="number" class="form-control" name="Wnv" id="Wnv" value="1">
                       </div>
                       <div class="form-group col-12">
                           <label class="btn btn-secondary" for="Wsl" data-toggle="tooltip" data-placement="left" title="Weight due to string literals">Wsl</label>
-                          <input type="number" class="form-control" id="Wsl" value="1">
+                          <input type="number" class="form-control" name="Wsl" id="Wsl" value="1">
                       </div>
                   </div>
                   </div>
@@ -51,11 +51,11 @@
                       <div class="row">
                           <div class="form-group col-12">
                               <label class="btn btn-secondary" for="Wpdtv" data-toggle="tooltip" data-placement="left" title="Weight of primitive data type variables">Wpdtv</label>
-                              <input type="number" class="form-control" id="Wpdtv" value="1">
+                              <input type="number" class="form-control" name="Wpdtv" id="Wpdtv" value="1">
                           </div>
                           <div class="form-group col-12">
                               <label class="btn btn-secondary" for="Wcdtv" data-toggle="tooltip" data-placement="left" title="Weight of composite data type variables">Wcdtv</label>
-                              <input type="number" class="form-control" id="Wcdtv" value="2">
+                              <input type="number" class="form-control" name="Wcdtv" id="Wcdtv" value="2">
                           </div>
                       </div>
                   </div>
@@ -67,15 +67,15 @@
                       <div class="row">
                           <div class="form-group col-12">
                               <label class="btn btn-secondary" for="Wpdtp" data-toggle="tooltip" data-placement="left" title="Weight of primitive data type parameters">Wpdtp</label>
-                              <input type="number" class="form-control" id="Wpdtp" value="1">
+                              <input type="number" class="form-control" name="Wpdtp" id="Wpdtp" value="1">
                           </div>
                           <div class="form-group col-12">
                               <label class="btn btn-secondary" for="Wcdtp" data-toggle="tooltip" data-placement="left" title="Weight of composite data type parameters">Wcdtp</label>
-                              <input type="number" class="form-control" id="Wcdtp" value="2">
+                              <input type="number" class="form-control" name="Wcdtp" id="Wcdtp" value="2">
                           </div>
                       </div>
                   </div>
-                      
+
                   </div>
               </div>
           </div><br>
