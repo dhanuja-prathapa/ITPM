@@ -132,7 +132,7 @@
             <br>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Upload</span>
+                    <span class="input-group-text">File/Folder</span>
                 </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" name="file" id="file" required>
