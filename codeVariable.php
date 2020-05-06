@@ -91,10 +91,10 @@ function checkVar($lines, $linesno, $brackets){
 }
 
 function calCv(){
-    global $wvs, $npdtv, $npctv, $cv, $wpdtv, $wpctv;
+    global $wvs, $npdtv, $npctv, $cv, $wpdtv, $wcdtv;
 
     for ($j = 1; $j <= sizeof($cv); $j++){
-        $cv[$j] = $wvs[$j] * (($wpdtv * $npdtv[$j]) + ($wpctv * $npctv[$j]));
+        $cv[$j] = $wvs[$j] * (($wpdtv * $npdtv[$j]) + ($wcdtv * $npctv[$j]));
     }
 }
 

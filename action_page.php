@@ -59,7 +59,7 @@
         $npctv = array_fill(1,sizeof($codes), 0);
         $cv = array_fill(1,sizeof($codes), 0);
         $wpdtv = 1;
-        $wpctv = 2;
+        $wcdtv = $_POST["Wcdtv"];
 
         //define arrays for methods
         $wmrt = array_fill(1,sizeof($codes), 0);
