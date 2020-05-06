@@ -59,6 +59,7 @@ function bracketcount($lines, $linesno)
 //If component finding function
 function checkIF($lines, $linesno, $brackets)
 {
+    //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $ifarray, $casearray, $switcharray, $newccs, $colons, $forarray, $whilearray, $wif;
 
     //Checking for if or else if in line
@@ -76,47 +77,55 @@ function checkIF($lines, $linesno, $brackets)
         //check for if inside another if
         if ($ifarray[$prevbracket] != 0) {
             $newccs = $ccs[$ifarray[$prevbracket]];
-            $ccspps[$linesno] += $newccs;
+            $ccspps[$linesno] += $newccs;//assigning previous if ccs to ccspps
         }
         //check for if inside a switch case
         if ($switcharray[$prevbracket] != 0) {
             $newccs = $ccs[$casearray[$colons]];
-            $ccspps[$linesno] += $newccs;
+            $ccspps[$linesno] += $newccs;//assigning previous switch/case ccs ccspps
         }
         //check for if inside a for loop
         if ($forarray[$prevbracket] != 0) {
             $newccs = $ccs[$forarray[$prevbracket]];
-            $ccspps[$linesno] += $newccs;
+            $ccspps[$linesno] += $newccs;//assigning previous for loop ccs to ccspps
         }
         //check for of inside while loop
         if ($whilearray[$prevbracket] != 0) {
             $newccs = $ccs[$whilearray[$prevbracket]];
-            $ccspps[$linesno] += $newccs;
+            $ccspps[$linesno] += $newccs;//assigning previous while loop ccs to ccspps
         }
     }
 }
 
+//Switch component finding function
 function checkSWITCH($lines, $linesno, $brackets)
 {
-    global $ccs, $wtcs, $nc, $ccspps, $switcharray, $ifarray, $newccs, $whilearray, $forarray,$wswt ;
+    //global variable declaration
+    global $ccs, $wtcs, $nc, $ccspps, $switcharray, $ifarray, $newccs, $whilearray, $forarray, $wswt, $casearray, $colons;
+
+    //Checking for switch in line
     if (preg_match("/switch/", $lines) > 0) {
-        $nc[$linesno]++;
-        $wtcs[$linesno] += $wswt;
-        $switcharray[$brackets] = $linesno;
+        $nc[$linesno]++;//add nc
+        $wtcs[$linesno] += $wswt;//assign weight taken manually
+        $switcharray[$brackets] = $linesno;//storing inside switch array the particular line with bracket
         $prevbracket = $brackets - 1;
 
+        //checking nested switch inside another switch case statement
         if ($switcharray[$prevbracket] != 0) {
-            $newccs = $ccs[$switcharray[$prevbracket]];
-            $ccspps[$linesno] += $newccs;
+            $newccs = $ccs[$casearray[$colons]];
+            $ccspps[$linesno] += $newccs;;
         }
+        //checking nested switch inside if
         if ($ifarray[$prevbracket] != 0) {
             $newccs = $ccs[$ifarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+        //checking nested switch inside while loop
         if ($whilearray[$prevbracket] != 0) {
             $newccs = $ccs[$whilearray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+        //checking nested switch inside for loop
         if ($forarray[$prevbracket] != 0) {
             $newccs = $ccs[$forarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
@@ -124,15 +133,20 @@ function checkSWITCH($lines, $linesno, $brackets)
     }
 }
 
+//Case component finding function
 function checkCASE($lines, $linesno, $brackets)
 {
+    //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $switcharray, $colons, $casearray, $wcase;
+
+    //Checking for 'case' in line
     if (preg_match("/case/", $lines) > 0) {
         $colons++;
         $nc[$linesno]++;
         $wtcs[$linesno] += $wcase;
         $casearray[$colons] = $linesno;
 
+        //Checking for the ccs value of the switch it belongs to and assigning it to ccspps
         if ($switcharray[$brackets] != 0) {
             $newccs = $ccs[$switcharray[$brackets]];
             $ccspps[$linesno] += $newccs;
@@ -140,27 +154,35 @@ function checkCASE($lines, $linesno, $brackets)
     }
 }
 
+//For component finding function
 function checkFor($lines, $linesno, $brackets)
 {
+    //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw;
+
+    //Checking 'for' in line
     if (preg_match("/for/", $lines) > 0) {
-        $nc[$linesno]++;
-        $wtcs[$linesno] += $wfw;
-        $forarray[$brackets] = $linesno;
+        $nc[$linesno]++;//add nc
+        $wtcs[$linesno] += $wfw;//assign 'for' weight to wtcs
+        $forarray[$brackets] = $linesno;//saving particular bracket location inside forarray
         $prevbracket = $brackets - 1;
 
+        //Check for nested for loop inside another for loop
         if ($forarray[$prevbracket] != 0) {
             $newccs = $ccs[$forarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+        //Check for nested for loop inside a switch
         if ($switcharray[$prevbracket] != 0) {
             $newccs = $ccs[$casearray[$colons]];
             $ccspps[$linesno] += $newccs;
         }
+        //Check for nested for loop inside an if statement
         if ($ifarray[$prevbracket] != 0) {
             $newccs = $ccs[$ifarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+        //Check for nested for loop inside while loop
         if ($whilearray[$prevbracket] != 0) {
             $newccs = $ccs[$whilearray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
@@ -168,27 +190,35 @@ function checkFor($lines, $linesno, $brackets)
     }
 }
 
+//While component finding function
 function checkWhile($lines, $linesno, $brackets)
 {
+    //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw;
+
+    //Checking 'while' in line
     if (preg_match("/while/", $lines) > 0) {
-        $nc[$linesno]++;
-        $wtcs[$linesno] += $wfw;
-        $whilearray[$brackets] = $linesno;
+        $nc[$linesno]++;//add nc
+        $wtcs[$linesno] += $wfw;//assign wtcs with weight given for while loop
+        $whilearray[$brackets] = $linesno;//Save particular bracket location inside whilearray
         $prevbracket = $brackets - 1;
 
+        //Check for while nested loop inside another while loop
         if ($whilearray[$prevbracket] != 0) {
             $newccs = $ccs[$whilearray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+        //Check for while nested loop inside a switch statement
         if ($switcharray[$prevbracket] != 0) {
             $newccs = $ccs[$casearray[$colons]];
             $ccspps[$linesno] += $newccs;
         }
+        //Check for while nested loop inside an if statement
         if ($ifarray[$prevbracket] != 0) {
             $newccs = $ccs[$ifarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+        //Check for while nested loop inside a for loop
         if ($forarray[$prevbracket] != 0) {
             $newccs = $ccs[$forarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
@@ -199,9 +229,12 @@ function checkWhile($lines, $linesno, $brackets)
 //Calculating the final Ccs value function
 function calCcs()
 {
+    //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps;
+
+    //Calculating the ccs value for each line having a control structure component
     for ($i = 1; $i <= sizeof($ccs); $i++) {
-        $ccs[$i] = ($wtcs[$i] * $nc[$i]) + $ccspps[$i];
+        $ccs[$i] = ($wtcs[$i] * $nc[$i]) + $ccspps[$i];//Given formula for the calculation
     }
 
 }
