@@ -1,104 +1,104 @@
 <?php include "header.php"; ?>
-<main>
-    <!-- Dhanuja Ranawake part -->
-    <br><br>
-    <div style="margin-left: 20%;margin-right:20%">
-        <!--<h5 style="text-align: center;"> Displaying the complexity of a program due to size</h5>--><br>
-        <?php
+    <main>
+        <!-- Dhanuja Ranawake part -->
+        <br><br>
+        <div style="margin-left: 20%;margin-right:20%">
+            <!--<h5 style="text-align: center;"> Displaying the complexity of a program due to size</h5>--><br>
+            <?php
 
-        require 'codeSVM.php';
-        require 'controlStructures.php';
-        require 'codeVariable.php';
-        require 'codeMethods.php';
-        //file upload
+            require 'codeSVM.php';
+            require 'controlStructures.php';
+            require 'codeVariable.php';
+            require 'codeMethods.php';
 
-        // Check if image file is a actual image or fake image
-        if(isset($_POST['submit'])){
-            $name       = $_FILES['file']['name'];
-            $temp_name  = $_FILES['file']['tmp_name'];
-            if(isset($name) and !empty($name)){
-                $location = 'uploads/';
-                if(move_uploaded_file($temp_name, $location.$name)){
-                   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                   echo 'File uploaded successfully';
-                   echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-                   echo '<span aria-hidden="true">&times;</span>';
-                   echo '</button>';
-                   echo '</div>';
+            //file upload
+            // Check if image file is a actual image or fake image
+            if (isset($_POST['submit'])) {
+                $name = $_FILES['file']['name'];
+                $temp_name = $_FILES['file']['tmp_name'];
+                if (isset($name) and !empty($name)) {
+                    $location = 'uploads/';
+                    if (move_uploaded_file($temp_name, $location . $name)) {
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                        echo 'File uploaded successfully';
+                        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+                        echo '<span aria-hidden="true">&times;</span>';
+                        echo '</button>';
+                        echo '</div>';
 
+                    }
+                    /** @var TYPE_NAME $filepath */
+                    $filepath = 'uploads/' . $name;
+                    $code = file_get_contents($filepath);
                 }
                 /** @var TYPE_NAME $filepath */
                 $filepath = 'uploads/' . $name;
                 $code = file_get_contents($filepath);
             }
-            /** @var TYPE_NAME $filepath */
-            $filepath = 'uploads/'.$name;
-            $code = file_get_contents($filepath);
-        }
 
 
-        //Getting the code
-        //$code = $_POST['code'];
+            //Getting the code
+            //$code = $_POST['code'];
 
-        //separating the lines
-        $codes = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $code);
-        $codes = explode("\n", $codes);
+            //separating the lines
+            $codes = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $code);
+            $codes = explode("\n", $codes);
 
-        //define arrays for size
-        $cs = array_fill(1, sizeof($codes), 0);
-        $nkw = array_fill(1, sizeof($codes), 0);
-        $nid = array_fill(1, sizeof($codes), 0);
-        $nop = array_fill(1, sizeof($codes), 0);
-        $nnv = array_fill(1, sizeof($codes), 0);
-        $nsl = array_fill(1, sizeof($codes), 0);
-        $wkw = $_POST["Wkw"];
-        $wid = $_POST["Wid"];
-        $wop = $_POST["Wop"];
-        $wnv = $_POST["Wnv"];
-        $wsl = $_POST["Wsl"];
-        //configured weights for control structures
-        $wif = $_POST["Wif"];
-        $wfw = $_POST["Wfw"];
-        $wswt = $_POST["Wswt"];
-        $wcase = $_POST["Wcase"];
+            //define arrays for size
+            $cs = array_fill(1, sizeof($codes), 0);
+            $nkw = array_fill(1, sizeof($codes), 0);
+            $nid = array_fill(1, sizeof($codes), 0);
+            $nop = array_fill(1, sizeof($codes), 0);
+            $nnv = array_fill(1, sizeof($codes), 0);
+            $nsl = array_fill(1, sizeof($codes), 0);
+            $wkw = $_POST["Wkw"];
+            $wid = $_POST["Wid"];
+            $wop = $_POST["Wop"];
+            $wnv = $_POST["Wnv"];
+            $wsl = $_POST["Wsl"];
+            //configured weights for control structures
+            $wif = $_POST["Wif"];
+            $wfw = $_POST["Wfw"];
+            $wswt = $_POST["Wswt"];
+            $wcase = $_POST["Wcase"];
 
-        //define arrays for variables
-        $wvs = array_fill(1,sizeof($codes), 0);
-        $npdtv = array_fill(1,sizeof($codes), 0);
-        $npctv = array_fill(1,sizeof($codes), 0);
-        $cv = array_fill(1,sizeof($codes), 0);
-        $wpdtv = $_POST["Wpdtv"];
-        $wcdtv = $_POST["Wcdtv"];
+            //define arrays for variables
+            $wvs = array_fill(1, sizeof($codes), 0);
+            $npdtv = array_fill(1, sizeof($codes), 0);
+            $npctv = array_fill(1, sizeof($codes), 0);
+            $cv = array_fill(1, sizeof($codes), 0);
+            $wpdtv = $_POST["Wpdtv"];
+            $wcdtv = $_POST["Wcdtv"];
 
-        //define arrays for methods
-        $wmrt = array_fill(1,sizeof($codes), 0);
-        $npdtp = array_fill(1,sizeof($codes), 0);
-        $ncdtp = array_fill(1,sizeof($codes), 0);
-        $cm = array_fill(1,sizeof($codes), 0);
-        $wpdtp = $_POST["Wpdtp"];
-        $wcdtp = $_POST["Wcdtp"];
+            //define arrays for methods
+            $wmrt = array_fill(1, sizeof($codes), 0);
+            $npdtp = array_fill(1, sizeof($codes), 0);
+            $ncdtp = array_fill(1, sizeof($codes), 0);
+            $cm = array_fill(1, sizeof($codes), 0);
+            $wpdtp = $_POST["Wpdtp"];
+            $wcdtp = $_POST["Wcdtp"];
 
-        //define arrays for control structures
-        $ccs = array_fill(1, sizeof($codes), 0);
-        $wtcs = array_fill(1, sizeof($codes), 0);
-        $nc = array_fill(1, sizeof($codes), 0);
-        $ccspps = array_fill(1, sizeof($codes), 0);
+            //define arrays for control structures
+            $ccs = array_fill(1, sizeof($codes), 0);
+            $wtcs = array_fill(1, sizeof($codes), 0);
+            $nc = array_fill(1, sizeof($codes), 0);
+            $ccspps = array_fill(1, sizeof($codes), 0);
 
-        //define arrays for inheritance
-        $inhSize = substr_count($code,"class");
-        $classname = array_fill(1,$inhSize,0);
-        $ndi =  array_fill(1,$inhSize,0);
-        $nidi =  array_fill(1,$inhSize,0);
-        $ti =  array_fill(1,$inhSize,0);
-        $ci =  array_fill(1,$inhSize,0);
+            //define arrays for inheritance
+            $inhSize = substr_count($code, "class");
+            $classname = array_fill(1, $inhSize, 0);
+            $ndi = array_fill(1, $inhSize, 0);
+            $nidi = array_fill(1, $inhSize, 0);
+            $ti = array_fill(1, $inhSize, 0);
+            $ci = array_fill(1, $inhSize, 0);
 
-        $TABLE_START = "<tr>";
-        $TABLE_END = "</tr>";
+            $TABLE_START = "<tr>";
+            $TABLE_END = "</tr>";
 
-        //Analysis
-        sizeCal($codes);
-        calCs();
-        echo'<div class="accordion" id="accordionExample">
+            //Analysis
+            sizeCal($codes);
+            calCs();
+            echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
@@ -147,10 +147,10 @@
              </div>
             </div>';
 
-        //heading for variables
-        varCal($codes);
-        calCv();
-        echo'<div class="accordion" id="accordionExample">
+            //heading for variables
+            varCal($codes);
+            calCv();
+            echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="heading3">
                     <h2 class="mb-0">
@@ -159,46 +159,46 @@
                    </button>
                    </h2>
                 </div>';
-        echo '<div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+            echo '<div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
       <div class="card-body">';
-        //Open the table and its first row
-        echo "<table class=\"table table-bordered table-striped \">";
-        echo "<thead class=\"thead-dark\">";
-        echo $TABLE_START;
-        echo "<th style='width: 7%' scope=\"col\">Line no</th>";
-        echo "<th scope=\"col\">Program statements</th>";
-        echo "<th scope=\"col\">Wvs</th>";
-        echo "<th scope=\"col\">Npdtv</th>";
-        echo "<th scope=\"col\">Npcdtv</th>";
-        echo "<th scope=\"col\">Cv</th>";
-        echo $TABLE_END;
-        echo "</thead>";
-
-        //Add empty <td>'s to even up the amount of cells in a row:
-        $lineno = 1;
-        foreach ($codes as $line) {
+            //Open the table and its first row
+            echo "<table class=\"table table-bordered table-striped \">";
+            echo "<thead class=\"thead-dark\">";
             echo $TABLE_START;
-            echo "<th scope= \"row\">$lineno</th>";
-            echo "<td>$line</td>";
-            echo "<td>$wvs[$lineno]</td>";
-            echo "<td>$npdtv[$lineno]</td>";
-            echo "<td>$npctv[$lineno]</td>";
-            echo "<td>$cv[$lineno]</td>";
+            echo "<th style='width: 7%' scope=\"col\">Line no</th>";
+            echo "<th scope=\"col\">Program statements</th>";
+            echo "<th scope=\"col\">Wvs</th>";
+            echo "<th scope=\"col\">Npdtv</th>";
+            echo "<th scope=\"col\">Npcdtv</th>";
+            echo "<th scope=\"col\">Cv</th>";
             echo $TABLE_END;
-            $lineno++;
-        }
+            echo "</thead>";
 
-        //Close the table row and the table
-        echo "</table><br>";
-        echo ' </div>
+            //Add empty <td>'s to even up the amount of cells in a row:
+            $lineno = 1;
+            foreach ($codes as $line) {
+                echo $TABLE_START;
+                echo "<th scope= \"row\">$lineno</th>";
+                echo "<td>$line</td>";
+                echo "<td>$wvs[$lineno]</td>";
+                echo "<td>$npdtv[$lineno]</td>";
+                echo "<td>$npctv[$lineno]</td>";
+                echo "<td>$cv[$lineno]</td>";
+                echo $TABLE_END;
+                $lineno++;
+            }
+
+            //Close the table row and the table
+            echo "</table><br>";
+            echo ' </div>
               </div>
              </div>
             </div>';
 
-//heading for methods
-        methCal($codes);
-        calCm();
-        echo'<div class="accordion" id="accordionExample">
+            //heading for methods
+            methCal($codes);
+            calCm();
+            echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="heading4">
                     <h2 class="mb-0">
@@ -207,49 +207,47 @@
                    </button>
                    </h2>
                 </div>';
-        echo '<div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+            echo '<div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
       <div class="card-body">';
-        //Open the table and its first row
-        echo "<table class=\"table table-bordered table-striped \">";
-        echo "<thead class=\"thead-dark\">";
-        echo $TABLE_START;
-        echo "<th style='width: 7%' scope=\"col\">Line no</th>";
-        echo "<th scope=\"col\">Program statements</th>";
-        echo "<th scope=\"col\">Wmrt</th>";
-        echo "<th scope=\"col\">Npdtp</th>";
-        echo "<th scope=\"col\">Ncdtp</th>";
-        echo "<th scope=\"col\">Cm</th>";
-        echo $TABLE_END;
-        echo "</thead>";
-
-        //Add empty <td>'s to even up the amount of cells in a row:
-        $lineno = 1;
-        foreach ($codes as $line) {
+            //Open the table and its first row
+            echo "<table class=\"table table-bordered table-striped \">";
+            echo "<thead class=\"thead-dark\">";
             echo $TABLE_START;
-            echo "<th scope= \"row\">$lineno</th>";
-            echo "<td>$line</td>";
-            echo "<td>$wmrt[$lineno]</td>";
-            echo "<td>$npdtp[$lineno]</td>";
-            echo "<td>$ncdtp[$lineno]</td>";
-            echo "<td>$cm[$lineno]</td>";
+            echo "<th style='width: 7%' scope=\"col\">Line no</th>";
+            echo "<th scope=\"col\">Program statements</th>";
+            echo "<th scope=\"col\">Wmrt</th>";
+            echo "<th scope=\"col\">Npdtp</th>";
+            echo "<th scope=\"col\">Ncdtp</th>";
+            echo "<th scope=\"col\">Cm</th>";
             echo $TABLE_END;
-            $lineno++;
-        }
+            echo "</thead>";
 
-        //Close the table row and the table
-        echo "</table><br>";
-        echo ' </div>
+            //Add empty <td>'s to even up the amount of cells in a row:
+            $lineno = 1;
+            foreach ($codes as $line) {
+                echo $TABLE_START;
+                echo "<th scope= \"row\">$lineno</th>";
+                echo "<td>$line</td>";
+                echo "<td>$wmrt[$lineno]</td>";
+                echo "<td>$npdtp[$lineno]</td>";
+                echo "<td>$ncdtp[$lineno]</td>";
+                echo "<td>$cm[$lineno]</td>";
+                echo $TABLE_END;
+                $lineno++;
+            }
+
+            //Close the table row and the table
+            echo "</table><br>";
+            echo ' </div>
               </div>
              </div>
             </div>';
 
 
-
-        //heading for control structure table
-  // echo "<h5 style=\"text-align: center;\"> Displaying the complexity of a program due to control structures</h5><br>";
-
+            //Control structures function calls
             findControlStructure($codes);
             calCcs();
+            //Control structure section table creation start
             echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingTwo">
@@ -261,7 +259,8 @@
                 </div>';
             echo '<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">';
-            //defining columns for the control structure table
+
+            //Defining columns for the control structure table
             echo "<table class=\"table table-bordered table-striped \">";
             echo "<thead class=\"thead-dark\">";
             echo $TABLE_START;
@@ -274,6 +273,7 @@
             echo $TABLE_END;
             echo "</thead>";
 
+            //Table data inserting loop
             $lineno = 1;
             foreach ($codes as $line) {
                 echo $TABLE_START;
@@ -292,6 +292,7 @@
                </div>
                </div>';
 
+            //Complexity due to all factors table
             echo ' <div class="accordion" id="accordionExample">
                 <div class="card">
                 <div class="card-header" id="headingFour">
@@ -304,7 +305,8 @@
           ';
             echo '<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body">';
-            //defining columns for the all factor table
+
+            //Defining columns for the all factor table
             echo "<table class=\"table table-bordered table-striped \">";
             echo "<thead class=\"thead-dark\">";
             echo $TABLE_START;
@@ -318,6 +320,7 @@
             echo $TABLE_END;
             echo "</thead>";
 
+            //Inserting values to all factor table
             $lineno = 1;
             foreach ($codes as $line) {
                 $tcps = $cs[$lineno] + $cv[$lineno] + $cm[$lineno] + $ccs[$lineno];

@@ -5,12 +5,14 @@
 
 <body>
 <main style="margin-left: 20%;margin-right: 20%;"><br><br>
+    <!-- form initialization -->
     <form action="action_page.php" id="form1" method="post" enctype="multipart/form-data"
           class="rounded border bg-light" style="padding: 4%">
         <br>
         <img src="images/upload-icon.png" class="rounded mx-auto d-block uploadicon" alt="...">
         <br>
         <br>
+        <!-- Manual weight configuration collapse section -->
         <div class="d-block" style="padding-left: 20%; padding-right: 20%; padding-bottom: 10%;">
             <p>
                 <a class="btn btn-outline-primary" data-toggle="collapse" href="#collapseSettings" role="button"
@@ -21,7 +23,8 @@
             <div class="collapse" id="collapseSettings">
                 <div class="card card-body">
                     <div class="row">
-                        <!--Size-->
+
+                        <!-- Manual declaration of weight for size-->
                         <div class="col-4 bg-light border">
                             <div class="justify-content-md-center">
                                 <h6 style="text-align: center; padding-top: 4px;">Size</h6>
@@ -55,7 +58,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Variable-->
+
+                        <!-- Manual declaration of weight for variables-->
                         <div class="col-4 bg-light border">
                             <div class="justify-content-md-center">
                                 <h6 style="text-align: center; padding-top: 4px;">Variable</h6>
@@ -75,7 +79,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!--method-->
+
+                        <!-- Manual declaration of weights for methods-->
                         <div class="col-4 bg-light border">
                             <div class="justify-content-md-center">
                                 <h6 style="text-align: center; padding-top: 4px;">Methods</h6>
@@ -95,6 +100,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Manual declaration of weight for control structures-->
                         <div class="col-12 bg-light border">
                             <div class="justify-content-md-center">
                                 <h6 style="text-align: center; padding-top: 4px;">Control Structures</h6>
@@ -130,6 +137,7 @@
                 </div>
             </div>
             <br>
+            <!-- Upload section of Folder or File by choosing from local PC-->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">File/Folder</span>
@@ -139,12 +147,14 @@
                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
             </div>
+            <!-- Javascript code for selecting file from pc -->
             <script>
                 $(".custom-file-input").on("change", function () {
                     var fileName = $(this).val().split("\\").pop();
                     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
                 });
             </script>
+            <!--Analyse button -->
             <input type="submit" name="submit" class="btn btn-primary " style="margin:0 auto; width: 100%;"
                    value="Analyse">
         </div>
