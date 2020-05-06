@@ -84,6 +84,45 @@
                       </div>
                   </div>
                   <!--inheritance-->
+                      <div class="col-6 bg-light border">
+                          <div class="justify-content-md-center">
+                              <h6 style="text-align: center; padding-top: 4px;">Inheritance</h6>
+                          </div>
+                          <div class="row">
+                              <div class="form-group col-12">
+                                  <label class="btn btn-secondary" for="Wmrt" data-toggle="tooltip" data-placement="left" title="Weight due to method return type">Wmrt</label>
+                                  <input type="number" class="form-control" id="Wmrt" value="1">
+                              </div>
+                              <div class="form-group col-12">
+                                  <label class="btn btn-secondary" for="Wpdtp" data-toggle="tooltip" data-placement="left" title="Weight of primitive data type parameters">Wpdtp</label>
+                                  <input type="number" class="form-control" id="Wpdtp" value="1">
+                              </div>
+                              <div class="form-group col-12">
+                                  <label class="btn btn-secondary" for="Wcdtp" data-toggle="tooltip" data-placement="left" title="Weight of composite data type parameters">Wcdtp</label>
+                                  <input type="number" class="form-control" id="Wcdtp" value="1">
+                              </div>
+                          </div>
+                      </div>
+                      <!--conrtol-->
+                      <div class="col-6 bg-light border">
+                          <div class="justify-content-md-center">
+                              <h6 style="text-align: center; padding-top: 4px;">Control Structures</h6>
+                          </div>
+                          <div class="row">
+                              <div class="form-group col-12">
+                                  <label class="btn btn-secondary" for="Wmrt" data-toggle="tooltip" data-placement="left" title="Weight due to method return type">Wmrt</label>
+                                  <input type="number" class="form-control" id="Wmrt" value="1">
+                              </div>
+                              <div class="form-group col-12">
+                                  <label class="btn btn-secondary" for="Wpdtp" data-toggle="tooltip" data-placement="left" title="Weight of primitive data type parameters">Wpdtp</label>
+                                  <input type="number" class="form-control" id="Wpdtp" value="1">
+                              </div>
+                              <div class="form-group col-12">
+                                  <label class="btn btn-secondary" for="Wcdtp" data-toggle="tooltip" data-placement="left" title="Weight of composite data type parameters">Wcdtp</label>
+                                  <input type="number" class="form-control" id="Wcdtp" value="1">
+                              </div>
+                          </div>
+                      </div>
                   </div>
               </div>
           </div><br>
