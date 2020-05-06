@@ -20,7 +20,7 @@
         <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
                 <a href="/ITPM" class="navbar-brand d-flex align-items-center">
-                    <strong>IT Project Management</strong>
+                    <strong>CODE COMPLEXITY CHECKING TOOL</strong>
                 </a>
             </div>
         </div>
