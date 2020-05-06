@@ -56,6 +56,11 @@
         $wop = $_POST["Wop"];
         $wnv = $_POST["Wnv"];
         $wsl = $_POST["Wsl"];
+        //configured weights for control structures
+        $wif = $_POST["Wif"];
+        $wfw = $_POST["Wfw"];
+        $wswt = $_POST["Wswt"];
+        $wcase = $_POST["Wcase"];
 
         //define arrays for variables
         $wvs = array_fill(1,sizeof($codes), 0);
@@ -286,52 +291,6 @@
                </div>
                </div>
                </div>';
-
-            //inheritance begins
-                inhcal($codes,$inhSize);
-                calinh();
-            echo ' <div class="accordion" id="accordionExample">
-                <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                   <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                           Complexity of The Program Due Inheritance
-                   </button>
-                   </h2>
-                </div>
-          ';
-            echo '<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">';
-            //defining columns for the inheritance table
-            echo "<table class=\"table table-bordered table-striped \">";
-            echo "<thead class=\"thead-dark\">";
-            echo $TABLE_START;
-            echo "<th style='width: 7%' scope=\"col\">Count</th>";
-            echo "<th scope=\"col\">Class Name</th>";
-            echo "<th scope=\"col\">No of direct inheritances</th>";
-            echo "<th scope=\"col\">No of indirect inheritances</th>";
-            echo "<th scope=\"col\">Total inheritances</th>";
-            echo "<th scope=\"col\">Ci</th>";
-            echo $TABLE_END;
-            echo "</thead>";
-
-
-            for ($i = 1; $i <= $inhSize; $i++) {
-                echo $TABLE_START;
-                echo "<th scope= \"row\">$i</th>";
-                echo "<td>$classname[$i]</td>";
-                echo "<td>$ndi[$i]</td>";
-                echo "<td>$nidi[$i]</td>";
-                echo "<td>$ti[$i]</td>";
-                echo "<td>$ci[$i]</td>";
-                echo $TABLE_END;
-
-            }
-            echo "</table><br>";
-            echo ' </div>
-              </div>
-             </div>
-            </div>';
 
             echo ' <div class="accordion" id="accordionExample">
                 <div class="card">
