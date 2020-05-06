@@ -66,10 +66,6 @@
                       </div>
                       <div class="row">
                           <div class="form-group col-12">
-                              <label class="btn btn-secondary" for="Wmrt" data-toggle="tooltip" data-placement="left" title="Weight due to method return type">Wmrt</label>
-                              <input type="number" class="form-control" id="Wmrt" value="1">
-                          </div>
-                          <div class="form-group col-12">
                               <label class="btn btn-secondary" for="Wpdtp" data-toggle="tooltip" data-placement="left" title="Weight of primitive data type parameters">Wpdtp</label>
                               <input type="number" class="form-control" id="Wpdtp" value="1">
                           </div>
@@ -79,7 +75,7 @@
                           </div>
                       </div>
                   </div>
-               
+                      
                   </div>
               </div>
           </div><br>
