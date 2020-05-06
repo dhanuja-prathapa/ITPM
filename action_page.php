@@ -10,7 +10,6 @@
         require 'controlStructures.php';
         require 'codeVariable.php';
         require 'codeMethods.php';
-        require 'inheritance.php';
         //file upload
 
         // Check if image file is a actual image or fake image
