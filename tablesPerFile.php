@@ -64,8 +64,10 @@ $nidi = array_fill(1, $inhSize, 0);
 $ti = array_fill(1, $inhSize, 0);
 $ci = array_fill(1, $inhSize, 0);
 
-$TABLE_START = "<tr>";
-$TABLE_END = "</tr>";
+$ROW_START = "<tr>";
+$ROW_END = "</tr>";
+$TOTAL= "Total";
+$END = "END";
 
 //Analysis
 sizeCal($codes);
@@ -84,7 +86,7 @@ echo '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-p
 //Open the table and its first row
 echo "<table class=\"table table-bordered table-striped \">";
 echo "<thead class=\"thead-dark\">";
-echo $TABLE_START;
+echo $ROW_START;
 echo "<th style='width: 7%' scope=\"col\">Line no</th>";
 echo "<th scope=\"col\">Program statements</th>";
 echo "<th scope=\"col\">Nkw</th>";
@@ -93,13 +95,13 @@ echo "<th scope=\"col\">Nop</th>";
 echo "<th scope=\"col\">Nnv</th>";
 echo "<th scope=\"col\">Nsl</th>";
 echo "<th scope=\"col\">Cs</th>";
-echo $TABLE_END;
+echo $ROW_END;
 echo "</thead>";
 
 //Add empty <td>'s to even up the amount of cells in a row:
 $lineno = 1;
 foreach ($codes as $line) {
-    echo $TABLE_START;
+    echo $ROW_START;
     echo "<th scope= \"row\">$lineno</th>";
     echo "<td>$line</td>";
     echo "<td>$nkw[$lineno]</td>";
@@ -108,7 +110,7 @@ foreach ($codes as $line) {
     echo "<td>$nnv[$lineno]</td>";
     echo "<td>$nsl[$lineno]</td>";
     echo "<td>$cs[$lineno]</td>";
-    echo $TABLE_END;
+    echo $ROW_END;
     $lineno++;
 }
 
@@ -136,27 +138,27 @@ echo '<div id="collapse3" class="collapse" aria-labelledby="heading3" data-paren
 //Open the table and its first row
 echo "<table class=\"table table-bordered table-striped \">";
 echo "<thead class=\"thead-dark\">";
-echo $TABLE_START;
+echo $ROW_START;
 echo "<th style='width: 7%' scope=\"col\">Line no</th>";
 echo "<th scope=\"col\">Program statements</th>";
 echo "<th scope=\"col\">Wvs</th>";
 echo "<th scope=\"col\">Npdtv</th>";
 echo "<th scope=\"col\">Npcdtv</th>";
 echo "<th scope=\"col\">Cv</th>";
-echo $TABLE_END;
+echo $ROW_END;
 echo "</thead>";
 
 //Add empty <td>'s to even up the amount of cells in a row:
 $lineno = 1;
 foreach ($codes as $line) {
-    echo $TABLE_START;
+    echo $ROW_START;
     echo "<th scope= \"row\">$lineno</th>";
     echo "<td>$line</td>";
     echo "<td>$wvs[$lineno]</td>";
     echo "<td>$npdtv[$lineno]</td>";
     echo "<td>$npctv[$lineno]</td>";
     echo "<td>$cv[$lineno]</td>";
-    echo $TABLE_END;
+    echo $ROW_END;
     $lineno++;
 }
 
@@ -184,27 +186,27 @@ echo '<div id="collapse4" class="collapse" aria-labelledby="heading4" data-paren
 //Open the table and its first row
 echo "<table class=\"table table-bordered table-striped \">";
 echo "<thead class=\"thead-dark\">";
-echo $TABLE_START;
+echo $ROW_START;
 echo "<th style='width: 7%' scope=\"col\">Line no</th>";
 echo "<th scope=\"col\">Program statements</th>";
 echo "<th scope=\"col\">Wmrt</th>";
 echo "<th scope=\"col\">Npdtp</th>";
 echo "<th scope=\"col\">Ncdtp</th>";
 echo "<th scope=\"col\">Cm</th>";
-echo $TABLE_END;
+echo $ROW_END;
 echo "</thead>";
 
 //Add empty <td>'s to even up the amount of cells in a row:
 $lineno = 1;
 foreach ($codes as $line) {
-    echo $TABLE_START;
+    echo $ROW_START;
     echo "<th scope= \"row\">$lineno</th>";
     echo "<td>$line</td>";
     echo "<td>$wmrt[$lineno]</td>";
     echo "<td>$npdtp[$lineno]</td>";
     echo "<td>$ncdtp[$lineno]</td>";
     echo "<td>$cm[$lineno]</td>";
-    echo $TABLE_END;
+    echo $ROW_END;
     $lineno++;
 }
 
@@ -235,27 +237,27 @@ echo '<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-p
 //Defining columns for the control structure table
 echo "<table class=\"table table-bordered table-striped \">";
 echo "<thead class=\"thead-dark\">";
-echo $TABLE_START;
+echo $ROW_START;
 echo "<th style='width: 7%' scope=\"col\">Line no</th>";
 echo "<th scope=\"col\">Program statements</th>";
 echo "<th scope=\"col\">Wtcs</th>";
 echo "<th scope=\"col\">NC</th>";
 echo "<th scope=\"col\">Ccspps</th>";
 echo "<th scope=\"col\">Ccs</th>";
-echo $TABLE_END;
+echo $ROW_END;
 echo "</thead>";
 
 //Table data inserting loop
 $lineno = 1;
 foreach ($codes as $line) {
-    echo $TABLE_START;
+    echo $ROW_START;
     echo "<th scope= \"row\">$lineno</th>";
     echo "<td>$line</td>";
     echo "<td>$wtcs[$lineno]</td>";
     echo "<td>$nc[$lineno]</td>";
     echo "<td>$ccspps[$lineno]</td>";
     echo "<td>$ccs[$lineno]</td>";
-    echo $TABLE_END;
+    echo $ROW_END;
     $lineno++;
 }
 echo "</table><br>";
@@ -281,7 +283,7 @@ echo '<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data
 //Defining columns for the all factor table
 echo "<table class=\"table table-bordered table-striped \">";
 echo "<thead class=\"thead-dark\">";
-echo $TABLE_START;
+echo $ROW_START;
 echo "<th style='width: 7%' scope=\"col\">Line no</th>";
 echo "<th scope=\"col\">Program statements</th>";
 echo "<th scope=\"col\">Cs</th>";
@@ -289,16 +291,27 @@ echo "<th scope=\"col\">Cv</th>";
 echo "<th scope=\"col\">Cm</th>";
 echo "<th scope=\"col\">Ccs</th>";
 echo "<th scope=\"col\">TCps</th>";
-echo $TABLE_END;
+echo $ROW_END;
 echo "</thead>";
 
 //Inserting values to all factor table
 $lineno = 1;
 $tcps = array_fill(1,sizeof($codes),0);
+//Table total complexity values declaration
+$tcs = 0;
+$tcv = 0;
+$tcm = 0;
+$tccs = 0;
+
+
 global $tcps;
 foreach ($codes as $line) {
     $tcps[$lineno] = $cs[$lineno] + $cv[$lineno] + $cm[$lineno] + $ccs[$lineno];
-    echo $TABLE_START;
+    $tcs += $cs[$lineno] ;
+    $tcv += $cv[$lineno];
+    $tcm += $cm[$lineno];
+    $tccs += $ccs[$lineno];
+    echo $ROW_START;
     echo "<th scope= \"row\">$lineno</th>";
     echo "<td>$line</td>";
     echo "<td>$cs[$lineno]</td>";
@@ -306,9 +319,20 @@ foreach ($codes as $line) {
     echo "<td>$cm[$lineno]</td>";
     echo "<td>$ccs[$lineno]</td>";
     echo "<td>$tcps[$lineno]</td>";
-    echo $TABLE_END;
+    echo $ROW_END;
     $lineno++;
 }
+global $finalTcps;
+$finalTcps = $tcs + $tcv + $tcm + $tccs;
+echo $ROW_START;
+echo "<th scope = \"row\">$END</th>";
+echo "<td>$TOTAL</td>";
+echo "<td>$tcs</td>";
+echo "<td>$tcv</td>";
+echo "<td>$tcm</td>";
+echo "<td>$tccs</td>";
+echo "<td>$finalTcps</td>";
+echo $ROW_END;
 
 
 //calculating the total value
