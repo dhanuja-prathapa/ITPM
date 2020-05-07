@@ -34,7 +34,7 @@
                         $zip = new ZipArchive();
                         $zip->open($filepath,ZipArchive::CREATE);
                         $file_count = $zip->count();
-                        
+
                         $contents = array_fill(0,$file_count,0);
                         $contentPath = array_fill(0,$file_count,0);
 
@@ -53,7 +53,7 @@
                         for ($i =0; $i < $file_count; $i++){
                             global $i, $contents, $contentPath, $code, $file_count;
 
-                            echo "<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#Modal".$i."\"> " .$contents[$i]. "</button>"
+                            echo "<button type=\"button\" class=\"btn btn-primary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal".$i."\"> " .$contents[$i]. "</button>"
                             ?>
                             <?php include "tablesPerFile.php"; ?>
                            <?php
@@ -128,9 +128,9 @@ function showTotalGraph(){{
                 datasets: [
                     {
                         label: 'Total',
-                        backgroundColor: '#7B7979',
+                        backgroundColor: 'rgba(0,0,255,0.3)',
                         borderColor: '#46d5f1',
-                        hoverBackgroundColor: '#CCCCCC',
+                        hoverBackgroundColor: 'rgba(0,0,255,0.5)',
                         hoverBorderColor: '#666666',
                         data: total
                     }
