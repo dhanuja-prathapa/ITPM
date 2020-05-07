@@ -8,6 +8,7 @@
     <!-- form initialization -->
     <form action="action_page.php" id="form1" method="post" enctype="multipart/form-data"
           class="rounded border bg-light" style="padding: 4%">
+        <h5 class="mx-auto d-block uploadicon" style="text-align: center;"> ITPM WE-45 </h5>
         <br>
         <img src="images/upload-icon.png" class="rounded mx-auto d-block uploadicon" alt="...">
         <br>
