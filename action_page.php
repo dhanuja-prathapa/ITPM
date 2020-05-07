@@ -34,6 +34,7 @@
                         $zip = new ZipArchive();
                         $zip->open($filepath,ZipArchive::CREATE);
                         $file_count = $zip->count();
+                        
                         $contents = array_fill(0,$file_count,0);
                         $contentPath = array_fill(0,$file_count,0);
 
@@ -69,7 +70,7 @@
                     }
                 }
                 global $file_count,$contents,$total;
-                
+
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++){
                     $myObj  = new \stdClass();
