@@ -1,6 +1,5 @@
 <?php include "header.php"; ?>
     <main>
-        <!-- Dhanuja Ranawake -->
         <br><br>
         <div class="container">
             <?php
