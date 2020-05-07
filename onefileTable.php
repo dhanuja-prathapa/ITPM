@@ -311,12 +311,12 @@ global $finalTcps;
 $finalTcps = $tcs +$tcv + $tcm + $tccs;
 echo $ROW_START;
 echo "<th scope = \"row\">$END</th>";
-echo "<td style='font-weight: bold'>$TOTAL</td>";
-echo "<td style='font-weight: bold'>$tcs</td>";
-echo "<td style='font-weight: bold'>$tcv</td>";
-echo "<td style='font-weight: bold'>$tcm</td>";
-echo "<td style='font-weight: bold'>$tccs</td>";
-echo "<td style='font-weight: bold'>$finalTcps</td>";
+echo "<td>$TOTAL</td>";
+echo "<td>$tcs</td>";
+echo "<td>$tcv</td>";
+echo "<td>$tcm</td>";
+echo "<td>$tccs</td>";
+echo "<td>$finalTcps</td>";
 echo $ROW_END;
 echo "</table><br>";
 echo ' </div>
