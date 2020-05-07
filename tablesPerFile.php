@@ -312,8 +312,7 @@ foreach ($codes as $line) {
 
 
 //calculating the total value
-global $file_count;
-$total = array_fill(0,$file_count,0);
+global $file_count, $total;
 $lineno=1;
 foreach ($codes as $line){
     global $total;

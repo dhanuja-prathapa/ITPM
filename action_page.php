@@ -47,6 +47,8 @@
                         }
                         $zip->close();
 
+                        $total = array_fill(0,$file_count,0);
+
                         for ($i =0; $i < $file_count; $i++){
                             global $i, $contents, $contentPath, $code, $file_count;
 
@@ -67,6 +69,7 @@
                     }
                 }
                 global $file_count,$contents,$total;
+                
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++){
                     $myObj  = new \stdClass();
@@ -74,9 +77,9 @@
                     $myObj->score = $total[$j];
                     $dataChart[$j] = $myObj;
                 }
-
                 $valueChart = json_encode($dataChart);
                 global $valueChart;
+                echo "<h6 class='mx-auto p-3' style='max-width:400px;'>Complexities of the uploaded files</h6>";
                echo "<div class=\"chart-container\">
   <canvas id=\"bar-chartcanvas\"></canvas>
 </div>
