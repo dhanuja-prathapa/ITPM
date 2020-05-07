@@ -21,6 +21,7 @@ function numericalVal($lines,$linesno)
     }
 }
 
+//Calculating Cs value
 function calCs()
 {
     global $nkw,$wkw, $nop,$wop, $nid,$wid, $nnv,$wnv, $nsl,$wsl, $cs;
@@ -29,6 +30,7 @@ function calCs()
     }
 }
 
+//Calculating string literals
 function stringLiterals($lines)
 {
     if (substr_count($lines, '"') != 0) {
