@@ -67,10 +67,86 @@
                         <?php
                     }
                 }
+                global $file_count,$contents,$total;
+                $dataChart = null;
+                for ($j = 0; $j < $file_count; $j++){
+                    $myObj  = new \stdClass();
+                    $myObj->name = $contents[$j];
+                    $myObj->score = $total[$j];
+                    $dataChart[$j] = $myObj;
+                }
 
-                //chart
-                global $total, $i, $contents;
+                $valueChart = json_encode($dataChart);
+                global $valueChart;
+               echo "<div class=\"chart-container\">
+  <canvas id=\"bar-chartcanvas\"></canvas>
+</div>
 
+<!-- javascript to run ChartJS with SQL data (JS to generate chart must come AFTER canvas HTML) -->
+<script>
+$(document).ready(function () {
+    showTotalGraph();
+});
+
+function showTotalGraph(){{
+    // This is the database.php file we created earlier, its JSON output will be processed in this function
+    
+          var dataString =  '$valueChart';       
+            var data = JSON.parse(dataString);
+            console.log(data);
+            // Declare the variables for your graph (for X and Y Axis)
+            var nameVar = []; // X Axis Label
+            var total = []; // Value and Y Axis basis
+
+            for (var i in data) {
+                // formStatus is taken from JSON output (see above)
+                nameVar.push(data[i].name);
+                total.push(data[i].score);
+            }
+            console.log(nameVar);
+            var options = {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        display: true
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            };
+
+            var chartdata = {
+                labels: nameVar,
+                datasets: [
+                    {
+                        label: 'Total',
+                        backgroundColor: '#7B7979',
+                        borderColor: '#46d5f1',
+                        hoverBackgroundColor: '#CCCCCC',
+                        hoverBorderColor: '#666666',
+                        data: total
+                    }
+                ]
+            };
+
+            //This is the div ID (within the HTML content) where you want to display the chart
+            var graphTarget = $(\"#bar-chartcanvas\");
+            var barGraph = new Chart(graphTarget, {
+                type: 'bar',
+                data: chartdata,
+                options: options
+            });
+        
+}}
+</script>
+
+
+";
             }
 
             ?>
