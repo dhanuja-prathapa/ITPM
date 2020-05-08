@@ -44,13 +44,6 @@ $wtcs = array_fill(1, sizeof($codes), 0);
 $nc = array_fill(1, sizeof($codes), 0);
 $ccspps = array_fill(1, sizeof($codes), 0);
 
-//define arrays for inheritance
-$inhSize = substr_count($code, "class");
-$classname = array_fill(1, $inhSize, 0);
-$ndi = array_fill(1, $inhSize, 0);
-$nidi = array_fill(1, $inhSize, 0);
-$ti = array_fill(1, $inhSize, 0);
-$ci = array_fill(1, $inhSize, 0);
 
 $ROW_START = "<tr>";
 $ROW_END = "</tr>";
