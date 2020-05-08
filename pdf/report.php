@@ -30,16 +30,27 @@ $pdf->AddPage();
 $pdf->SetFont('Arial','B',8);
 
 for ($j=0; $j<$fileCount; $j++) {
-    
+
 // Header starts ///
     $pdf->Cell(10, 10, 'Line No', 1, 0, 'C', 0);
     $pdf->Cell(40, 10, 'Program statements', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Nkw', 1, 1, 'C', 0);
+    $pdf->Cell(10, 10, 'Nkw', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nid', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nop', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nnv', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nsl', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Cs', 1, 1, 'C', 0);
     $lineno = 1;
     foreach ($codes[$j] as $line){
         $pdf->Cell(10,10,$lineno,1,0,'C',false);
         $pdf->Cell(40,10,$line,1,0,'C',false);
-        $pdf->Cell(10,10,$NKW_COL[$j][$lineno],1,1,'C',false);
+        $pdf->Cell(10,10,$NKW_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$NID_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$NOP_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$NNV_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$NSL_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$CS_COL[$j][$lineno],1,1,'C',false);
+
         $lineno++;
     }
 }
