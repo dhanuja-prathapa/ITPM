@@ -25,15 +25,17 @@ $NC_COL = $_SESSION['NC_COL'];
 $CCSPPS_COL = $_SESSION['CCSPPS_COL'];
 $fileCount = $_SESSION['FILE_COUNT'];
 $codes = $_SESSION['CODES'];
+$fileNames = $_SESSION['fileNames'];
 
 //create new pdf
 $pdf = new FPDF();
 $pdf->SetAutoPageBreak(true, 10);
 
+//creating factor tables for each file submitted
 for ($j = 0; $j < $fileCount; $j++) {
     $pdf->AddPage('L', 'A4');
-    $z = $j + 1;
-    $title = "File " . $z . " Complexity Due to Size";
+    // Complexity due to size table column define
+    $title =  $fileNames[$j]. " Complexity Due to Size";
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(260, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
@@ -48,6 +50,7 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     $lineno = 1;
     foreach ($codes[$j] as $line) {
+        //fill table through a loop while accessing session variables from the action_page.php file
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
@@ -64,9 +67,8 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->Ln();
     $pdf->AddPage('L', 'A4');
 
-    // Complexity due to variables table
-    $z = $j + 1;
-    $title = "File " . $z . " Complexity Due to Variables";
+    // Complexity due to variables table column define
+    $title = $fileNames[$j]. " Complexity Due to Variables";
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(270, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
@@ -79,6 +81,7 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     $lineno = 1;
     foreach ($codes[$j] as $line) {
+        //fill table through a loop while accessing session variables from the action_page.php file
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
@@ -93,9 +96,8 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     $pdf->Ln();
     $pdf->AddPage('L', 'A4');
-    // Complexity due to methods table
-    $z = $j + 1;
-    $title = "File " . $z . " Complexity Due to Methods";
+    // Complexity due to methods table column define
+    $title = $fileNames[$j]. " Complexity Due to Methods";
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(270, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
@@ -108,6 +110,7 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     $lineno = 1;
     foreach ($codes[$j] as $line) {
+        //fill table through a loop while accessing session variables from the action_page.php file
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
@@ -122,9 +125,8 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     $pdf->Ln();
     $pdf->AddPage('L', 'A4');
-    // Complexity due to control structures table
-    $z = $j + 1;
-    $title = "File " . $z . " Complexity Due to Control Structures";
+    // Complexity due to control structures table column define
+    $title = $fileNames[$j]. " Complexity Due to Control Structures";
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(270, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
@@ -137,6 +139,7 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     $lineno = 1;
     foreach ($codes[$j] as $line) {
+        //fill table through a loop while accessing session variables from the action_page.php file
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
@@ -148,10 +151,7 @@ for ($j = 0; $j < $fileCount; $j++) {
         $lineno++;
 
     }
-
-
-
 }
-
+//output pdf
 $pdf->Output();
 ?>
