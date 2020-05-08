@@ -69,6 +69,7 @@
                         <?php
                     }
                 }
+                echo "<a class='btn badge-info' href=\"pdf/report.php\">Report</a>";
                 global $file_count,$contents,$total;
 
                 $dataChart = null;
