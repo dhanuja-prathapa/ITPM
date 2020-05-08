@@ -103,13 +103,17 @@
                 $_SESSION['FILE_COUNT']=$file_count;
                 $_SESSION['CODES']=$CODES_File;
 
-                echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
+                echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/allFactorTableReport.php\">Program & File Complexity Report</a><br>";
+                echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/factorTableReport.php\">Factor Table Report</a>";
+
                 global $file_count, $contents, $total;
+                $_SESSION['total'] = $total;
                 $totalPC = 0;
 
                 for ($r = 0; $r < sizeof($total); $r++) {
                     $totalPC += $total[$r];
                 }
+
                 echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++) {
