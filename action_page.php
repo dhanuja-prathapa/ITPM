@@ -3,6 +3,7 @@
         <br><br>
         <div class="container">
             <?php
+            session_start();
 
             require 'codeSVM.php';
             require 'controlStructures.php';
@@ -62,14 +63,7 @@
                             <?php include "tablesPerFile.php"; ?>
                             <?php include "pdf/tablesToPDF.php"; ?>
                             <?php
-
                         }
-                        global $CS_TABLE;
-                        echo $CS_TABLE[0][1];
-                        echo $CS_TABLE[0][2];
-                        echo $CS_TABLE[1][1];
-                        echo $CS_TABLE[1][2];
-
 
 
                     } else {
@@ -81,6 +75,20 @@
                         <?php
                     }
                 }
+                global $CS_TABLE,$NKW_TABLE,$NID_TABLE,$NOP_TABLE,$NNV_TABLE,$NSL_TABLE,$WVS_TABLE,$NPDTV_TABLE,$NPCTV_TABLE,$CV_TABLE,$WMRT_TABLE,$NPDTP_TABLE,$NCDTP_TABLE,$CM_TABLE,$CCS_TABLE,$WTCS_TABLE,$NC_TABLE,$CCSPPS_TABLE;
+                global $file_count,$codes;
+
+                $_SESSION['CS_COL']=$CS_TABLE;
+                $_SESSION['NKW_COL']=$CS_TABLE;
+                $_SESSION['NID_COL']=$CS_TABLE;
+                $_SESSION['NOP_COL']=$CS_TABLE;
+                $_SESSION['NNV_COL']=$CS_TABLE;
+                $_SESSION['NSL_COL']=$CS_TABLE;
+                $_SESSION['WVS_COL']=$CS_TABLE;
+                $_SESSION['NPDTV_COL']=$CS_TABLE;
+                $_SESSION['NPCTV_COL']=$CS_TABLE;
+                $_SESSION['CS_COL']=$CS_TABLE;
+
                 echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
                 global $file_count, $contents, $total;
                 $totalPC = 0;
