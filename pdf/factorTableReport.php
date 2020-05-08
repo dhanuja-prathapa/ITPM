@@ -39,24 +39,24 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 0);
     $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Nkw', 1, 0, 'L', 0);
-    $pdf->Cell(10, 10, 'Nid', 1, 0, 'L', 0);
-    $pdf->Cell(10, 10, 'Nop', 1, 0, 'L', 0);
-    $pdf->Cell(10, 10, 'Nnv', 1, 0, 'L', 0);
-    $pdf->Cell(10, 10, 'Nsl', 1, 0, 'L', 0);
-    $pdf->Cell(10, 10, 'Cs', 1, 1, 'L', 0);
+    $pdf->Cell(10, 10, 'Nkw', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nid', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nop', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nnv', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Nsl', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Cs', 1, 1, 'C', 0);
 
     $lineno = 1;
     foreach ($codes[$j] as $line) {
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(15, 10, $lineno, 1, 0, 'L', false);
+        $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NKW_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NID_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NOP_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NNV_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NSL_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $CS_COL[$j][$lineno], 1, 1, 'L', false);
+        $pdf->Cell(10, 10, $NKW_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(10, 10, $NID_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(10, 10, $NOP_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(10, 10, $NNV_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(10, 10, $NSL_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(10, 10, $CS_COL[$j][$lineno], 1, 1, 'C', false);
 
         $lineno++;
     }
@@ -80,12 +80,12 @@ for ($j = 0; $j < $fileCount; $j++) {
     $lineno = 1;
     foreach ($codes[$j] as $line) {
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(15, 10, $lineno, 1, 0, 'L', false);
+        $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
-        $pdf->Cell(14, 10, $WVS_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(14, 10, $NPDTV_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(14, 10, $NPCTV_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(14, 10, $CV_COL[$j][$lineno], 1, 1, 'L', false);
+        $pdf->Cell(14, 10, $WVS_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $NPDTV_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $NPCTV_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $CV_COL[$j][$lineno], 1, 1, 'C', false);
 
         $lineno++;
 
@@ -101,20 +101,20 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 0);
     $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Wmrt', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Npdtp', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Ncdtp', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Cm', 1, 1, 'C', 0);
+    $pdf->Cell(14, 10, 'Wmrt', 1, 0, 'C', 0);
+    $pdf->Cell(14, 10, 'Npdtp', 1, 0, 'C', 0);
+    $pdf->Cell(14, 10, 'Ncdtp', 1, 0, 'C', 0);
+    $pdf->Cell(14, 10, 'Cm', 1, 1, 'C', 0);
 
     $lineno = 1;
     foreach ($codes[$j] as $line) {
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(15, 10, $lineno, 1, 0, 'L', false);
+        $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $WMRT_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NPDTP_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NCDTP_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $CM_COL[$j][$lineno], 1, 1, 'L', false);
+        $pdf->Cell(14, 10, $WMRT_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $NPDTP_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $NCDTP_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $CM_COL[$j][$lineno], 1, 1, 'C', false);
 
         $lineno++;
 
@@ -130,20 +130,20 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 0);
     $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Wtcs', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'NC', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Ccspps', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Ccs', 1, 1, 'C', 0);
+    $pdf->Cell(14, 10, 'Wtcs', 1, 0, 'C', 0);
+    $pdf->Cell(14, 10, 'NC', 1, 0, 'C', 0);
+    $pdf->Cell(14, 10, 'Ccspps', 1, 0, 'C', 0);
+    $pdf->Cell(14, 10, 'Ccs', 1, 1, 'C', 0);
 
     $lineno = 1;
     foreach ($codes[$j] as $line) {
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(15, 10, $lineno, 1, 0, 'L', false);
+        $pdf->Cell(15, 10, $lineno, 1, 0, 'C', false);
         $pdf->Cell(210, 10, $line, 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $WTCS_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $NC_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $CCSPPS_COL[$j][$lineno], 1, 0, 'L', false);
-        $pdf->Cell(10, 10, $CCS_COL[$j][$lineno], 1, 1, 'L', false);
+        $pdf->Cell(14, 10, $WTCS_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $NC_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $CCSPPS_COL[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(14, 10, $CCS_COL[$j][$lineno], 1, 1, 'C', false);
 
         $lineno++;
 
