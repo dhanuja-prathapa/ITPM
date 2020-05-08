@@ -64,6 +64,13 @@
                             <?php
 
                         }
+                        global $CS_TABLE;
+                        echo $CS_TABLE[0][1];
+                        echo $CS_TABLE[0][2];
+                        echo $CS_TABLE[1][1];
+                        echo $CS_TABLE[1][2];
+
+
 
                     } else {
                         /* Normal File */
