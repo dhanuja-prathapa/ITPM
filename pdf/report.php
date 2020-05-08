@@ -29,7 +29,7 @@ $codes = $_SESSION['CODES'];
 $pdf = new FPDF();
 $pdf->AddPage('L','A4');
 $pdf->SetFont('Arial','B',8);
-
+$pdf->SetAutoPageBreak(true,10);
 for ($j=0; $j<$fileCount; $j++) {
 
     $z = $j + 1;
@@ -57,8 +57,8 @@ for ($j=0; $j<$fileCount; $j++) {
         $pdf->Cell(10,10,$CS_COL[$j][$lineno],1,1,'L',false);
 
         $lineno++;
-        $pdf -> AddPage();
     }
+
 $pdf ->Ln();
 
     // Complexity due to variables table
@@ -68,7 +68,7 @@ $pdf ->Ln();
     $pdf->Cell(10, 10, 'Wvs', 1, 0, 'C', 0);
     $pdf->Cell(10, 10, 'Npdtv', 1, 0, 'C', 0);
     $pdf->Cell(10, 10, 'Ncdtv', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Cv', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Cv', 1, 1, 'C', 0);
 
     $lineno = 1;
     foreach ($codes[$j] as $line){
@@ -77,11 +77,12 @@ $pdf ->Ln();
         $pdf->Cell(10,10,$WVS_COL[$j][$lineno],1,0,'C',false);
         $pdf->Cell(10,10,$NPDTV_COL[$j][$lineno],1,0,'C',false);
         $pdf->Cell(10,10,$NPCTV_COL[$j][$lineno],1,0,'C',false);
-        $pdf->Cell(10,10,$CV_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$CV_COL[$j][$lineno],1,1,'C',false);
 
         $lineno++;
-        $pdf -> AddPage();
+
     }
+
     $pdf ->Ln();
     // Complexity due to methods table
     $title = "File " .$z."Complexity Due to Methods";
@@ -90,7 +91,7 @@ $pdf ->Ln();
     $pdf->Cell(10, 10, 'Wmrt', 1, 0, 'C', 0);
     $pdf->Cell(10, 10, 'Npdtp', 1, 0, 'C', 0);
     $pdf->Cell(10, 10, 'Ncdtp', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Cm', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Cm', 1, 1, 'C', 0);
 
     $lineno = 1;
     foreach ($codes[$j] as $line){
@@ -99,11 +100,12 @@ $pdf ->Ln();
         $pdf->Cell(10,10,$WMRT_COL[$j][$lineno],1,0,'C',false);
         $pdf->Cell(10,10,$NPDTP_COL[$j][$lineno],1,0,'C',false);
         $pdf->Cell(10,10,$NCDTP_COL[$j][$lineno],1,0,'C',false);
-        $pdf->Cell(10,10,$CM_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$CM_COL[$j][$lineno],1,1,'C',false);
 
         $lineno++;
-        $pdf -> AddPage();
+
     }
+
     $pdf ->Ln();
     // Complexity due to control structures table
     $title = "File " .$z."Complexity Due to Control Structures";
@@ -112,7 +114,7 @@ $pdf ->Ln();
     $pdf->Cell(10, 10, 'Wtcs', 1, 0, 'C', 0);
     $pdf->Cell(10, 10, 'NC', 1, 0, 'C', 0);
     $pdf->Cell(10, 10, 'Ccspps', 1, 0, 'C', 0);
-    $pdf->Cell(10, 10, 'Ccs', 1, 0, 'C', 0);
+    $pdf->Cell(10, 10, 'Ccs', 1, 1, 'C', 0);
 
     $lineno = 1;
     foreach ($codes[$j] as $line){
@@ -121,12 +123,11 @@ $pdf ->Ln();
         $pdf->Cell(10,10,$WTCS_COL[$j][$lineno],1,0,'C',false);
         $pdf->Cell(10,10,$NC_COL[$j][$lineno],1,0,'C',false);
         $pdf->Cell(10,10,$CCSPPS_COL[$j][$lineno],1,0,'C',false);
-        $pdf->Cell(10,10,$CCS_COL[$j][$lineno],1,0,'C',false);
+        $pdf->Cell(10,10,$CCS_COL[$j][$lineno],1,1,'C',false);
 
         $lineno++;
-        $pdf -> AddPage();
-    }
 
+    }
 
 }
 
