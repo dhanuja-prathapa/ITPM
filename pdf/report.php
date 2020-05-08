@@ -56,6 +56,7 @@ for ($j=0; $j<$fileCount; $j++) {
         $pdf->Cell(10,10,$CS_COL[$j][$lineno],1,1,'L',false);
 
         $lineno++;
+        $pdf -> AddPage();
     }
 $pdf ->Ln();
 
@@ -77,8 +78,8 @@ $pdf ->Ln();
         $pdf->Cell(10,10,$NPCTV_COL[$j][$lineno],1,0,'C',false);
         $pdf->Cell(10,10,$CV_COL[$j][$lineno],1,0,'C',false);
 
-
         $lineno++;
+        $pdf -> AddPage();
     }
     $pdf ->Ln();
     // Complexity due to methods table
@@ -100,6 +101,7 @@ $pdf ->Ln();
         $pdf->Cell(10,10,$CM_COL[$j][$lineno],1,0,'C',false);
 
         $lineno++;
+        $pdf -> AddPage();
     }
     $pdf ->Ln();
     // Complexity due to control structures table
@@ -121,6 +123,7 @@ $pdf ->Ln();
         $pdf->Cell(10,10,$CCS_COL[$j][$lineno],1,0,'C',false);
 
         $lineno++;
+        $pdf -> AddPage();
     }
 
 
