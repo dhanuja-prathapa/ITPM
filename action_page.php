@@ -48,7 +48,7 @@
                         $zip->extractTo($extractPath);
                         $file_count = 0;
                         for ($i = 0; $i < $files_count; $i++) {
-                            if ((preg_match("/.java/", $zip->getNameIndex($i)) != 0) || ((preg_match("/.cpp/", $zip->getNameIndex($i)) != 0))) {
+                            if (((preg_match("/.java/", $zip->getNameIndex($i)) != 0) || ((preg_match("/.cpp/", $zip->getNameIndex($i)) != 0))) && (preg_match("/MACOSX/",$zip->getNameIndex($i)) == 0)) {
                                 $contents[$file_count] = $zip->getNameIndex($i);
                                 $contentPath[$file_count] = $extractPath . $contents[$file_count];
                                 $file_count++;
