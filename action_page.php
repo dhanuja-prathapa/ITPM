@@ -77,7 +77,7 @@
                     }
                 }
                 global $CS_TABLE,$NKW_TABLE,$NID_TABLE,$NOP_TABLE,$NNV_TABLE,$NSL_TABLE,$WVS_TABLE,$NPDTV_TABLE,$NPCTV_TABLE,$CV_TABLE,$WMRT_TABLE,$NPDTP_TABLE,$NCDTP_TABLE,$CM_TABLE,$CCS_TABLE,$WTCS_TABLE,$NC_TABLE,$CCSPPS_TABLE;
-                global $file_count,$codes;
+                global $file_count,$CODES_File;
 
                 $_SESSION['CS_COL']=$CS_TABLE;
                 $_SESSION['NKW_COL']=$NKW_TABLE;
@@ -97,7 +97,9 @@
                 $_SESSION['WTCS_COL']=$WTCS_TABLE;
                 $_SESSION['NC_COL']=$NC_TABLE;
                 $_SESSION['CCSPPS_COL']=$CCSPPS_TABLE;
-
+                $_SESSION['FILE_COUNT']=$file_count;
+                $_SESSION['CODES']=$CODES_File;
+                print_r($NKW_TABLE);
                 echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
                 global $file_count, $contents, $total;
                 $totalPC = 0;

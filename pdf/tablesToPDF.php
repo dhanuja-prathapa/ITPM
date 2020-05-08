@@ -1,6 +1,6 @@
 <?php
 global $i, $contents, $contentPath, $code, $file_count, $cs, $nkw, $nid, $nop, $nnv, $nsl, $wvs, $npdtv, $npctv,$cv, $wmrt,
-       $npdtp, $ncdtp, $cm, $ccs, $wtcs, $nc, $ccspps;
+       $npdtp, $ncdtp, $cm, $ccs, $wtcs, $nc, $ccspps, $codes;
 
 $CS_TABLE[$i]= $cs;
 $NKW_TABLE[$i]= $nkw;
@@ -20,7 +20,7 @@ $CCS_TABLE[$i]= $ccs;
 $WTCS_TABLE[$i]= $wtcs;
 $NC_TABLE[$i]= $nc;
 $CCSPPS_TABLE[$i]= $ccspps;
-
+$CODES_File[$i]=$codes;
 
 
 ?>
