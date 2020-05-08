@@ -17,12 +17,16 @@
                 if (isset($name) and !empty($name)) {
                     $location = 'uploads/';
                     if (move_uploaded_file($temp_name, $location . $name)) {
-                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                        echo '<div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert">';
                         echo 'File uploaded successfully';
                         echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
                         echo '<span aria-hidden="true">&times;</span>';
                         echo '</button>';
-                        echo '</div>';
+                        echo '</div><script>
+                                    window.setTimeout(function () { 
+                                        $("#success-alert").alert(\'close\'); 
+                                    }, 2000);
+                               </script>';
 
                     }
                     /** @var TYPE_NAME $filepath */
