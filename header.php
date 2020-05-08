@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel='icon' href='favicon.ico' type='image/x-icon'/>
+    <link rel='icon' href='favicon.jpg' type='image/x-icon'/>
     <title>ITPM WE-45</title>
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">

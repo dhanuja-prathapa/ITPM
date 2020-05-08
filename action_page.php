@@ -25,66 +25,66 @@
                         echo '</div><script>
                                     window.setTimeout(function () { 
                                         $("#success-alert").alert(\'close\'); 
-                                    }, 2000);
+                                    }, 3000);
                                </script>';
 
                     }
                     /** @var TYPE_NAME $filepath */
-                    $extension = pathinfo($name,PATHINFO_EXTENSION);
-                    $zipname = pathinfo($name,PATHINFO_FILENAME)."/";
+                    $extension = pathinfo($name, PATHINFO_EXTENSION);
+                    $zipname = pathinfo($name, PATHINFO_FILENAME) . "/";
 
                     $filepath = 'uploads/' . $name;
                     if ($extension == 'zip') {
                         $zip = new ZipArchive();
-                        $zip->open($filepath,ZipArchive::CREATE);
+                        $zip->open($filepath, ZipArchive::CREATE);
                         $file_count = $zip->count();
 
-                        $contents = array_fill(0,$file_count,0);
-                        $contentPath = array_fill(0,$file_count,0);
+                        $contents = array_fill(0, $file_count, 0);
+                        $contentPath = array_fill(0, $file_count, 0);
 
                         $extractPath = "uploads/" . $zipname;
                         $zip->extractTo($extractPath);
 
-                        for ($i = 0; $i < $file_count; $i++){
+                        for ($i = 0; $i < $file_count; $i++) {
 
                             $contents[$i] = $zip->getNameIndex($i);
-                            $contentPath[$i] = $extractPath.$contents[$i];
+                            $contentPath[$i] = $extractPath . $contents[$i];
                         }
                         $zip->close();
 
-                        $total = array_fill(0,$file_count,0);
+                        $total = array_fill(0, $file_count, 0);
 
-                        for ($i =0; $i < $file_count; $i++){
+                        for ($i = 0; $i < $file_count; $i++) {
                             global $i, $contents, $contentPath, $code, $file_count;
 
-                            echo "<button type=\"button\" class=\"btn btn-secondary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal".$i."\"> " .$contents[$i]. "</button>"
+                            echo "<button type=\"button\" class=\"btn btn-secondary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal" . $i . "\"> " . $contents[$i] . "</button>"
                             ?>
                             <?php include "tablesPerFile.php"; ?>
                             <?php include "pdf/tablesToPDF.php"; ?>
-                           <?php
+                            <?php
 
                         }
 
-                    }else{
+                    } else {
                         /* Normal File */
                         global $code;
-                        $code= file_get_contents($filepath);
+                        $code = file_get_contents($filepath);
                         ?>
                         <?php include "onefileTable.php"; ?>
                         <?php
                     }
                 }
                 echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
-                global $file_count,$contents,$total;
+                global $file_count, $contents, $total;
                 $totalPC = 0;
 
-                for($r = 0; $r < sizeof($total); $r++){
+                for ($r = 0; $r < sizeof($total); $r++) {
                     $totalPC += $total[$r];
                 }
-                echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" .$totalPC. " </span></h6>" ;
+                echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
                 $dataChart = null;
-                for ($j = 0; $j < $file_count; $j++){
-                    $myObj  = new \stdClass();
+                for ($j = 0; $j < $file_count; $j++) {
+                    $myObj = new \stdClass();
                     $myObj->name = $contents[$j];
                     $myObj->score = $total[$j];
                     $dataChart[$j] = $myObj;
@@ -92,7 +92,7 @@
                 $valueChart = json_encode($dataChart);
                 global $valueChart;
                 echo "<h6 class='mx-auto p-3 text-uppercase' style='max-width:400px; font-weight: bold'>Complexities of The Uploaded Files</h6>";
-               echo "<div class=\"chart-container\">
+                echo "<div class=\"chart-container\">
   <canvas id=\"bar-chartcanvas\"></canvas>
 </div>
 
