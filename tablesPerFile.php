@@ -329,7 +329,7 @@ echo "<th scope = \"row\">$END</th>";
 echo "<td style='font-weight: bold'>$TOTAL</td>";
 echo "<td style='font-weight: bold'>$tcs</td>";
 echo "<td style='font-weight: bold'>$tcv</td>";
-echo "<td style='font-weight: bold'>$tcm</td>";j3
+echo "<td style='font-weight: bold'>$tcm</td>";
 echo "<td style='font-weight: bold'>$tccs</td>";
 echo "<td style='font-weight: bold'>$finalTcps</td>";
 echo $ROW_END;
