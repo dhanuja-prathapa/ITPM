@@ -70,7 +70,12 @@
                     }
                 }
                 global $file_count,$contents,$total;
+                $totalPC = 0;
 
+                for($r = 0; $r < sizeof($total); $r++){
+                    $totalPC += $total[$r];
+                }
+                echo "<h3 class='mx-auto p-3' style='text-align: center; color: red'>Total Program Complexity = " .$totalPC. " </h3>" ;
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++){
                     $myObj  = new \stdClass();
@@ -80,7 +85,7 @@
                 }
                 $valueChart = json_encode($dataChart);
                 global $valueChart;
-                echo "<h6 class='mx-auto p-3' style='max-width:400px;'>Complexities of the uploaded files</h6>";
+                echo "<h6 class='mx-auto p-3' style='max-width:400px; font-weight: bold'>Complexities of The Uploaded Files</h6>";
                echo "<div class=\"chart-container\">
   <canvas id=\"bar-chartcanvas\"></canvas>
 </div>
