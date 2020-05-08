@@ -56,6 +56,7 @@
                             echo "<button type=\"button\" class=\"btn btn-secondary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal".$i."\"> " .$contents[$i]. "</button>"
                             ?>
                             <?php include "tablesPerFile.php"; ?>
+                            <?php include "pdf/tablesToPDF.php"; ?>
                            <?php
 
                         }
