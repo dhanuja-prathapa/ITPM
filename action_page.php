@@ -53,7 +53,7 @@
                         for ($i =0; $i < $file_count; $i++){
                             global $i, $contents, $contentPath, $code, $file_count;
 
-                            echo "<button type=\"button\" class=\"btn btn-primary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal".$i."\"> " .$contents[$i]. "</button>"
+                            echo "<button type=\"button\" class=\"btn btn-secondary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal".$i."\"> " .$contents[$i]. "</button>"
                             ?>
                             <?php include "tablesPerFile.php"; ?>
                            <?php
@@ -69,14 +69,14 @@
                         <?php
                     }
                 }
-                echo "<a class='btn badge-info' href=\"pdf/report.php\">Report</a>";
+                echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
                 global $file_count,$contents,$total;
                 $totalPC = 0;
 
                 for($r = 0; $r < sizeof($total); $r++){
                     $totalPC += $total[$r];
                 }
-                echo "<h3 class='mx-auto p-3' style='text-align: center; color: red'>Total Program Complexity = " .$totalPC. " </h3>" ;
+                echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" .$totalPC. " </span></h6>" ;
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++){
                     $myObj  = new \stdClass();
@@ -86,7 +86,7 @@
                 }
                 $valueChart = json_encode($dataChart);
                 global $valueChart;
-                echo "<h6 class='mx-auto p-3' style='max-width:400px; font-weight: bold'>Complexities of The Uploaded Files</h6>";
+                echo "<h6 class='mx-auto p-3 text-uppercase' style='max-width:400px; font-weight: bold'>Complexities of The Uploaded Files</h6>";
                echo "<div class=\"chart-container\">
   <canvas id=\"bar-chartcanvas\"></canvas>
 </div>
