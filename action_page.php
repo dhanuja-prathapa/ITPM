@@ -39,19 +39,22 @@
                     if ($extension == 'zip') {
                         $zip = new ZipArchive();
                         $zip->open($filepath, ZipArchive::CREATE);
-                        $file_count = $zip->count();
+                        $files_count = $zip->count();
 
-                        $contents = array_fill(0, $file_count, 0);
-                        $contentPath = array_fill(0, $file_count, 0);
+                        $contents = array_fill(0, $files_count, 0);
+                        $contentPath = array_fill(0, $files_count, 0);
 
                         $extractPath = "uploads/" . $zipname;
                         $zip->extractTo($extractPath);
-
-                        for ($i = 0; $i < $file_count; $i++) {
-
-                            $contents[$i] = $zip->getNameIndex($i);
-                            $contentPath[$i] = $extractPath . $contents[$i];
+                        $file_count = 0;
+                        for ($i = 0; $i < $files_count; $i++) {
+                            if ((preg_match("/.java/", $zip->getNameIndex($i)) != 0) || ((preg_match("/.cpp/", $zip->getNameIndex($i)) != 0))) {
+                                $contents[$file_count] = $zip->getNameIndex($i);
+                                $contentPath[$file_count] = $extractPath . $contents[$file_count];
+                                $file_count++;
+                            }
                         }
+
                         $zip->close();
 
                         $total = array_fill(0, $file_count, 0);
