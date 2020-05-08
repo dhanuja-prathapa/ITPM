@@ -10,23 +10,19 @@ $nid = array_fill(1, sizeof($codes), 0);
 $nop = array_fill(1, sizeof($codes), 0);
 $nnv = array_fill(1, sizeof($codes), 0);
 $nsl = array_fill(1, sizeof($codes), 0);
+//configured weights for size
 $wkw = $_POST["Wkw"];
 $wid = $_POST["Wid"];
 $wop = $_POST["Wop"];
 $wnv = $_POST["Wnv"];
 $wsl = $_POST["Wsl"];
 
-//configured weights for control structures
-$wif = $_POST["Wif"];
-$wfw = $_POST["Wfw"];
-$wswt = $_POST["Wswt"];
-$wcase = $_POST["Wcase"];
-
 //define arrays for variables
 $wvs = array_fill(1, sizeof($codes), 0);
 $npdtv = array_fill(1, sizeof($codes), 0);
 $npctv = array_fill(1, sizeof($codes), 0);
 $cv = array_fill(1, sizeof($codes), 0);
+//configured weights for variables
 $wpdtv = $_POST["Wpdtv"];
 $wcdtv = $_POST["Wcdtv"];
 
@@ -35,6 +31,7 @@ $wmrt = array_fill(1, sizeof($codes), 0);
 $npdtp = array_fill(1, sizeof($codes), 0);
 $ncdtp = array_fill(1, sizeof($codes), 0);
 $cm = array_fill(1, sizeof($codes), 0);
+//configured weights for methods
 $wpdtp = $_POST["Wpdtp"];
 $wcdtp = $_POST["Wcdtp"];
 
@@ -43,7 +40,11 @@ $ccs = array_fill(1, sizeof($codes), 0);
 $wtcs = array_fill(1, sizeof($codes), 0);
 $nc = array_fill(1, sizeof($codes), 0);
 $ccspps = array_fill(1, sizeof($codes), 0);
-
+//configured weights for control structures
+$wif = $_POST["Wif"];
+$wfw = $_POST["Wfw"];
+$wswt = $_POST["Wswt"];
+$wcase = $_POST["Wcase"];
 
 $ROW_START = "<tr>";
 $ROW_END = "</tr>";
