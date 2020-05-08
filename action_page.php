@@ -3,6 +3,7 @@
         <br><br>
         <div class="container">
             <?php
+            //SESSION START
             session_start();
 
             require 'codeSVM.php';
@@ -79,15 +80,23 @@
                 global $file_count,$codes;
 
                 $_SESSION['CS_COL']=$CS_TABLE;
-                $_SESSION['NKW_COL']=$CS_TABLE;
-                $_SESSION['NID_COL']=$CS_TABLE;
-                $_SESSION['NOP_COL']=$CS_TABLE;
-                $_SESSION['NNV_COL']=$CS_TABLE;
-                $_SESSION['NSL_COL']=$CS_TABLE;
-                $_SESSION['WVS_COL']=$CS_TABLE;
-                $_SESSION['NPDTV_COL']=$CS_TABLE;
-                $_SESSION['NPCTV_COL']=$CS_TABLE;
-                $_SESSION['CS_COL']=$CS_TABLE;
+                $_SESSION['NKW_COL']=$NKW_TABLE;
+                $_SESSION['NID_COL']=$NID_TABLE;
+                $_SESSION['NOP_COL']=$NOP_TABLE;
+                $_SESSION['NNV_COL']=$NNV_TABLE;
+                $_SESSION['NSL_COL']=$NSL_TABLE;
+                $_SESSION['WVS_COL']=$WVS_TABLE;
+                $_SESSION['NPDTV_COL']=$NPDTV_TABLE;
+                $_SESSION['NPCTV_COL']=$NPCTV_TABLE;
+                $_SESSION['CV_COL']=$CV_TABLE;
+                $_SESSION['WMRT_COL']=$WMRT_TABLE;
+                $_SESSION['NPDTP_COL']=$NPDTP_TABLE;
+                $_SESSION['NCDTP_COL']=$NCDTP_TABLE;
+                $_SESSION['CM_COL']=$CM_TABLE;
+                $_SESSION['CCS_COL']=$CCS_TABLE;
+                $_SESSION['WTCS_COL']=$WTCS_TABLE;
+                $_SESSION['NC_COL']=$NC_TABLE;
+                $_SESSION['CCSPPS_COL']=$CCSPPS_TABLE;
 
                 echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
                 global $file_count, $contents, $total;
