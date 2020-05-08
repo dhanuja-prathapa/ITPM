@@ -99,7 +99,7 @@
                 $_SESSION['CCSPPS_COL']=$CCSPPS_TABLE;
                 $_SESSION['FILE_COUNT']=$file_count;
                 $_SESSION['CODES']=$CODES_File;
-                print_r($NKW_TABLE);
+
                 echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
                 global $file_count, $contents, $total;
                 $totalPC = 0;
