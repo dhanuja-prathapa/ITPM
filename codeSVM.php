@@ -143,7 +143,7 @@ function checkformethods($lines, $lineno){
     global $methods, $nid;
 
     if (preg_match('/' . implode('|', $methods) . '/',$lines,$found)>0){
-        $nid[$lineno] += 1;
+      //Edited  $nid[$lineno] += 1;
     }
 
 }

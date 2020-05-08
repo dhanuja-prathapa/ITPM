@@ -1,5 +1,6 @@
 <?php
 require('fpdf.php');
+
 //SESSION START
 session_start();
 
