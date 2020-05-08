@@ -114,7 +114,12 @@ $CCSPPS_COL = $_SESSION['CCSPPS_COL'];
 $pdf = new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',16);
-$pdf->WriteHTML("<table class=\"table table-bordered table-striped \"><thead class=\"thead-dark\"><tr><th style='width: 7%' scope=\"col\">Line no</th><th scope=\"col\">Program statements</th>
-<th scope=\"col\">Nkw</th><th scope=\"col\">Nid</th><th scope=\"col\">Nop</th><th scope=\"col\">Nnv</th><th scope=\"col\">Nsl</th><th scope=\"col\">Cs</th></tr></thead>");
+
+$total =0;
+
+
+$pdf->WriteHTML("<?php 
+echo <td>$total</td>
+");
 $pdf->Output();
 ?>
