@@ -45,7 +45,7 @@ function checkVar($lines, $linesno, $brackets){
             foreach ($pattern as $i) {
                 if (preg_match($i, $lines) != 0) {
                     $wvs[$linesno] += 2;
-                    $words = explode(" ", $lines);
+                    $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);
                     $arraySize = sizeof($words);
                     $npdtv[$linesno] += ($arraySize - 2);
                     $composite = false;
@@ -54,7 +54,7 @@ function checkVar($lines, $linesno, $brackets){
             //composite
             if (preg_match('([A-Z][^\s]*)', $lines, $matches)>0 && $composite && (preg_match("/System/",$lines) == 0) ){
                 $wvs[$linesno] = 2;
-                $wordsC = explode(" ", $lines);
+                $wordsC = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);
                 $arraySizeC = sizeof($wordsC);
                 $npctv[$linesno] += ($arraySizeC - 2);
             }
@@ -66,9 +66,10 @@ function checkVar($lines, $linesno, $brackets){
             $string_json = file_get_contents("javaReturn.json");
             $pattern = json_decode($string_json, TRUE);
             foreach ($pattern as $i) {
-                if (preg_match($i, $lines) != 0) {
+                preg_match('/\((.*?)\)/i', $lines,$parameters);
+                if ((preg_match($i, $lines,$results) != 0) && (preg_match($i,$parameters[0]) == 0)) {
                     $wvs[$linesno] += 1;
-                    $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);
+                    $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);// remove blank space in array and split into words
                     $arraySize = sizeof($words);
                     if(preg_match('/\((.*?)\)/i',$lines,$found)){$npdtv[$linesno] = 1;}
                     else {

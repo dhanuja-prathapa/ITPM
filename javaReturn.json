@@ -1,1 +1,1 @@
-["/int/","/String/","/float/","/double/","/long/","/boolean/", "/char/","/void/"]
+["/\\bint\\b/","/String/","/float/","/double/","/long/","/boolean/", "/char/","/void/"]
