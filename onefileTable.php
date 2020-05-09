@@ -52,7 +52,7 @@ $TOTAL= "Total";
 $END = "END";
 
 //Analysis
-methCal($codes);
+methCal($codes); //Method CAl should be in first because that data needs in Size method
 calCm();
 sizeCal($codes);
 calCs();
