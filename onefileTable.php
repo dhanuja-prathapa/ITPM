@@ -129,7 +129,7 @@ echo "<th style='width: 7%' scope=\"col\">Line no</th>";
 echo "<th scope=\"col\">Program statements</th>";
 echo "<th scope=\"col\">Wvs</th>";
 echo "<th scope=\"col\">Npdtv</th>";
-echo "<th scope=\"col\">Npcdtv</th>";
+echo "<th scope=\"col\">Ncdtv</th>";
 echo "<th scope=\"col\">Cv</th>";
 echo $ROW_END;
 echo "</thead>";
