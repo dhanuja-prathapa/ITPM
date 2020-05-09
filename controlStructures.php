@@ -46,8 +46,38 @@ function bracketcount($lines, $linesno)
         $whilearray[$brackets] = 0;
         $brackets -= 1;
     }
-    //Proceeding further after checking if the line is not a comment
-    if (preg_match("@//@", $lines) == 0) {
+    //Checking if the line has comment but also a control structure and proceeding
+    if (preg_match("@//@", $lines) != 0) {
+
+        if ((strpos($lines, 'if (') !== false)) {
+            checkIF($lines, $linesno, $brackets);//Checking 'if' or 'else-if' function called
+        }
+        if ((strpos($lines, 'if(') !== false)) {
+            checkIF($lines, $linesno, $brackets);//Checking 'if' or 'else-if' function called
+        }
+        if ((strpos($lines, 'switch (') !== false)) {
+            checkSWITCH($lines, $linesno, $brackets);//Checking 'switch' function called
+        }
+        if ((strpos($lines, 'switch(') !== false)) {
+            checkSWITCH($lines, $linesno, $brackets);//Checking 'switch' function called
+        }
+        if ((strpos($lines, ':') !== false)) {
+            checkCASE($lines, $linesno, $brackets);//Checking 'case' function called
+        }
+        if ((strpos($lines, 'for (') !== false)) {
+            checkFor($lines, $linesno, $brackets);//Checking 'for' function called
+        }
+        if ((strpos($lines, 'for(') !== false)) {
+            checkFor($lines, $linesno, $brackets);//Checking 'for' function called
+        }
+        if ((strpos($lines, 'while (') !== false)) {
+            checkWhile($lines, $linesno, $brackets);//Checking 'while' or 'do while' loop function called
+        }
+        if ((strpos($lines, 'while(') !== false)) {
+            checkWhile($lines, $linesno, $brackets);//Checking 'while' or 'do while' loop function called
+        }
+    } //Proceeding further after checking if the line is not a comment
+    else {
         checkIF($lines, $linesno, $brackets);//Checking 'if' or 'else-if' function called
         checkSWITCH($lines, $linesno, $brackets);//Checking 'switch' function called
         checkCASE($lines, $linesno, $brackets);//Checking 'case' function called
