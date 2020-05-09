@@ -111,9 +111,6 @@
                     $totalPC += $total[$r];
                 }
 
-            echo "<a class='btn badge-success' style=\"float:right\" href=\"pdf/allFactorTableReport.php\">All Factor Table Report</a><br>";
-            echo "<a class='btn badge-success' style=\"float:right\" href=\"pdf/factorTableReport.php\">Factor Table Report</a><br>";
-                echo "<a class='btn badge-success' style=\"float:right\" href=\"pdf/programAllFilesComplexityReport.php\">Program & File Complexity Report</a>";
             echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++) {
@@ -199,7 +196,13 @@ function showTotalGraph(){{
             }
 
             ?>
+<?php
+            echo"<br><lable style='font-weight: bold; color:#961c1c; font-size: large'>Generate Reports</lable>";
+            echo "<br><div class='mx-auto'><a class='btn badge-pill badge-success' style=\"alignment: center;\" href=\"pdf/factorTableReport.php\" target='_blank'>Factor Table Report</a>";
+            echo "<a class='btn badge-pill badge-success' style=\"alignment:center; margin-left: 10px\" href=\"pdf/allFactorTableReport.php\" target='_blank'>All Factor Table Report</a>";
+            echo "<a class='btn badge-pill badge-success' style=\"alignment:center; margin-left: 10px\" href=\"pdf/programAllFilesComplexityReport.php\" target='_blank'>Program & File Complexity Report</a></div><br>";
 
+?>
         </div>
     </main>
 <?php include "footer.php"; ?>

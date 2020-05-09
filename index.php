@@ -1,6 +1,11 @@
 <?php include "header.php"; ?>
 <style>
-
+    ::-webkit-file-upload-button {
+        cursor:pointer;
+    }
+    input[type=file] {
+        cursor:pointer;
+    }
 </style>
 
 <body>
@@ -144,7 +149,7 @@
                     <span class="input-group-text">File/Folder</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="file" id="file" required>
+                    <input type="file" class="custom-file-input " name="file" id="file" required >
                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
             </div>
