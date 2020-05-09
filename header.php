@@ -22,7 +22,7 @@
         <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
                 <a href="/ITPM" class="navbar-brand d-flex align-items-center">
-                    <strong>CODE COMPLEXITY CHECKING TOOL</strong>
+                    <strong>TIEVS CODE COMPLEXITY CHECKING TOOL</strong>
                 </a>
             </div>
         </div>
