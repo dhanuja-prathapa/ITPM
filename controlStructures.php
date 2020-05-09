@@ -66,7 +66,7 @@ function checkIF($lines, $linesno, $brackets)
     if (preg_match("/if/", $lines) > 0 || preg_match("/else if/", $lines) > 0) {
 
         //Considering multiple if condition is present or not in one line along with '&&'
-        $andCount = (preg_match("/&&/", $lines));
+        $andCount = (preg_match_all("/&&/", $lines));
         $nc[$linesno] += $andCount + 1;//adding nc count considering the '&&'
         $wtcs[$linesno] += $wif; //assign the wtcs value by the manual given or default weight
 

@@ -80,7 +80,7 @@
                     }
                 }
                 global $CS_TABLE,$NKW_TABLE,$NID_TABLE,$NOP_TABLE,$NNV_TABLE,$NSL_TABLE,$WVS_TABLE,$NPDTV_TABLE,$NPCTV_TABLE,$CV_TABLE,$WMRT_TABLE,$NPDTP_TABLE,$NCDTP_TABLE,$CM_TABLE,$CCS_TABLE,$WTCS_TABLE,$NC_TABLE,$CCSPPS_TABLE;
-                global $file_count,$CODES_File;
+                global $file_count,$CODES_File, $file_count, $contents, $total;
 
                 $_SESSION['CS_COL']=$CS_TABLE;
                 $_SESSION['NKW_COL']=$NKW_TABLE;
@@ -102,15 +102,19 @@
                 $_SESSION['CCSPPS_COL']=$CCSPPS_TABLE;
                 $_SESSION['FILE_COUNT']=$file_count;
                 $_SESSION['CODES']=$CODES_File;
+                $_SESSION['fileNames'] = $contents;
+                $_SESSION['total'] = $total;
 
-                echo "<a class='btn badge-info' style=\"float:right\" href=\"pdf/report.php\">Report</a>";
-                global $file_count, $contents, $total;
                 $totalPC = 0;
 
                 for ($r = 0; $r < sizeof($total); $r++) {
                     $totalPC += $total[$r];
                 }
-                echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
+
+            echo "<a class='btn badge-success' style=\"float:right\" href=\"pdf/allFactorTableReport.php\">All Factor Table Report</a><br>";
+            echo "<a class='btn badge-success' style=\"float:right\" href=\"pdf/factorTableReport.php\">Factor Table Report</a><br>";
+                echo "<a class='btn badge-success' style=\"float:right\" href=\"pdf/programAllFilesComplexityReport.php\">Program & File Complexity Report</a>";
+            echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++) {
                     $myObj = new \stdClass();
@@ -123,7 +127,9 @@
                 echo "<h6 class='mx-auto p-3 text-uppercase' style='max-width:400px; font-weight: bold'>Complexities of The Uploaded Files</h6>";
                 echo "<div class=\"chart-container\">
   <canvas id=\"bar-chartcanvas\"></canvas>
+  
 </div>
+
 
 <!-- javascript to run ChartJS with SQL data (JS to generate chart must come AFTER canvas HTML) -->
 <script>
@@ -193,6 +199,7 @@ function showTotalGraph(){{
             }
 
             ?>
+
         </div>
     </main>
 <?php include "footer.php"; ?>

@@ -300,7 +300,7 @@ foreach ($codes as $line) {
     echo $ROW_END;
     $lineno++;
 }
-
+//inserting the last line with all total values outside loop
 global $finalTcps;
 $finalTcps = $tcs +$tcv + $tcm + $tccs;
 echo $ROW_START;

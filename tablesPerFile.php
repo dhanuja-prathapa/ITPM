@@ -298,8 +298,6 @@ $tcv = 0;
 $tcm = 0;
 $tccs = 0;
 
-
-global $tcps;
 foreach ($codes as $line) {
     $tcps[$lineno] = $cs[$lineno] + $cv[$lineno] + $cm[$lineno] + $ccs[$lineno];
     $tcs += $cs[$lineno] ;
@@ -317,7 +315,7 @@ foreach ($codes as $line) {
     echo $ROW_END;
     $lineno++;
 }
-global $finalTcps;
+
 $finalTcps = $tcs + $tcv + $tcm + $tccs;
 echo $ROW_START;
 echo "<th scope = \"row\">$END</th>";
