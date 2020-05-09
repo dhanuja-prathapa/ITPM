@@ -67,6 +67,9 @@ function checkVar($lines, $linesno, $brackets){
             $pattern = json_decode($string_json, TRUE);
             foreach ($pattern as $i) {
                 preg_match('/\((.*?)\)/i', $lines, $parameters);
+                if(empty($parameters)){
+                    $parameters[0] = 0;
+                }
                 if ((preg_match($i, $lines, $results) != 0) && (preg_match($i, $parameters[0]) == 0)) {
                     $wvs[$linesno] += 1;
                     $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/", $lines, -1, PREG_SPLIT_NO_EMPTY);// remove blank space in array and split into words
