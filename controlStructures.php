@@ -322,7 +322,7 @@ function checkDoWhile($lines, $linesno, $brackets)
             $newccs = $ccs[$ifarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
-        //Check for while nested loop inside a for loop
+        //Check for do while nested loop inside a for loop
         if ($forarray[$prevbracket] != 0) {
             $newccs = $ccs[$forarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
