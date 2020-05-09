@@ -65,8 +65,13 @@ $TOTAL= "Total";
 $END = "END";
 
 //Analysis
+methCal($codes);
+calCm();
 sizeCal($codes);
 calCs();
+varCal($codes);
+calCv();
+
 echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -117,8 +122,6 @@ echo ' </div>
             </div>';
 
 //heading for variables
-varCal($codes);
-calCv();
 echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="heading3">
@@ -165,8 +168,7 @@ echo ' </div>
             </div>';
 
 //heading for methods
-methCal($codes);
-calCm();
+
 echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="heading4">

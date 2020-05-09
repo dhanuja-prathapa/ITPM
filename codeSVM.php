@@ -69,8 +69,8 @@ function subOpCount($word, $linesno)
 
 function sizeCal($codes)
 {
-    methCal($codes);
-    global $nkw, $nop, $nid, $nnv, $nsl;
+
+    global $nkw, $nop, $nid, $nnv, $nsl, $methods;
     $linesno = 1;
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
@@ -141,7 +141,6 @@ function checkpublic($lines,$linesno){
 
 function checkformethods($lines, $lineno){
     global $methods, $nid;
-
     if (preg_match('/' . implode('|', $methods) . '/',$lines,$found)>0){
       //Edited  $nid[$lineno] += 1;
     }

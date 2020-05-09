@@ -34,7 +34,7 @@
                     /** @var TYPE_NAME $filepath */
                     $extension = pathinfo($name, PATHINFO_EXTENSION);
                     $zipname = pathinfo($name, PATHINFO_FILENAME) . "/";
-
+                    $totalPC = 0;
                     $filepath = 'uploads/' . $name;
                     if ($extension == 'zip') {
                         $zip = new ZipArchive();
@@ -69,6 +69,10 @@
                             <?php
                         }
 
+
+                        for ($r = 0; $r < sizeof($total); $r++) {
+                            $totalPC += $total[$r];
+                        }
 
                     } else {
                         /* Normal File */
@@ -105,11 +109,6 @@
                 $_SESSION['fileNames'] = $contents;
                 $_SESSION['total'] = $total;
 
-                $totalPC = 0;
-
-                for ($r = 0; $r < sizeof($total); $r++) {
-                    $totalPC += $total[$r];
-                }
 
             echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
                 $dataChart = null;
