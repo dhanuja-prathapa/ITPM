@@ -48,7 +48,7 @@
                         $zip->extractTo($extractPath);
                         $file_count = 0;
                         for ($i = 0; $i < $files_count; $i++) {
-                            if (((preg_match("/.java/", $zip->getNameIndex($i)) != 0) || ((preg_match("/.cpp/", $zip->getNameIndex($i)) != 0))) && (preg_match("/MACOSX/",$zip->getNameIndex($i)) == 0)) {
+                            if (((preg_match("/.java/", $zip->getNameIndex($i)) != 0) || ((preg_match("/.cpp/", $zip->getNameIndex($i)) != 0))) && (preg_match("/MACOSX/", $zip->getNameIndex($i)) == 0)) {
                                 $contents[$file_count] = $zip->getNameIndex($i);
                                 $contentPath[$file_count] = $extractPath . $contents[$file_count];
                                 $file_count++;
@@ -76,47 +76,47 @@
 
                     } else {
                         /* Normal File */
-                        global $code,$totalPC,$contents,$total,$file_count;
+                        global $code, $totalPC, $contents, $total, $file_count;
                         $code = file_get_contents($filepath);
-                        $contents[0]=$name;
+                        $contents[0] = $name;
                         global $i;
-                        $i=0;
+                        $i = 0;
                         ?>
                         <?php include "onefileTable.php"; ?>
                         <?php include "pdf/tablesToPDF.php"; ?>
                         <?php
-                        $total[0]= $totalPC;
-                        $file_count=1;
+                        $total[0] = $totalPC;
+                        $file_count = 1;
                     }
                 }
-                global $CS_TABLE,$NKW_TABLE,$NID_TABLE,$NOP_TABLE,$NNV_TABLE,$NSL_TABLE,$WVS_TABLE,$NPDTV_TABLE,$NPCTV_TABLE,$CV_TABLE,$WMRT_TABLE,$NPDTP_TABLE,$NCDTP_TABLE,$CM_TABLE,$CCS_TABLE,$WTCS_TABLE,$NC_TABLE,$CCSPPS_TABLE;
-                global $file_count,$CODES_File, $file_count, $contents, $total;
+                global $CS_TABLE, $NKW_TABLE, $NID_TABLE, $NOP_TABLE, $NNV_TABLE, $NSL_TABLE, $WVS_TABLE, $NPDTV_TABLE, $NPCTV_TABLE, $CV_TABLE, $WMRT_TABLE, $NPDTP_TABLE, $NCDTP_TABLE, $CM_TABLE, $CCS_TABLE, $WTCS_TABLE, $NC_TABLE, $CCSPPS_TABLE;
+                global $file_count, $CODES_File, $file_count, $contents, $total;
 
-                $_SESSION['CS_COL']=$CS_TABLE;
-                $_SESSION['NKW_COL']=$NKW_TABLE;
-                $_SESSION['NID_COL']=$NID_TABLE;
-                $_SESSION['NOP_COL']=$NOP_TABLE;
-                $_SESSION['NNV_COL']=$NNV_TABLE;
-                $_SESSION['NSL_COL']=$NSL_TABLE;
-                $_SESSION['WVS_COL']=$WVS_TABLE;
-                $_SESSION['NPDTV_COL']=$NPDTV_TABLE;
-                $_SESSION['NPCTV_COL']=$NPCTV_TABLE;
-                $_SESSION['CV_COL']=$CV_TABLE;
-                $_SESSION['WMRT_COL']=$WMRT_TABLE;
-                $_SESSION['NPDTP_COL']=$NPDTP_TABLE;
-                $_SESSION['NCDTP_COL']=$NCDTP_TABLE;
-                $_SESSION['CM_COL']=$CM_TABLE;
-                $_SESSION['CCS_COL']=$CCS_TABLE;
-                $_SESSION['WTCS_COL']=$WTCS_TABLE;
-                $_SESSION['NC_COL']=$NC_TABLE;
-                $_SESSION['CCSPPS_COL']=$CCSPPS_TABLE;
-                $_SESSION['FILE_COUNT']=$file_count;
-                $_SESSION['CODES']=$CODES_File;
+                $_SESSION['CS_COL'] = $CS_TABLE;
+                $_SESSION['NKW_COL'] = $NKW_TABLE;
+                $_SESSION['NID_COL'] = $NID_TABLE;
+                $_SESSION['NOP_COL'] = $NOP_TABLE;
+                $_SESSION['NNV_COL'] = $NNV_TABLE;
+                $_SESSION['NSL_COL'] = $NSL_TABLE;
+                $_SESSION['WVS_COL'] = $WVS_TABLE;
+                $_SESSION['NPDTV_COL'] = $NPDTV_TABLE;
+                $_SESSION['NPCTV_COL'] = $NPCTV_TABLE;
+                $_SESSION['CV_COL'] = $CV_TABLE;
+                $_SESSION['WMRT_COL'] = $WMRT_TABLE;
+                $_SESSION['NPDTP_COL'] = $NPDTP_TABLE;
+                $_SESSION['NCDTP_COL'] = $NCDTP_TABLE;
+                $_SESSION['CM_COL'] = $CM_TABLE;
+                $_SESSION['CCS_COL'] = $CCS_TABLE;
+                $_SESSION['WTCS_COL'] = $WTCS_TABLE;
+                $_SESSION['NC_COL'] = $NC_TABLE;
+                $_SESSION['CCSPPS_COL'] = $CCSPPS_TABLE;
+                $_SESSION['FILE_COUNT'] = $file_count;
+                $_SESSION['CODES'] = $CODES_File;
                 $_SESSION['fileNames'] = $contents;
                 $_SESSION['total'] = $total;
 
 
-            echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
+                echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++) {
                     $myObj = new \stdClass();
@@ -201,13 +201,13 @@ function showTotalGraph(){{
             }
 
             ?>
-<?php
-            echo"<br><br><lable style='font-weight: bold; color:#961c1d; font-size: large'>Generate Reports</lable>";
+            <?php
+            echo "<br><br><lable style='font-weight: bold; color:#961c1d; font-size: large'>Generate Reports</lable>";
             echo "<br><div class='mx-auto'><a class='btn badge-pill badge-info' style=\"alignment: center;\" href=\"pdf/factorTableReport.php\" target='_blank'>Factor Table Report</a>";
             echo "<a class='btn badge-pill badge-info' style=\"alignment:center; margin-left: 10px\" href=\"pdf/allFactorTableReport.php\" target='_blank'>All Factor Table Report</a>";
             echo "<a class='btn badge-pill badge-info' style=\"alignment:center; margin-left: 10px\" href=\"pdf/programAllFilesComplexityReport.php\" target='_blank'>Program & File Complexity Report</a></div><br>";
 
-?>
+            ?>
         </div>
     </main>
 <?php include "footer.php"; ?>

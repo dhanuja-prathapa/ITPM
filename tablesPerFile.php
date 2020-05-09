@@ -1,11 +1,11 @@
 <?php
-global $i,$contents, $contentPath, $code;
+global $i, $contents, $contentPath, $code;
 
-echo "<div class=\"modal fade\" id=\"Modal" .$i."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"ModalLabel".$i."\" aria-hidden=\"true\">
+echo "<div class=\"modal fade\" id=\"Modal" . $i . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"ModalLabel" . $i . "\" aria-hidden=\"true\">
   <div class=\"modal-dialog\" role=\"document\">
     <div class=\"modal-content\">
       <div class=\"modal-header\">
-        <h5 class=\"modal-title\" id=\"ModalLabel".$i."\">".$contents[$i]."</h5>
+        <h5 class=\"modal-title\" id=\"ModalLabel" . $i . "\">" . $contents[$i] . "</h5>
         <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
           <span aria-hidden=\"true\">&times;</span>
         </button>
@@ -61,7 +61,7 @@ $wcase = $_POST["Wcase"];
 
 $ROW_START = "<tr>";
 $ROW_END = "</tr>";
-$TOTAL= "Total";
+$TOTAL = "Total";
 $END = "END";
 
 //Analysis
@@ -168,7 +168,6 @@ echo ' </div>
             </div>';
 
 //heading for methods
-
 echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="heading4">
@@ -293,7 +292,7 @@ echo "</thead>";
 
 //Inserting values to all factor table
 $lineno = 1;
-$tcps = array_fill(1,sizeof($codes),0);
+$tcps = array_fill(1, sizeof($codes), 0);
 //Table total complexity values declaration
 $tcs = 0;
 $tcv = 0;
@@ -302,7 +301,7 @@ $tccs = 0;
 
 foreach ($codes as $line) {
     $tcps[$lineno] = $cs[$lineno] + $cv[$lineno] + $cm[$lineno] + $ccs[$lineno];
-    $tcs += $cs[$lineno] ;
+    $tcs += $cs[$lineno];
     $tcv += $cv[$lineno];
     $tcm += $cm[$lineno];
     $tccs += $ccs[$lineno];
@@ -332,8 +331,8 @@ echo $ROW_END;
 
 //calculating the total value
 global $file_count, $total;
-$lineno=1;
-foreach ($codes as $line){
+$lineno = 1;
+foreach ($codes as $line) {
     global $total;
     $total[$i] += $tcps[$lineno];
     $lineno++;
@@ -344,8 +343,6 @@ echo ' </div>
               </div>
              </div>
             </div>';
-
-
 
 
 echo "</div>

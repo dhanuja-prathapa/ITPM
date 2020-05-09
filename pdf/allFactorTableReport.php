@@ -23,7 +23,7 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     //define the table columns
     $pdf->AddPage('L', 'A4');
-    $title =  $fileNames[$j] . " Complexity Due To All Factors";
+    $title = $fileNames[$j] . " Complexity Due To All Factors";
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(260, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
@@ -45,8 +45,8 @@ for ($j = 0; $j < $fileCount; $j++) {
     foreach ($codes[$j] as $line) {
         $pdf->SetFont('Arial', '', 10);
         //getting the value for total tcps each line
-        $tcps[$j][$lineno] = $CS_COL[$j][$lineno] + $CV_COL[$j][$lineno] +  $CM_COL[$j][$lineno] + $CCS_COL[$j][$lineno];
-        $tcs +=  $CS_COL[$j][$lineno];
+        $tcps[$j][$lineno] = $CS_COL[$j][$lineno] + $CV_COL[$j][$lineno] + $CM_COL[$j][$lineno] + $CCS_COL[$j][$lineno];
+        $tcs += $CS_COL[$j][$lineno];
         $tcv += $CV_COL[$j][$lineno];
         $tcm += $CM_COL[$j][$lineno];
         $tccs += $CCS_COL[$j][$lineno];
@@ -56,12 +56,12 @@ for ($j = 0; $j < $fileCount; $j++) {
         $pdf->Cell(10, 10, $CV_COL[$j][$lineno], 1, 0, 'C', false);
         $pdf->Cell(10, 10, $CM_COL[$j][$lineno], 1, 0, 'C', false);
         $pdf->Cell(10, 10, $CCS_COL[$j][$lineno], 1, 0, 'C', false);
-        $pdf->Cell(13, 10,$tcps[$j][$lineno], 1, 0, 'C', false);
+        $pdf->Cell(13, 10, $tcps[$j][$lineno], 1, 0, 'C', false);
         $pdf->Ln();
         $lineno++;
     }
     //getting all total values for the main factors
-    $finalTcps = $tcs +$tcv + $tcm + $tccs;
+    $finalTcps = $tcs + $tcv + $tcm + $tccs;
 
     $pdf->SetFont('Arial', 'B', 11);
     $pdf->Cell(15, 10, "END", 1, 0, 'C', false);
@@ -70,7 +70,7 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->Cell(10, 10, $tcv, 1, 0, 'C', false);
     $pdf->Cell(10, 10, $tcm, 1, 0, 'C', false);
     $pdf->Cell(10, 10, $tccs, 1, 0, 'C', false);
-    $pdf->Cell(13, 10,$finalTcps, 1, 0, 'C', false);
+    $pdf->Cell(13, 10, $finalTcps, 1, 0, 'C', false);
 
 
 }
