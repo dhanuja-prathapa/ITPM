@@ -1,5 +1,5 @@
 <?php
-global $code;
+global $code,$codes;
 $codes = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $code);
 $codes = explode("\n", $codes);
 

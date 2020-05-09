@@ -79,8 +79,11 @@
                         global $code,$totalPC,$contents,$total,$file_count;
                         $code = file_get_contents($filepath);
                         $contents[0]=$name;
+                        global $i;
+                        $i=0;
                         ?>
                         <?php include "onefileTable.php"; ?>
+                        <?php include "pdf/tablesToPDF.php"; ?>
                         <?php
                         $total[0]= $totalPC;
                         $file_count=1;
