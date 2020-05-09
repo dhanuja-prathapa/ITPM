@@ -20,7 +20,7 @@
                     $location = 'uploads/';
                     if (move_uploaded_file($temp_name, $location . $name)) {
                         echo '<div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert">';
-                        echo 'File uploaded successfully';
+                        echo 'File/Files uploaded successfully';
                         echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
                         echo '<span aria-hidden="true">&times;</span>';
                         echo '</button>';
@@ -62,7 +62,7 @@
                         for ($i = 0; $i < $file_count; $i++) {
                             global $i, $contents, $contentPath, $code, $file_count;
 
-                            echo "<button type=\"button\" class=\"btn btn-secondary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal" . $i . "\"> " . $contents[$i] . "</button>"
+                            echo "<button type=\"button\" class=\"btn btn-dark\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal" . $i . "\"> " . $contents[$i] . "</button>"
                             ?>
                             <?php include "tablesPerFile.php"; ?>
                             <?php include "pdf/tablesToPDF.php"; ?>
@@ -202,10 +202,10 @@ function showTotalGraph(){{
 
             ?>
 <?php
-            echo"<br><lable style='font-weight: bold; color:#961c1c; font-size: large'>Generate Reports</lable>";
-            echo "<br><div class='mx-auto'><a class='btn badge-pill badge-success' style=\"alignment: center;\" href=\"pdf/factorTableReport.php\" target='_blank'>Factor Table Report</a>";
-            echo "<a class='btn badge-pill badge-success' style=\"alignment:center; margin-left: 10px\" href=\"pdf/allFactorTableReport.php\" target='_blank'>All Factor Table Report</a>";
-            echo "<a class='btn badge-pill badge-success' style=\"alignment:center; margin-left: 10px\" href=\"pdf/programAllFilesComplexityReport.php\" target='_blank'>Program & File Complexity Report</a></div><br>";
+            echo"<br><br><lable style='font-weight: bold; color:#961c1d; font-size: large'>Generate Reports</lable>";
+            echo "<br><div class='mx-auto'><a class='btn badge-pill badge-info' style=\"alignment: center;\" href=\"pdf/factorTableReport.php\" target='_blank'>Factor Table Report</a>";
+            echo "<a class='btn badge-pill badge-info' style=\"alignment:center; margin-left: 10px\" href=\"pdf/allFactorTableReport.php\" target='_blank'>All Factor Table Report</a>";
+            echo "<a class='btn badge-pill badge-info' style=\"alignment:center; margin-left: 10px\" href=\"pdf/programAllFilesComplexityReport.php\" target='_blank'>Program & File Complexity Report</a></div><br>";
 
 ?>
         </div>
