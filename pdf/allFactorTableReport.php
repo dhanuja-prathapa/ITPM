@@ -65,7 +65,7 @@ for ($j = 0; $j < $fileCount; $j++) {
 
     $pdf->SetFont('Arial', 'B', 11);
     $pdf->Cell(15, 10, "END", 1, 0, 'C', false);
-    $pdf->Cell(210, 10, "TOTAL", 1, 0, 'C', false);
+    $pdf->Cell(210, 10, "TOTAL (Cpr)", 1, 0, 'C', false);
     $pdf->Cell(10, 10, $tcs, 1, 0, 'C', false);
     $pdf->Cell(10, 10, $tcv, 1, 0, 'C', false);
     $pdf->Cell(10, 10, $tcm, 1, 0, 'C', false);
