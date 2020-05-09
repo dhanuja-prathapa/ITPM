@@ -304,8 +304,9 @@ foreach ($codes as $line) {
     $lineno++;
 }
 //inserting the last line with all total values outside loop
-global $finalTcps;
+global $finalTcps, $totalPC;
 $finalTcps = $tcs +$tcv + $tcm + $tccs;
+$totalPC = $finalTcps;
 echo $ROW_START;
 echo "<th scope = \"row\">$END</th>";
 echo "<td style='font-weight: bold'>$TOTAL</td>";

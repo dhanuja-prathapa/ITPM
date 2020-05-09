@@ -76,11 +76,14 @@
 
                     } else {
                         /* Normal File */
-                        global $code;
+                        global $code,$totalPC,$contents,$total,$file_count;
                         $code = file_get_contents($filepath);
+                        $contents[0]=$name;
                         ?>
                         <?php include "onefileTable.php"; ?>
                         <?php
+                        $total[0]= $totalPC;
+                        $file_count=1;
                     }
                 }
                 global $CS_TABLE,$NKW_TABLE,$NID_TABLE,$NOP_TABLE,$NNV_TABLE,$NSL_TABLE,$WVS_TABLE,$NPDTV_TABLE,$NPCTV_TABLE,$CV_TABLE,$WMRT_TABLE,$NPDTP_TABLE,$NCDTP_TABLE,$CM_TABLE,$CCS_TABLE,$WTCS_TABLE,$NC_TABLE,$CCSPPS_TABLE;
