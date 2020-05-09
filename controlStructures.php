@@ -5,7 +5,7 @@
 function findControlStructure($codes)
 {
     //Declare the global variables
-    global $brackets, $ifarray, $switcharray, $forarray, $casearray, $colons, $whilearray;
+    global $brackets, $ifarray, $switcharray, $forarray, $casearray, $colons, $whilearray, $dowhilearray;
 
     //Initialize relevant variables
     $linesno = 1;
@@ -18,6 +18,7 @@ function findControlStructure($codes)
     $forarray = array_fill(0, sizeof($codes), 0);
     $casearray = array_fill(0, sizeof($codes), 0);
     $whilearray = array_fill(0, sizeof($codes), 0);
+    $dowhilearray = array_fill(0, sizeof($codes), 0);
 
     //Loop checking each code line for control structure components
     foreach ($codes as $lines) {
@@ -29,7 +30,7 @@ function findControlStructure($codes)
 
 function bracketcount($lines, $linesno)
 {
-    global $brackets, $ifarray, $switcharray, $forarray, $casearray, $colons, $whilearray;
+    global $brackets, $ifarray, $switcharray, $forarray, $whilearray, $dowhilearray;
 
     //Finds when a bracket starts
     if (preg_match("/{/", $lines) > 0) {
@@ -44,6 +45,7 @@ function bracketcount($lines, $linesno)
         $switcharray[$brackets] = 0;
         $forarray[$brackets] = 0;
         $whilearray[$brackets] = 0;
+        $dowhilearray[$brackets] = 0;
         $brackets -= 1;
     }
     //Checking if the line has comment but also a control structure and proceeding
@@ -71,10 +73,16 @@ function bracketcount($lines, $linesno)
             checkFor($lines, $linesno, $brackets);//Checking 'for' function called
         }
         if ((strpos($lines, 'while (') !== false)) {
-            checkWhile($lines, $linesno, $brackets);//Checking 'while' or 'do while' loop function called
+            checkWhile($lines, $linesno, $brackets);//Checking 'while' loop function called
         }
         if ((strpos($lines, 'while(') !== false)) {
-            checkWhile($lines, $linesno, $brackets);//Checking 'while' or 'do while' loop function called
+            checkWhile($lines, $linesno, $brackets);//Checking 'while' loop function called
+        }
+        if ((strpos($lines, 'do {') !== false)) {
+            checkDoWhile($lines, $linesno, $brackets);//Checking  'do while' loop function called
+        }
+        if ((strpos($lines, 'do{') !== false)) {
+            checkDoWhile($lines, $linesno, $brackets);//Checking  'do while' loop function called
         }
     } //Proceeding further after checking if the line is not a comment
     else {
@@ -82,7 +90,8 @@ function bracketcount($lines, $linesno)
         checkSWITCH($lines, $linesno, $brackets);//Checking 'switch' function called
         checkCASE($lines, $linesno, $brackets);//Checking 'case' function called
         checkFor($lines, $linesno, $brackets);//Checking 'for' function called
-        checkWhile($lines, $linesno, $brackets);//Checking 'while' or 'do while' loop function called
+        checkWhile($lines, $linesno, $brackets);//Checking 'while' loop function called
+        checkDoWhile($lines, $linesno, $brackets);//Checking 'while' loop function called
     }
 }
 
@@ -90,7 +99,7 @@ function bracketcount($lines, $linesno)
 function checkIF($lines, $linesno, $brackets)
 {
     //global variable declaration
-    global $ccs, $wtcs, $nc, $ccspps, $ifarray, $casearray, $switcharray, $newccs, $colons, $forarray, $whilearray, $wif;
+    global $ccs, $wtcs, $nc, $ccspps, $ifarray, $casearray, $switcharray, $newccs, $colons, $forarray, $whilearray, $wif, $dowhilearray;
 
     //Checking for if or else if in line
     if (preg_match("/if/", $lines) > 0 || preg_match("/else if/", $lines) > 0) {
@@ -119,10 +128,15 @@ function checkIF($lines, $linesno, $brackets)
             $newccs = $ccs[$forarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;//assigning previous for loop ccs to ccspps
         }
-        //check for of inside while loop
+        //check for if inside while loop
         if ($whilearray[$prevbracket] != 0) {
             $newccs = $ccs[$whilearray[$prevbracket]];
             $ccspps[$linesno] += $newccs;//assigning previous while loop ccs to ccspps
+        }
+        //Check for if inside do while loop
+        if ($dowhilearray[$prevbracket] != 0) {
+            $newccs = $ccs[$dowhilearray[$prevbracket]];
+            $ccspps[$linesno] += $newccs;
         }
     }
 }
@@ -131,7 +145,7 @@ function checkIF($lines, $linesno, $brackets)
 function checkSWITCH($lines, $linesno, $brackets)
 {
     //global variable declaration
-    global $ccs, $wtcs, $nc, $ccspps, $switcharray, $ifarray, $newccs, $whilearray, $forarray, $wswt, $casearray, $colons;
+    global $ccs, $wtcs, $nc, $ccspps, $switcharray, $ifarray, $newccs, $whilearray, $forarray, $wswt, $casearray, $colons, $dowhilearray;
 
     //Checking for switch in line
     if (preg_match("/switch/", $lines) > 0) {
@@ -158,6 +172,11 @@ function checkSWITCH($lines, $linesno, $brackets)
         //checking nested switch inside for loop
         if ($forarray[$prevbracket] != 0) {
             $newccs = $ccs[$forarray[$prevbracket]];
+            $ccspps[$linesno] += $newccs;
+        }
+        //Check for nested switch inside a do while loop
+        if ($dowhilearray[$prevbracket] != 0) {
+            $newccs = $ccs[$dowhilearray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
     }
@@ -188,7 +207,7 @@ function checkCASE($lines, $linesno, $brackets)
 function checkFor($lines, $linesno, $brackets)
 {
     //global variable declaration
-    global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw;
+    global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw, $dowhilearray;
 
     //Checking 'for' in line
     if (preg_match("/for/", $lines) > 0) {
@@ -217,6 +236,11 @@ function checkFor($lines, $linesno, $brackets)
             $newccs = $ccs[$whilearray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+        //Check for nested for loop inside do while loop
+        if ($dowhilearray[$prevbracket] != 0) {
+            $newccs = $ccs[$dowhilearray[$prevbracket]];
+            $ccspps[$linesno] += $newccs;
+        }
     }
 }
 
@@ -224,26 +248,76 @@ function checkFor($lines, $linesno, $brackets)
 function checkWhile($lines, $linesno, $brackets)
 {
     //global variable declaration
-    global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw;
+    global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw, $dowhilearray;
 
     //Checking 'while' in line
     if (preg_match("/while/", $lines) > 0) {
+        if(strpos($lines, ');') !== false){
+            //Do nothing
+        }
+        else {
+            $nc[$linesno]++;//add nc
+            $wtcs[$linesno] += $wfw;//assign wtcs with weight given for while loop
+            $whilearray[$brackets] = $linesno;//Save particular bracket location inside whilearray
+            $prevbracket = $brackets - 1;
+
+            //Check for while nested loop inside another while loop
+            if ($whilearray[$prevbracket] != 0) {
+                $newccs = $ccs[$whilearray[$prevbracket]];
+                $ccspps[$linesno] += $newccs;
+            }
+            //Check for while nested loop inside a switch statement
+            if ($switcharray[$prevbracket] != 0) {
+                $newccs = $ccs[$casearray[$colons]];
+                $ccspps[$linesno] += $newccs;
+            }
+            //Check for while nested loop inside an if statement
+            if ($ifarray[$prevbracket] != 0) {
+                $newccs = $ccs[$ifarray[$prevbracket]];
+                $ccspps[$linesno] += $newccs;
+            }
+            //Check for while nested loop inside a for loop
+            if ($forarray[$prevbracket] != 0) {
+                $newccs = $ccs[$forarray[$prevbracket]];
+                $ccspps[$linesno] += $newccs;
+            }
+            //Check for  while nested loop inside a do while loop
+            if ($dowhilearray[$prevbracket] != 0) {
+                $newccs = $ccs[$dowhilearray[$prevbracket]];
+                $ccspps[$linesno] += $newccs;
+            }
+        }
+    }
+}
+
+function checkDoWhile($lines, $linesno, $brackets)
+{
+    //global variable declaration
+    global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw, $dowhilearray;
+
+    //Checking 'do' in line
+    if (preg_match("/do/", $lines) > 0) {
         $nc[$linesno]++;//add nc
         $wtcs[$linesno] += $wfw;//assign wtcs with weight given for while loop
-        $whilearray[$brackets] = $linesno;//Save particular bracket location inside whilearray
-        $prevbracket = $brackets - 1;
+        $dowhilearray[$brackets] = $linesno;//Save particular bracket location inside whilearray
+        $prevbracket = $brackets -1;
 
-        //Check for while nested loop inside another while loop
+        //Check for do while nested loop inside another do while loop
+        if ($dowhilearray[$prevbracket] != 0) {
+            $newccs = $ccs[$dowhilearray[$prevbracket]];
+            $ccspps[$linesno] += $newccs;
+        }
+        //Check for do while nested loop inside a while loop
         if ($whilearray[$prevbracket] != 0) {
             $newccs = $ccs[$whilearray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
-        //Check for while nested loop inside a switch statement
+        //Check for do while nested loop inside a switch statement
         if ($switcharray[$prevbracket] != 0) {
             $newccs = $ccs[$casearray[$colons]];
             $ccspps[$linesno] += $newccs;
         }
-        //Check for while nested loop inside an if statement
+        //Check for do while nested loop inside an if statement
         if ($ifarray[$prevbracket] != 0) {
             $newccs = $ccs[$ifarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
@@ -253,6 +327,7 @@ function checkWhile($lines, $linesno, $brackets)
             $newccs = $ccs[$forarray[$prevbracket]];
             $ccspps[$linesno] += $newccs;
         }
+
     }
 }
 
