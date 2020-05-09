@@ -61,18 +61,19 @@ function checkVar($lines, $linesno, $brackets){
           }
     }else{
         //local variable
-        if((preg_match("/public/",$lines) == 0) && (preg_match("/System/",$lines) == 0)){
+        if((preg_match("/public/",$lines) == 0) && (preg_match("/System/",$lines) == 0)) {
             $composite = true;
             $string_json = file_get_contents("javaReturn.json");
             $pattern = json_decode($string_json, TRUE);
             foreach ($pattern as $i) {
-                preg_match('/\((.*?)\)/i', $lines,$parameters);
-                if ((preg_match($i, $lines,$results) != 0) && (preg_match($i,$parameters[0]) == 0)) {
+                preg_match('/\((.*?)\)/i', $lines, $parameters);
+                if ((preg_match($i, $lines, $results) != 0) && (preg_match($i, $parameters[0]) == 0)) {
                     $wvs[$linesno] += 1;
-                    $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);// remove blank space in array and split into words
+                    $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/", $lines, -1, PREG_SPLIT_NO_EMPTY);// remove blank space in array and split into words
                     $arraySize = sizeof($words);
-                    if(preg_match('/\((.*?)\)/i',$lines,$found)){$npdtv[$linesno] = 1;}
-                    else {
+                    if (preg_match('/\((.*?)\)/i', $lines, $found)) {
+                        $npdtv[$linesno] = 1;
+                    } else {
                         $npdtv[$linesno] += ($arraySize - 1);
                     }
                     $composite = false;
@@ -80,12 +81,24 @@ function checkVar($lines, $linesno, $brackets){
             }
 
             //composite
-//            if (preg_match('([A-Z][^\s]*)', $lines, $matches)>0 && $composite ){
-//                $wvs[$linesno] = 1;
-//                $wordsC = explode(" ", $lines);
-//                $arraySizeC = sizeof($wordsC);
-//                $npctv[$linesno] += ($arraySizeC - 1);
-//            }
+            $line_no = ltrim($lines);   //remove front whitespace
+            $classFound = false;
+            if($line_no !== '') {
+                if (($line_no[0]) == strtoupper($line_no[0])) {
+                    $classFound = true;
+                }
+                if (preg_match('([A-Z][^\s]*)', $lines, $matches) > 0 && $composite && $classFound) {
+                    $wvs[$linesno] = 1;
+                    $wordsC = preg_split("/[^\w]*([\s]+[^\w]*|$)/", $lines, -1, PREG_SPLIT_NO_EMPTY);
+                    $arraySizeC = sizeof($wordsC);
+                    if (preg_match('/\((.*?)\)/i', $lines, $found)) {
+                        $npctv[$linesno] = 1;
+                    }
+                    else{
+                        $npctv[$linesno] += ($arraySizeC - 1);
+                    }
+                }
+            }
         }
 
     }
