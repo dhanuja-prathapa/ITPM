@@ -1,5 +1,5 @@
 <?php
-global $code,$codes;
+global $code, $codes;
 $codes = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $code);
 $codes = explode("\n", $codes);
 
@@ -48,7 +48,7 @@ $wcase = $_POST["Wcase"];
 
 $ROW_START = "<tr>";
 $ROW_END = "</tr>";
-$TOTAL= "Total";
+$TOTAL = "Total";
 $END = "END";
 
 //Analysis
@@ -305,7 +305,7 @@ foreach ($codes as $line) {
 }
 //inserting the last line with all total values outside loop
 global $finalTcps, $totalPC;
-$finalTcps = $tcs +$tcv + $tcm + $tccs;
+$finalTcps = $tcs + $tcv + $tcm + $tccs;
 $totalPC = $finalTcps;
 echo $ROW_START;
 echo "<th scope = \"row\">$END</th>";

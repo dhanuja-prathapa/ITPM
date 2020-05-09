@@ -30,9 +30,9 @@ $pdf->Ln();
 $totalPC = 0;
 //set font style
 $pdf->SetFont('Arial', '', 12);
-for($i =0; $i < sizeof($total); $i++){
+for ($i = 0; $i < sizeof($total); $i++) {
 
-    $pdf->Cell(25, 10,$i + 1, 1, 0, 'C', false);
+    $pdf->Cell(25, 10, $i + 1, 1, 0, 'C', false);
     $pdf->Cell(110, 10, $fileNames[$i], 1, 0, 'L', false);
     $pdf->Cell(60, 10, $total[$i], 1, 0, 'C', false);
     $totalPC += $total[$i];
@@ -42,7 +42,6 @@ for($i =0; $i < sizeof($total); $i++){
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(135, 10, 'Final Total Program Complexity', 1, 0, 'C', false);
 $pdf->Cell(60, 10, $totalPC, 1, 0, 'C', false);
-
 
 
 //output pdf
