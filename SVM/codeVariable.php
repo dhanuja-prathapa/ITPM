@@ -40,7 +40,7 @@ function checkVar($lines, $linesno, $brackets){
         if(preg_match("/private/",$lines)>0){
             $composite = true;
             //not composite
-            $string_json = file_get_contents("javaReturn.json");
+            $string_json = file_get_contents("SVM/javaReturn.json");
             $pattern = json_decode($string_json, TRUE);
             foreach ($pattern as $i) {
                 if (preg_match($i, $lines) != 0) {
@@ -63,7 +63,7 @@ function checkVar($lines, $linesno, $brackets){
         //local variable
         if((preg_match("/public/",$lines) == 0) && (preg_match("/System/",$lines) == 0)) {
             $composite = true;
-            $string_json = file_get_contents("javaReturn.json");
+            $string_json = file_get_contents("SVM/javaReturn.json");
             $pattern = json_decode($string_json, TRUE);
             foreach ($pattern as $i) {
                 preg_match('/\((.*?)\)/i', $lines, $parameters);

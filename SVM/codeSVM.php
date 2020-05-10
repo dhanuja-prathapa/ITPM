@@ -86,8 +86,8 @@ function sizeCal($codes)
             $nop[$linesno] += $count;
         }
         foreach ($words as $word) {
-            $string_json = file_get_contents("javaKey.json");
-            $op_json = file_get_contents("javaOp.json");
+            $string_json = file_get_contents("SVM/javaKey.json");
+            $op_json = file_get_contents("SVM/javaOp.json");
             $pattern = json_decode($string_json, TRUE);
             $op_pattern = json_decode($op_json,TRUE);
             foreach ($pattern as $i) {
@@ -129,7 +129,7 @@ function checkpublic($lines,$linesno){
     global $nkw,$nid;
     if (preg_match("/public/",$lines)>0){
 
-        $string_json = file_get_contents("javaReturn.json");
+        $string_json = file_get_contents("SVM/javaReturn.json");
         $pattern = json_decode($string_json, TRUE);
         foreach ($pattern as $i) {
             if ($count = preg_match_all($i, $lines) != 0) {
@@ -142,7 +142,7 @@ function checkpublic($lines,$linesno){
 function checkformethods($lines, $lineno){
     global $methods, $nid;
     if (preg_match('/' . implode('|', $methods) . '/',$lines,$found)>0){
-      //Edited  $nid[$lineno] += 1;
+       $nid[$lineno] += 1;
     }
 
 }

@@ -6,10 +6,10 @@
             //SESSION START
             session_start();
 
-            require 'codeSVM.php';
+            require 'SVM/codeSVM.php';
             require 'controlStructures.php';
-            require 'codeVariable.php';
-            require 'codeMethods.php';
+            require 'SVM/codeVariable.php';
+            require 'SVM/codeMethods.php';
 
             //file upload
             // Check if image file is a actual image or fake image

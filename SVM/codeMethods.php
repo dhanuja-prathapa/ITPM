@@ -35,7 +35,7 @@ function methodCheck($lines,$linesno){
             $paramcount = sizeof($param) / 2;
             foreach ($param as $parameter){
                 //checking for primitive param
-                $string_json = file_get_contents("javaReturn.json");
+                $string_json = file_get_contents("SVM/javaReturn.json");
                 $pattern = json_decode($string_json, TRUE);
                 foreach ($pattern as $i) {
                     if (preg_match($i, $parameter,$matchfound) != 0) {
@@ -54,7 +54,7 @@ function methodCheck($lines,$linesno){
 
 
             //return primitive
-            $string_json = file_get_contents("javaReturn.json");
+            $string_json = file_get_contents("SVM/javaReturn.json");
             $pattern = json_decode($string_json, TRUE);
             foreach ($pattern as $i) {
                 if (preg_match($i, $lines,$results) != 0) {
