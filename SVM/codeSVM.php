@@ -60,6 +60,7 @@ function sizeCal($codes)
         }
         $nsl[$linesno] += stringLiterals($lines);
         numericalVal($lines,$linesno);
+        findNid($lines,$linesno);
         $linesno++;
     }
 }
@@ -167,3 +168,45 @@ function findNop($word, $linesno, $lines){
 
     }
 }
+
+function findNid ($lines, $linesno)
+{
+    global $nid;
+    if(preg_match("/class/",$lines) != 0){
+        $lines = ltrim($lines);
+        $result = preg_split('/class/', $lines, -1);
+        $result = ltrim($result[1]);
+        $words = explode(" ", $result);
+        $methodname = $words[0];
+
+        if (!empty($words[1])) {
+            $checkExImp = $words[1];
+            if ($checkExImp === "extends") {
+                $extendClass = $words[2];
+                if (substr_count($extendClass, ".") != 0) {
+                    $count = substr_count($extendClass, ".") + 1;
+                    $nid[$linesno] += $count;
+                    //need to add this count to nid
+                } else {
+                    $count = 1;
+                    $nid[$linesno] += $count;
+                }
+
+                if (!empty($words[3])) {
+                    $checkImp = $words[3];
+                    if ($checkImp === "implements") {
+                        $implementresult = preg_split('/implements/', $result, -1);
+                        $interfaces = preg_split("/[^\w]*([\s]+[^\w]*|$)/", $implementresult[1], -1, PREG_SPLIT_NO_EMPTY);
+                        $nid[$linesno] += sizeof($interfaces);
+                    }
+                }
+            } else if ($checkExImp === "implements") {
+                $implementresult = preg_split('/implements/', $result, -1);
+                $interfaces = preg_split("/[^\w]*([\s]+[^\w]*|$)/", $implementresult[1], -1, PREG_SPLIT_NO_EMPTY);
+                $nid[$linesno] += sizeof($interfaces);
+            }
+        }
+    }
+}
+
+
