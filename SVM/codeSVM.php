@@ -78,7 +78,7 @@ function sizeCal($codes)
             $linesno++;
             continue;
         }
-        checkpublic($lines,$linesno);
+//        checkpublic($lines,$linesno);
         checkformethods($lines,$linesno);
         ifswitch($lines,$linesno);
         if(($count = substr_count($lines,".")) > 0){
@@ -125,19 +125,17 @@ function sizeCal($codes)
     }
 }
 
-function checkpublic($lines,$linesno){
-    global $nkw,$nid;
-    if (preg_match("/public/",$lines)>0){
-
-        $string_json = file_get_contents("SVM/javaReturn.json");
-        $pattern = json_decode($string_json, TRUE);
-        foreach ($pattern as $i) {
-            if ($count = preg_match_all($i, $lines) != 0) {
-                $nkw[$linesno] += $count;
-            }
-        }
-    }
-}
+//function checkpublic($lines,$linesno){
+//    global $nkw,$nid;
+//    if (preg_match("/public/",$lines)>0){
+//
+//
+//            if ($count = preg_match_all("/void/", $lines,$results) != 0) {
+//                $nkw[$linesno] += $count;
+//
+//            }
+//    }
+//}
 
 function checkformethods($lines, $lineno){
     global $methods, $nid;
