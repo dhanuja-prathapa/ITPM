@@ -262,7 +262,7 @@ function checkCASE($lines, $linesno, $brackets)
 
     //Checking for 'case' in line
     if (preg_match("/case/", $lines) > 0) {
-        if (preg_match("/:/", $lines) > 0) {
+        if (preg_match("/:/", $lines) > 0) {//Checking for : in line also to be exact
             $colons++;
             $nc[$linesno]++;
             $wtcs[$linesno] += $wcase;
@@ -364,7 +364,7 @@ function checkWhile($lines, $linesno, $brackets)
 
     //Checking 'while' in line with space for bracket
     if ((strpos($lines, 'while (') !== false)) {
-        if (strpos($lines, ');') !== false) {
+        if (strpos($lines, ');') !== false) {//checking if ths while has already been noted as a do while lopp
             //Do nothing
         } else {
             $nc[$linesno]++;//add nc
@@ -401,7 +401,7 @@ function checkWhile($lines, $linesno, $brackets)
     }
     //Checking 'while' in line without space for bracket
     if ((strpos($lines, 'while(') !== false)) {
-        if (strpos($lines, ');') !== false) {
+        if (strpos($lines, ');') !== false) {//checking if ths while has already been noted as a do while lopp
             //Do nothing
         } else {
             $nc[$linesno]++;//add nc
@@ -443,7 +443,7 @@ function checkDoWhile($lines, $linesno, $brackets)
     //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw, $dowhilearray;
 
-    //Checking 'do' in line with space for bracket
+    //Checking 'do' in line without space for bracket
     if (preg_match("/do{/", $lines) > 0) {
         $nc[$linesno]++;//add nc
         $wtcs[$linesno] += $wfw;//assign wtcs with weight given for while loop
