@@ -26,8 +26,8 @@ for ($j = 0; $j < $fileCount; $j++) {
     $title = $fileNames[$j] . " Complexity Due To All Factors";
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(260, 10, $title, 0, 1, 'C');
-    $pdf->SetFont('Arial', 'B', 10);
-    $pdf->setFillColor(230,230,230);
+    $pdf->SetFont('Arial', 'B', 11);
+    $pdf->setFillColor(200,200,200);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 1);
     $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 1);
     $pdf->Cell(10, 10, 'Cs', 1, 0, 'C', 1);
@@ -44,6 +44,7 @@ for ($j = 0; $j < $fileCount; $j++) {
     $tcm = 0;
     $tccs = 0;
     foreach ($codes[$j] as $line) {
+        $pdf->setFillColor(230,230,230);
         $pdf->SetFont('Arial', '', 10);
         //getting the value for total tcps each line
         $tcps[$j][$lineno] = $CS_COL[$j][$lineno] + $CV_COL[$j][$lineno] + $CM_COL[$j][$lineno] + $CCS_COL[$j][$lineno];
@@ -64,7 +65,7 @@ for ($j = 0; $j < $fileCount; $j++) {
     //getting all total values for the main factors
     $finalTcps = $tcs + $tcv + $tcm + $tccs;
 
-    $pdf->SetFont('Arial', 'B', 11);
+    $pdf->SetFont('Arial', 'B', 10);
     $pdf->setFillColor(230,230,230);
     $pdf->Cell(15, 10, "END", 1, 0, 'C', true);
     $pdf->Cell(210, 10, "TOTAL (Cpr)", 1, 0, 'C', true);
