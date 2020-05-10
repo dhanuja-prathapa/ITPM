@@ -22,14 +22,19 @@ function stringLiterals($lines)
 
 function sizeCal($codes)
 {
-
     global $nkw, $nop, $nid, $nnv, $nsl, $methods;
     $linesno = 1;
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
         if(preg_match("@//@",$lines,$match)>0){
-            $linesno++;
-            continue;
+            $result = preg_split('@//@', $lines , -1);
+            if ($result[0] == null){
+                $linesno++;
+                continue;
+            }else{
+                $lines = $result[0];
+            }
+
         }
         checkformethods($lines,$linesno);
         ifswitch($lines,$linesno);
@@ -43,25 +48,14 @@ function sizeCal($codes)
                 }
             }
 
-//                if (preg_match_all('/=/', $word) != 0) {
-//                    $nop[$linesno] += 1;
-//                }
-//                if(preg_match('/,/', $word, $result) != 0){
-//                    $nop[$linesno] += 1;
-//                }
-
-
             switch ($word) {
-                    //keywords
-
+                //keywords
                 case 'static':
                 case 'class':
                 case 'interface':
                     $nkw[$linesno]++;
                     $nid[$linesno]++;
                     break;
-
-
             }
         }
         $nsl[$linesno] += stringLiterals($lines);
@@ -115,7 +109,7 @@ function findNop($word, $linesno, $lines){
         if (substr_count($word, "==") != 0) {
             $count = substr_count($word, "==");
             $nop[$linesno] += $count;
-        }elseif (substr_count($word, "!=") != 0){ // not gate
+        }elseif (substr_count($word, "!=") != 0){ // NOT gate
             $count = substr_count($word,"!=");
             $nop[$linesno] += $count;
         }else if (substr_count($word, "=") != 0) {
@@ -161,7 +155,7 @@ function findNop($word, $linesno, $lines){
             $nop[$linesno] += $count;
         }
 
-        //AND OR NOT
+        //AND OR
         if (substr_count($word, "&&") != 0) {
             $count = substr_count($word,"&&");
             $nop[$linesno] += $count;
