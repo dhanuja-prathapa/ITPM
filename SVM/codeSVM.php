@@ -1,25 +1,4 @@
 <?php
-function numericalVal($lines,$linesno)
-{
-    global $nnv, $stringOpen, $stringClose;
-     $stringOpen = false;
-     $stringClose = true;
-    //Need to implement a function to ignore the values in string literals
-    $words = explode(" ", $lines);
-    foreach ($words as $word) {
-
-        if (substr_count($word, '"')>0){
-            $stringOpen = !$stringOpen;
-            $stringClose = !$stringClose;
-            continue;
-        }
-        if($stringClose && !$stringOpen){
-
-            $value = preg_match('!\d+!', $word);
-            $nnv[$linesno] += $value;
-        }
-    }
-}
 
 //Calculating Cs value
 function calCs()
@@ -41,101 +20,49 @@ function stringLiterals($lines)
     }
 }
 
-//function findNid($lines, $linesno)
-//{
-//    if (substr_count($lines, "System.out.") != 0) {
-//
-//        if ($nidcount = (substr_count($lines, "+") + substr_count($lines, "-") + substr_count($lines, "/") + substr_count($lines, "*")) != 0) {
-//            global $nid;
-//            $nid[$linesno] += $nidcount;
-//        }
-//    }
-//}
-
-function subOpCount($word, $linesno)
-{
-    if (substr_count($word, "System.out.") != 0) {
-
-        global $nid;
-        $nid[$linesno] += 3;
-        return 2;
-    }
-    if ($count = (substr_count($word, "++") + substr_count($word, "--")) != 0) {
-        return $count;
-    } else {
-        return 0;
-    }
-}
-
 function sizeCal($codes)
 {
-
     global $nkw, $nop, $nid, $nnv, $nsl, $methods;
     $linesno = 1;
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
         if(preg_match("@//@",$lines,$match)>0){
-            $linesno++;
-            continue;
+            $result = preg_split('@//@', $lines , -1);//checking if there are any code before the comment
+            if ($result[0] == null){
+                $linesno++;
+                continue;
+            }else{
+                $lines = $result[0];
+            }
+
         }
-//        checkpublic($lines,$linesno);
         checkformethods($lines,$linesno);
         ifswitch($lines,$linesno);
-        if(($count = substr_count($lines,".")) > 0){
-            if(preg_match("/import/",$lines) == 0)
-            $nop[$linesno] += $count;
-        }
+
         foreach ($words as $word) {
             $string_json = file_get_contents("SVM/javaKey.json");
-            $op_json = file_get_contents("SVM/javaOp.json");
             $pattern = json_decode($string_json, TRUE);
-            $op_pattern = json_decode($op_json,TRUE);
             foreach ($pattern as $i) {
                 if ($count = preg_match_all($i, $word) != 0) {
                     $nkw[$linesno] += $count;
                 }
             }
 
-                if (preg_match_all('/=/', $word) != 0) {
-                    $nop[$linesno] += 1;
-                }
-                if(preg_match('/,/', $word, $result) != 0){
-                    $nop[$linesno] += 1;
-                }
-
-
             switch ($word) {
-                    //keywords
-
+                //keywords
                 case 'static':
                 case 'class':
                 case 'interface':
                     $nkw[$linesno]++;
                     $nid[$linesno]++;
                     break;
-
-                default:
-                  subOpCount($word, $linesno);
             }
         }
         $nsl[$linesno] += stringLiterals($lines);
         numericalVal($lines,$linesno);
-        //findNid($lines, $linesno);
         $linesno++;
     }
 }
-
-//function checkpublic($lines,$linesno){
-//    global $nkw,$nid;
-//    if (preg_match("/public/",$lines)>0){
-//
-//
-//            if ($count = preg_match_all("/void/", $lines,$results) != 0) {
-//                $nkw[$linesno] += $count;
-//
-//            }
-//    }
-//}
 
 function checkformethods($lines, $lineno){
     global $methods, $nid;
@@ -150,4 +77,93 @@ function ifswitch($lines,$lineno){
 
     }
 
+}
+
+function numericalVal($lines,$linesno)
+{
+    global $nnv, $stringOpen, $stringClose;
+    $stringOpen = false;
+    $stringClose = true;
+    //Need to implement a function to ignore the values in string literals
+    $words = explode(" ", $lines);
+    foreach ($words as $word) {
+
+        if (substr_count($word, '"')>0){
+            $stringOpen = !$stringOpen;
+            $stringClose = !$stringClose;
+            continue;
+        }
+        if($stringClose && !$stringOpen){
+
+            $value = preg_match('!\d+!', $word);
+            $nnv[$linesno] += $value;//identify the nnv
+            //find for nop values if there no strings open
+            findNop($word,$linesno,$lines);//search word by word
+        }
+    }
+}
+
+function findNop($word, $linesno, $lines){
+    global $nop;
+    if(preg_match("/import/", $lines) == 0) {
+        if (substr_count($word, "==") != 0) {
+            $count = substr_count($word, "==");
+            $nop[$linesno] += $count;
+        }elseif (substr_count($word, "!=") != 0){ // NOT gate
+            $count = substr_count($word,"!=");
+            $nop[$linesno] += $count;
+        }else if (substr_count($word, "=") != 0) {
+            $count = substr_count($word,"=");
+            $nop[$linesno] += $count;
+        }
+
+        if (substr_count($word, "++") != 0) {
+            $count = substr_count($word,"++");
+            $nop[$linesno] += $count;
+        }else if (substr_count($word, "+") != 0) {
+            $count = substr_count($word,"+");
+            $nop[$linesno] += $count;
+        }
+
+        if (substr_count($word, "--") != 0) {
+            $count = substr_count($word,"--");
+            $nop[$linesno] += $count;
+        }elseif (substr_count($word, "-") != 0) {
+            $count = substr_count($word,"-");
+            $nop[$linesno] += $count;
+        }
+        if (substr_count($word, "/") != 0) {
+            $count = substr_count($word,"/");
+            $nop[$linesno] += $count;
+        }
+        if (substr_count($word, "*") != 0) {
+            $count = substr_count($word,"*");
+            $nop[$linesno] += $count;
+        }
+        if (substr_count($word, ".") != 0) {
+            $count = substr_count($word,".");
+            $nop[$linesno] += $count;
+
+        }
+        if (substr_count($word, ",") != 0) {
+            $count = substr_count($word,",");
+            $nop[$linesno] += $count;
+        }
+
+        if (substr_count($word, "%") != 0) {
+            $count = substr_count($word,"%");
+            $nop[$linesno] += $count;
+        }
+
+        //AND OR
+        if (substr_count($word, "&&") != 0) {
+            $count = substr_count($word,"&&");
+            $nop[$linesno] += $count;
+        }
+        if (substr_count($word, "||") != 0) {
+            $count = substr_count($word,"||");
+            $nop[$linesno] += $count;
+        }
+
+    }
 }
