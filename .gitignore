@@ -1,4 +1,4 @@
-
+.uploads
 *.xml
 .idea/workspace.xml
 ITPM.code-workspace.rej
