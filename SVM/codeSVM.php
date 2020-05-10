@@ -27,7 +27,7 @@ function sizeCal($codes)
     foreach ($codes as $lines) {
         $words = explode(" ", $lines);
         if(preg_match("@//@",$lines,$match)>0){
-            $result = preg_split('@//@', $lines , -1);
+            $result = preg_split('@//@', $lines , -1);//checking if there are any code before the comment
             if ($result[0] == null){
                 $linesno++;
                 continue;
