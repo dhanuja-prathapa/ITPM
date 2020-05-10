@@ -7,7 +7,7 @@
             session_start();
 
             require 'SVM/codeSVM.php';
-            require 'controlStructures.php';
+            require 'CSLogic/controlStructures.php';
             require 'SVM/codeVariable.php';
             require 'SVM/codeMethods.php';
 
@@ -64,7 +64,7 @@
 
                             echo "<button type=\"button\" class=\"btn btn-secondary\" style='margin-right:2px; margin-bottom:2px;' data-toggle=\"modal\" data-target=\"#Modal" . $i . "\"> " . $contents[$i] . "</button>"
                             ?>
-                            <?php include "tablesPerFile.php"; ?>
+                            <?php include "Tables/tablesPerFile.php"; ?>
                             <?php include "pdf/tablesToPDF.php"; ?>
                             <?php
                         }
@@ -82,7 +82,7 @@
                         global $i;
                         $i = 0;
                         ?>
-                        <?php include "onefileTable.php"; ?>
+                        <?php include "Tables/onefileTable.php"; ?>
                         <?php include "pdf/tablesToPDF.php"; ?>
                         <?php
                         $total[0] = $totalPC;

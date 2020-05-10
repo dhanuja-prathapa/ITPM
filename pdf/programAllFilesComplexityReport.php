@@ -20,9 +20,10 @@ $pdf->SetFont('Arial', 'B', 15);
 $pdf->Cell(190, 10, $title, 0, 1, 'C');
 $pdf->Ln();
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(25, 10, 'File Order', 1, 0, 'C', 0);
-$pdf->Cell(110, 10, 'File Name', 1, 0, 'C', 0);
-$pdf->Cell(60, 10, 'Total Complexity Value', 1, 0, 'C', 0);
+$pdf->setFillColor(230,230,230);
+$pdf->Cell(25, 10, 'File Order', 1, 0, 'C', 1);
+$pdf->Cell(110, 10, 'File Name', 1, 0, 'C', 1);
+$pdf->Cell(60, 10, 'Total Complexity Value', 1, 0, 'C', 1);
 
 $pdf->Ln();
 
@@ -40,8 +41,9 @@ for ($i = 0; $i < sizeof($total); $i++) {
 
 }
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(135, 10, 'Final Total Program Complexity', 1, 0, 'C', false);
-$pdf->Cell(60, 10, $totalPC, 1, 0, 'C', false);
+$pdf->Cell(135, 10, 'Final Total Program Complexity', 1, 0, 'C', true);
+$pdf->setFillColor(140,140,140);
+$pdf->Cell(60, 10, $totalPC, 1, 0, 'C', true);
 
 
 //output pdf
