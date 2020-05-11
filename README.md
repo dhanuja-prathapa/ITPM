@@ -19,6 +19,7 @@ Steps on how to use Tievs code complexity checking tool
 8. Then the user can view the dynamic graph which depicts visually the seprately stored complexities of the files uploaded with the X axis showing their names and the Y axis showing their total complexity values which then can be compared with each of the other files.
 
 9. Finally at the end of the page, the user can find the 'Generate Reports' section with three clickable buttons which generates the PDF format of their specific report (considering all submitted files)
+
         - Factor Tables Report
         - All Factor Table Report
         - Program & File Complexity Report
