@@ -1,6 +1,6 @@
-Tievs is a web based code complexity checking software tool built using PHP/Javascript/HTML/CSS languages to monitor the quality complexity values and their specific weightages, to give an insight to the user on which ways can the development cost and efforts be reduced and maintained of different Java or C++ files.
+**TIEVS is a web based code complexity checking software tool built using PHP/Javascript/HTML/CSS languages to monitor the quality complexity values and their specific weightages, to give an insight to the user on which ways can the development cost and efforts be reduced and maintained of different Java or C++ files.**
 
-Steps on how to use Tievs code complexity checking tool
+**Steps On How To Use Tievs Code Complexity Checking Tool**
 
 1. The files can uploaded to the system through Tievs home page by clicking 'Browse' button there and browsing current files present in the users local machine   as single files or by compressed into a zip folder.
 
@@ -19,6 +19,7 @@ Steps on how to use Tievs code complexity checking tool
 8. Then the user can view the dynamic graph which depicts visually the seprately stored complexities of the files uploaded with the X axis showing their names and the Y axis showing their total complexity values which then can be compared with each of the other files.
 
 9. Finally at the end of the page, the user can find the 'Generate Reports' section with three clickable buttons which generates the PDF format of their specific report (considering all submitted files)
+
         - Factor Tables Report
         - All Factor Table Report
         - Program & File Complexity Report
