@@ -37,7 +37,7 @@ function sizeCal($codes)
 
         }
         checkformethods($lines,$linesno);
-        ifswitch($lines,$linesno);
+
 
         foreach ($words as $word) {
             $string_json = file_get_contents("SVM/javaKey.json");
@@ -69,13 +69,6 @@ function checkformethods($lines, $lineno){
     global $methods, $nid;
     if (preg_match('/' . implode('|', $methods) . '/',$lines,$found)>0){
        $nid[$lineno] += 1;
-    }
-
-}
-
-function ifswitch($lines,$lineno){
-    if((preg_match('/\((.*?)\)/i', $lines,$inputpar) != 0) && (preg_match("/if/",$lines) > 0)){
-
     }
 
 }
@@ -172,7 +165,7 @@ function findNop($word, $linesno, $lines){
 function findNid ($lines, $linesno)
 {
     global $nid;
-    if(preg_match("/class/",$lines) != 0){
+    if(preg_match("/class/",$lines) != 0) { //nid in Class
         $lines = ltrim($lines);
         $result = preg_split('/class/', $lines, -1);
         $result = ltrim($result[1]);
@@ -206,7 +199,24 @@ function findNid ($lines, $linesno)
                 $nid[$linesno] += sizeof($interfaces);
             }
         }
+    }elseif (preg_match("/if/",$lines) != 0){
+
+
+    }elseif (preg_match("/switch/",$lines) != 0){
+
+
+    }elseif ((preg_match('([a-z][^\s]*)',$lines) != 0) && (preg_match("/import/",$lines) == 0)){
+        $checkforstring = strpos($lines, '"');
+        if ($checkforstring){
+
+        }else{ //no string literals
+
+        }
+
     }
 }
 
+function findNidInner($word,$linesno,$lines){
+
+}
 

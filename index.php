@@ -20,7 +20,7 @@
         <br>
         <br>
         <!-- Manual weight configuration collapse section -->
-        <div class="d-block" style="padding-left: 20%; padding-right: 20%; padding-bottom: 10%;">
+        <div class="d-block" style="padding-left: 10%; padding-right: 10%; padding-bottom: 10%;">
             <p>
                 <a class="btn btn-outline-primary" data-toggle="collapse" href="#collapseSettings" role="button"
                    aria-expanded="false" aria-controls="collapseExample">
@@ -72,17 +72,29 @@
                                 <h6 style="text-align: center; padding-top: 4px;">Variable</h6>
                             </div>
                             <div class="row">
-                                <div class="form-group col-12">
+                                <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wpdtv" data-toggle="tooltip"
                                            data-placement="left"
                                            title="Weight of primitive data type variables">Wpdtv</label>
                                     <input type="number" class="form-control" name="Wpdtv" id="Wpdtv" value="1" required>
                                 </div>
-                                <div class="form-group col-12">
+                                <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wcdtv" data-toggle="tooltip"
                                            data-placement="left"
                                            title="Weight of composite data type variables">Wcdtv</label>
                                     <input type="number" class="form-control" name="Wcdtv" id="Wcdtv" value="2" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label class="btn btn-secondary" for="GV" data-toggle="tooltip"
+                                           data-placement="left"
+                                           title="Global Variable">Global</label>
+                                    <input type="number" class="form-control" name="GV" id="GV" value="2" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label class="btn btn-secondary" for="LV" data-toggle="tooltip"
+                                           data-placement="left"
+                                           title="Local Variable">Local</label>
+                                    <input type="number" class="form-control" name="LV" id="LV" value="1" required>
                                 </div>
                             </div>
                         </div>
@@ -93,17 +105,35 @@
                                 <h6 style="text-align: center; padding-top: 4px;">Methods</h6>
                             </div>
                             <div class="row">
-                                <div class="form-group col-12">
+                                <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wpdtp" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of primitive data type parameters">Wpdtp</label>
+                                           title="Weight of primitive return type">Wpdtp</label>
                                     <input type="number" class="form-control" name="Wpdtp" id="Wpdtp" value="1" required>
                                 </div>
-                                <div class="form-group col-12">
+                                <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wcdtp" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of composite data type parameters">Wcdtp</label>
+                                           title="Weight of composite return type">Wcdtp</label>
                                     <input type="number" class="form-control" name="Wcdtp" id="Wcdtp" value="2" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label class="btn btn-secondary" for="MPP" data-toggle="tooltip"
+                                           data-placement="left"
+                                           title="Weight of primitive data type parameters">Primitive</label>
+                                    <input type="number" class="form-control" name="MPP" id="MPP" value="1" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label class="btn btn-secondary" for="MPC" data-toggle="tooltip"
+                                           data-placement="left"
+                                           title="Weight of composite data type parameters">Comp</label>
+                                    <input type="number" class="form-control" name="MPC" id="MPC" value="2" required>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label class="btn btn-secondary" for="MRV" data-toggle="tooltip"
+                                           data-placement="left"
+                                           title="Weight of method with void return type">Void Return</label>
+                                    <input type="number" class="form-control" name="MRV" id="MRV" value="0" required>
                                 </div>
                             </div>
                         </div>
