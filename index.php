@@ -193,7 +193,7 @@
             </script>
             <!--Analyse button -->
             <input type="submit" name="submit" class="btn btn-primary " style="margin:0 auto; width: 100%;"
-                   value="Analyse">
+                   value="Analyze">
         </div>
     </form>
 </main>
