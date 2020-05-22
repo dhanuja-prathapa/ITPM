@@ -2,11 +2,11 @@
 
 **Steps On How To Use Tievs Code Complexity Checking Tool**
 
-1. The files can uploaded to the system through Tievs home page by clicking 'Browse' button there and browsing current files present in the users local machine   as single files or by compressed into a zip folder.
+1. The files can uploaded to the system through Tievs home page by clicking 'Browse' button there and browsing current files present in the users local machine as single files or by compressed into a zip folder.
 
-2. In addition, by clicking the 'Configure Component Weights' button, the user is allowed to change the weights defaultly allocated to a particular component factor (Size, Variables, Methods, Control Structures).
+2. In addition, by clicking the 'Configure Component Weights' button, the user is allowed to change the weights defaultly allocated to a particular component factor (Size, Variables, Methods, Control Structures). By hovering the cusrsor above the acronyms defined for the different weight factors, the user can view the acronyms' descriptions to know what it means exactly. 
 
-3. After configuring those values (if necessary) the user can go ahead and click the 'Analyse' button which will then trigger all necessary logical functions that contribute in calculating complexity values due to size, variables, methods and control structures considering all code lines of the files submiited as a zip folder or singularly.
+3. After configuring those values (if necessary) the user can go ahead and click the 'Analyze' button which will then trigger all necessary logical functions that contribute in calculating complexity values due to size, variables, methods and control structures considering all code lines of the files submiited as a zip folder or singularly.
 
 4. Then the user will be directed to the page where all the values and information is presented with regard to the complexities of the files/file submitted and the files/file successfully uploaded alert will be visible at the very top of the page for 3 seconds if the action was successful.
 
