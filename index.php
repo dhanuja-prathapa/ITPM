@@ -87,13 +87,13 @@
                                 <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wvsglobal" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Scope Global Variable">WvsGlobal</label>
+                                           title="Scope Global Variable">WvsG</label>
                                     <input type="number" class="form-control" name="Wvsglobal" id="Wvsglobal" value="2" required>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wvslocal" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Scope Local Variable">WvsLocal</label>
+                                           title="Scope Local Variable">WvsL</label>
                                     <input type="number" class="form-control" name="Wvslocal" id="Wvslocal" value="1" required>
                                 </div>
                             </div>
@@ -120,19 +120,19 @@
                                 <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wmrtpri" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of primitive data type parameters">WmrtPri</label>
+                                           title="Weight of primitive data type parameters">WmrtP</label>
                                     <input type="number" class="form-control" name="Wmrtpri" id="Wmrtpri" value="1" required>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="btn btn-secondary" for="Wmrtcom" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of composite data type parameters">WmrtCom</label>
+                                           title="Weight of composite data type parameters">WmrtC</label>
                                     <input type="number" class="form-control" name="Wmrtcom" id="Wmrtcom" value="2" required>
                                 </div>
                                 <div class="form-group col-12">
                                     <label class="btn btn-secondary" for="Wmrtvoid" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of method with void return type">WmrtVoid</label>
+                                           title="Weight of method with void return type">WmrtV</label>
                                     <input type="number" class="form-control" name="Wmrtvoid" id="Wmrtvoid" value="0" required>
                                 </div>
                             </div>
