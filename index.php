@@ -85,16 +85,16 @@
                                     <input type="number" class="form-control" name="Wcdtv" id="Wcdtv" value="2" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label class="btn btn-secondary" for="GV" data-toggle="tooltip"
+                                    <label class="btn btn-secondary" for="Wvsglobal" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Global Variable">Global</label>
-                                    <input type="number" class="form-control" name="GV" id="GV" value="2" required>
+                                           title="Scope Global Variable">WvsGlobal</label>
+                                    <input type="number" class="form-control" name="Wvsglobal" id="Wvsglobal" value="2" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label class="btn btn-secondary" for="LV" data-toggle="tooltip"
+                                    <label class="btn btn-secondary" for="Wvslocal" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Local Variable">Local</label>
-                                    <input type="number" class="form-control" name="LV" id="LV" value="1" required>
+                                           title="Scope Local Variable">WvsLocal</label>
+                                    <input type="number" class="form-control" name="Wvslocal" id="Wvslocal" value="1" required>
                                 </div>
                             </div>
                         </div>
@@ -118,22 +118,22 @@
                                     <input type="number" class="form-control" name="Wcdtp" id="Wcdtp" value="2" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label class="btn btn-secondary" for="MPP" data-toggle="tooltip"
+                                    <label class="btn btn-secondary" for="Wmrtpri" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of primitive data type parameters">Primitive</label>
-                                    <input type="number" class="form-control" name="MPP" id="MPP" value="1" required>
+                                           title="Weight of primitive data type parameters">WmrtPri</label>
+                                    <input type="number" class="form-control" name="Wmrtpri" id="Wmrtpri" value="1" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label class="btn btn-secondary" for="MPC" data-toggle="tooltip"
+                                    <label class="btn btn-secondary" for="Wmrtcom" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of composite data type parameters">Comp</label>
-                                    <input type="number" class="form-control" name="MPC" id="MPC" value="2" required>
+                                           title="Weight of composite data type parameters">WmrtCom</label>
+                                    <input type="number" class="form-control" name="Wmrtcom" id="Wmrtcom" value="2" required>
                                 </div>
                                 <div class="form-group col-12">
-                                    <label class="btn btn-secondary" for="MRV" data-toggle="tooltip"
+                                    <label class="btn btn-secondary" for="Wmrtvoid" data-toggle="tooltip"
                                            data-placement="left"
-                                           title="Weight of method with void return type">Void Return</label>
-                                    <input type="number" class="form-control" name="MRV" id="MRV" value="0" required>
+                                           title="Weight of method with void return type">WmrtVoid</label>
+                                    <input type="number" class="form-control" name="Wmrtvoid" id="Wmrtvoid" value="0" required>
                                 </div>
                             </div>
                         </div>

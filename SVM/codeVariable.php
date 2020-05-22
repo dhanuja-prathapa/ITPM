@@ -34,7 +34,7 @@ function Varbracketcount($lines,$linesno){
 
 
 function checkVar($lines, $linesno, $brackets){
-    global $brackets, $wvs, $npdtv, $npctv, $cv;
+    global $brackets, $wvs, $npdtv, $npctv, $cv, $wvsglobal, $wvslocal;
     if($brackets == 1){
         //global variable
         if(preg_match("/private/",$lines)>0){
@@ -44,7 +44,7 @@ function checkVar($lines, $linesno, $brackets){
             $pattern = json_decode($string_json, TRUE);
             foreach ($pattern as $i) {
                 if (preg_match($i, $lines) != 0) {
-                    $wvs[$linesno] += 2;
+                    $wvs[$linesno] += $wvsglobal;
                     $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);
                     $arraySize = sizeof($words);
                     $npdtv[$linesno] += ($arraySize - 2);
@@ -53,7 +53,7 @@ function checkVar($lines, $linesno, $brackets){
             }
             //composite
             if (preg_match('([A-Z][^\s]*)', $lines, $matches)>0 && $composite && (preg_match("/System/",$lines) == 0) ){
-                $wvs[$linesno] = 2;
+                $wvs[$linesno] = $wvsglobal;
                 $wordsC = preg_split("/[^\w]*([\s]+[^\w]*|$)/",$lines,-1, PREG_SPLIT_NO_EMPTY);
                 $arraySizeC = sizeof($wordsC);
                 $npctv[$linesno] += ($arraySizeC - 2);
@@ -71,7 +71,7 @@ function checkVar($lines, $linesno, $brackets){
                     $parameters[0] = 0;
                 }
                 if ((preg_match($i, $lines, $results) != 0) && (preg_match($i, $parameters[0]) == 0)) {
-                    $wvs[$linesno] += 1;
+                    $wvs[$linesno] += $wvslocal;
                     $words = preg_split("/[^\w]*([\s]+[^\w]*|$)/", $lines, -1, PREG_SPLIT_NO_EMPTY);// remove blank space in array and split into words
                     $arraySize = sizeof($words);
                     if (preg_match('/\((.*?)\)/i', $lines, $found)) {
@@ -91,7 +91,7 @@ function checkVar($lines, $linesno, $brackets){
                     $classFound = true;
                 }
                 if (preg_match('([A-Z][^\s]*)', $lines, $matches) > 0 && $composite && $classFound) {
-                    $wvs[$linesno] = 1;
+                    $wvs[$linesno] = $wvslocal;
                     $wordsC = preg_split("/[^\w]*([\s]+[^\w]*|$)/", $lines, -1, PREG_SPLIT_NO_EMPTY);
                     $arraySizeC = sizeof($wordsC);
                     if (preg_match('/\((.*?)\)/i', $lines, $found)) {

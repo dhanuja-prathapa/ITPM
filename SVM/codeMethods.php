@@ -12,7 +12,7 @@ function methCal($codes){
 }
 
 function methodCheck($lines,$linesno){
-    global $methods, $ncdtp,$npdtp, $wmrt;
+    global $methods, $ncdtp,$npdtp, $wmrt, $wmrtpri, $wmrtcom,$wmrtvoid;
     if ((preg_match('/public/',$lines) != 0) && (preg_match('/class/',$lines) == 0)  && (preg_match('/main/',$lines) == 0)){
         if(preg_match('/\((.*?)\)/i', $lines,$inputpar) != 0){
             $words = explode(" ", $lines);
@@ -59,12 +59,12 @@ function methodCheck($lines,$linesno){
             foreach ($pattern as $i) {
                 if (preg_match($i, $lines,$results) != 0) {
                     if ($results[0] == 'String'){
-                        $wmrt[$linesno] = 2;
+                        $wmrt[$linesno] = $wmrtcom;
                     }elseif ($results[0] == 'void'){
-                        $wmrt[$linesno] = 0;
+                        $wmrt[$linesno] = $wmrtvoid;
                     }
                     else{
-                        $wmrt[$linesno] = 1;
+                        $wmrt[$linesno] = $wmrtpri;
                     }
                 }
             }
@@ -73,7 +73,7 @@ function methodCheck($lines,$linesno){
             if(count($result)>1){
                 $result_split=explode(' ',$result[1]);
                 if ((preg_match('([A-Z][^\s]*)',$result_split[1], $results)>0) && (preg_match("/String/",$result_split[1])) != 0){
-                    $wmrt[$linesno] = 2;
+                    $wmrt[$linesno] = $wmrtcom;
                 }
             }
 

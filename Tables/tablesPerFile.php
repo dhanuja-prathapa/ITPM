@@ -38,6 +38,8 @@ $cv = array_fill(1, sizeof($codes), 0);
 //configured weights for Variables
 $wpdtv = $_POST["Wpdtv"];
 $wcdtv = $_POST["Wcdtv"];
+$wvsglobal = $_POST["Wvsglobal"];
+$wvslocal = $_POST["Wvslocal"];
 
 //define arrays for methods
 $wmrt = array_fill(1, sizeof($codes), 0);
@@ -47,6 +49,9 @@ $cm = array_fill(1, sizeof($codes), 0);
 //configured weights for Methods
 $wpdtp = $_POST["Wpdtp"];
 $wcdtp = $_POST["Wcdtp"];
+$wmrtpri = $_POST["Wmrtpri"];
+$wmrtcom = $_POST["Wmrtcom"];
+$wmrtvoid = $_POST["Wmrtvoid"];
 
 //define arrays for control structures
 $ccs = array_fill(1, sizeof($codes), 0);

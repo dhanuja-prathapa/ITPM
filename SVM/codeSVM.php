@@ -67,7 +67,7 @@ function sizeCal($codes)
 
 function checkformethods($lines, $lineno){
     global $methods, $nid;
-    if (preg_match('/' . implode('|', $methods) . '/',$lines,$found)>0){
+    if (preg_match('/' . implode('|\b', $methods) . '/',$lines,$found)>0){
        $nid[$lineno] += 1;
     }
 
@@ -199,24 +199,49 @@ function findNid ($lines, $linesno)
                 $nid[$linesno] += sizeof($interfaces);
             }
         }
-    }elseif (preg_match("/if/",$lines) != 0){
-
-
-    }elseif (preg_match("/switch/",$lines) != 0){
-
-
     }elseif ((preg_match('([a-z][^\s]*)',$lines) != 0) && (preg_match("/import/",$lines) == 0)){
         $checkforstring = strpos($lines, '"');
         if ($checkforstring){
 
         }else{ //no string literals
+            if((preg_match('/\((.*?)\)/i',$lines,$inputpar)) != 0 && (preg_match('/public/',$lines) == 0)){
+                $words = explode(" ", $lines);
+                //finding the best match methodname
+                $percentage = 0;
+                $match = null;
 
+                foreach ($words as $word){
+                    similar_text($inputpar[0],$word,$percent);
+
+                    if ($percentage < $percent){
+                        $percentage = $percent;
+                        $match = $word;
+                    }
+                }
+                global $methods;
+                $position = strpos($match,"(");
+                $methodname = substr($match,0,$position); //need to check if methd nae already added and also check for .
+                if(!(in_array($methodname,$methods))){
+                    findNidInner($methodname,$linesno);
+                   // echo $methodname."<-|".$linesno."|";
+                }
+
+            }
+            if (preg_match('/=/',$lines,$result) != 0){
+                $nid[$linesno] += 1;
+            }
         }
 
     }
 }
 
-function findNidInner($word,$linesno,$lines){
-
+function findNidInner($word,$linesno){
+    global $nid;
+        if (preg_match('/\./',$word) != 0){
+            $count = preg_match_all('/\./',$word);
+            $nid[$linesno] += ($count * 2);
+        }else{
+            $nid[$linesno] += 1;
+        }
 }
 
