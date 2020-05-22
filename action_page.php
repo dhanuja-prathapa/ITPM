@@ -36,6 +36,7 @@
                     $zipname = pathinfo($name, PATHINFO_FILENAME) . "/";
                     $totalPC = 0;
                     $filepath = 'uploads/' . $name;
+                    //check for zip folders and extract file contents
                     if ($extension == 'zip') {
                         $zip = new ZipArchive();
                         $zip->open($filepath, ZipArchive::CREATE);
@@ -47,6 +48,8 @@
                         $extractPath = "uploads/" . $zipname;
                         $zip->extractTo($extractPath);
                         $file_count = 0;
+
+                        //extract file names and paths
                         for ($i = 0; $i < $files_count; $i++) {
                             if (((preg_match("/.java/", $zip->getNameIndex($i)) != 0) || ((preg_match("/.cpp/", $zip->getNameIndex($i)) != 0))) && (preg_match("/MACOSX/", $zip->getNameIndex($i)) == 0)) {
                                 $contents[$file_count] = $zip->getNameIndex($i);
@@ -59,6 +62,7 @@
 
                         $total = array_fill(0, $file_count, 0);
 
+                        //Create the buttons according to the names and number of files uploaded
                         for ($i = 0; $i < $file_count; $i++) {
                             global $i, $contents, $contentPath, $code, $file_count;
 
@@ -69,13 +73,13 @@
                             <?php
                         }
 
-
+                        //Calculate total final program complexity value
                         for ($r = 0; $r < sizeof($total); $r++) {
                             $totalPC += $total[$r];
                         }
 
                     } else {
-                        /* Normal File */
+                        /* Normal Single File */
                         global $code, $totalPC, $contents, $total, $file_count;
                         $code = file_get_contents($filepath);
                         $contents[0] = $name;
@@ -92,6 +96,7 @@
                 global $CS_TABLE, $NKW_TABLE, $NID_TABLE, $NOP_TABLE, $NNV_TABLE, $NSL_TABLE, $WVS_TABLE, $NPDTV_TABLE, $NPCTV_TABLE, $CV_TABLE, $WMRT_TABLE, $NPDTP_TABLE, $NCDTP_TABLE, $CM_TABLE, $CCS_TABLE, $WTCS_TABLE, $NC_TABLE, $CCSPPS_TABLE;
                 global $file_count, $CODES_File, $file_count, $contents, $total;
 
+                //Assigning the values for session variables
                 $_SESSION['CS_COL'] = $CS_TABLE;
                 $_SESSION['NKW_COL'] = $NKW_TABLE;
                 $_SESSION['NID_COL'] = $NID_TABLE;
@@ -116,7 +121,10 @@
                 $_SESSION['total'] = $total;
 
 
+                //Displaying total final program complexity value
                 echo "<br><br><h6 class='mx-auto p-3' style='font-size: x-large;text-align: center; background-color: #961c1c;color: white;'>Total Program Complexity = <span class=\"badge badge-light\">" . $totalPC . " </span></h6>";
+
+                //Calculations for the dynamic graph creation
                 $dataChart = null;
                 for ($j = 0; $j < $file_count; $j++) {
                     $myObj = new \stdClass();
@@ -202,6 +210,7 @@ function showTotalGraph(){{
 
             ?>
             <?php
+            //Generating reports button creation, display and call of relevant file methods
             echo "<br><br><lable style='font-weight: bold; color:#961c1d; font-size: large'>Generate Reports</lable>";
             echo "<br><div class='mx-auto'><a class='btn badge-pill badge-info' style=\"alignment: center;\" href=\"pdf/factorTableReport.php\" target='_blank'>Factor Table Report</a>";
             echo "<a class='btn badge-pill badge-info' style=\"alignment:center; margin-left: 10px\" href=\"pdf/allFactorTableReport.php\" target='_blank'>All Factor Table Report</a>";

@@ -1,6 +1,6 @@
 <?php
 global $i, $contents, $contentPath, $code;
-
+//heading of the dialog box displayed
 echo "<div class=\"modal fade\" id=\"Modal" . $i . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"ModalLabel" . $i . "\" aria-hidden=\"true\">
   <div class=\"modal-dialog\" role=\"document\">
     <div class=\"modal-content\">
@@ -12,7 +12,9 @@ echo "<div class=\"modal fade\" id=\"Modal" . $i . "\" tabindex=\"-1\" role=\"di
       </div>
       <div class=\"modal-body\">";
 
+//Assign the variables (to get file contents one by on)
 $code = file_get_contents($contentPath[$i]);
+//skip empty lines, tab spaces
 $codes = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $code);
 $codes = explode("\n", $codes);
 
@@ -77,6 +79,7 @@ calCs();
 varCal($codes);
 calCv();
 
+//heading for size
 echo '<div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -334,7 +337,7 @@ echo "<td style='font-weight: bold'>$finalTcps</td>";
 echo $ROW_END;
 
 
-//calculating the total value
+//calculating the final total complexity value of the file
 global $file_count, $total;
 $lineno = 1;
 foreach ($codes as $line) {
@@ -348,7 +351,7 @@ echo ' </div>
               </div>
              </div>
             </div>';
-
+//table end
 
 echo "</div>
       <div class=\"modal-footer\">

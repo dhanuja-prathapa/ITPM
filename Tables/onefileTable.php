@@ -284,7 +284,7 @@ echo "<th scope=\"col\">TCps</th>";
 echo $ROW_END;
 echo "</thead>";
 
-//Inserting values to all factor table
+//Inserting values to all factor table by looping through line by line
 $lineno = 1;
 $tcs = 0;
 $tcv = 0;

@@ -1,5 +1,6 @@
 <?php
 
+//use plugin support
 require('fpdf.php');
 
 //SESSION START
@@ -20,7 +21,7 @@ $pdf->SetFont('Arial', 'B', 15);
 $pdf->Cell(190, 10, $title, 0, 1, 'C');
 $pdf->Ln();
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->setFillColor(230,230,230);
+$pdf->setFillColor(230, 230, 230);
 $pdf->Cell(25, 10, 'File Order', 1, 0, 'C', 1);
 $pdf->Cell(110, 10, 'File Name', 1, 0, 'C', 1);
 $pdf->Cell(60, 10, 'Total Complexity Value', 1, 0, 'C', 1);
@@ -31,6 +32,8 @@ $pdf->Ln();
 $totalPC = 0;
 //set font style
 $pdf->SetFont('Arial', '', 12);
+
+//add values to the table using session variables declared above
 for ($i = 0; $i < sizeof($total); $i++) {
 
     $pdf->Cell(25, 10, $i + 1, 1, 0, 'C', false);
@@ -40,9 +43,10 @@ for ($i = 0; $i < sizeof($total); $i++) {
     $pdf->Ln();
 
 }
+//add final row with the final total program complexity
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(135, 10, 'Final Total Program Complexity', 1, 0, 'C', true);
-$pdf->setFillColor(140,140,140);
+$pdf->setFillColor(140, 140, 140);
 $pdf->Cell(60, 10, $totalPC, 1, 0, 'C', true);
 
 

@@ -1,5 +1,6 @@
 <?php
 
+//use plugin support
 require('fpdf.php');
 
 //SESSION START
@@ -43,6 +44,7 @@ for ($j = 0; $j < $fileCount; $j++) {
     $tcv = 0;
     $tcm = 0;
     $tccs = 0;
+    //add values each of the files' all factor table
     foreach ($codes[$j] as $line) {
         $pdf->setFillColor(230,230,230);
         $pdf->SetFont('Arial', '', 10);
@@ -65,6 +67,7 @@ for ($j = 0; $j < $fileCount; $j++) {
     //getting all total values for the main factors
     $finalTcps = $tcs + $tcv + $tcm + $tccs;
 
+    //set the total values in the table end row for the particular file selected
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->setFillColor(230,230,230);
     $pdf->Cell(15, 10, "END", 1, 0, 'C', true);

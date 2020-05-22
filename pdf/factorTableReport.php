@@ -1,4 +1,6 @@
 <?php
+
+//use plugin support
 require('fpdf.php');
 
 //SESSION START
@@ -38,8 +40,8 @@ for ($j = 0; $j < $fileCount; $j++) {
     // Complexity due to size table column define
     $title = $fileNames[$j] . " Complexity Due to Size";
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(260, 10, $title, 0, 1, 'C',0);
-    $pdf->setFillColor(230,230,230);
+    $pdf->Cell(260, 10, $title, 0, 1, 'C', 0);
+    $pdf->setFillColor(230, 230, 230);
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 1);
     $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 1);
@@ -74,9 +76,9 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(270, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->setFillColor(230,230,230);
+    $pdf->setFillColor(230, 230, 230);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 1);
-    $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C',1);
+    $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 1);
     $pdf->Cell(14, 10, 'Wvs', 1, 0, 'C', 1);
     $pdf->Cell(14, 10, 'Npdtv', 1, 0, 'C', 1);
     $pdf->Cell(14, 10, 'Ncdtv', 1, 0, 'C', 1);
@@ -104,7 +106,7 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(270, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->setFillColor(230,230,230);
+    $pdf->setFillColor(230, 230, 230);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 1);
     $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 1);
     $pdf->Cell(14, 10, 'Wmrt', 1, 0, 'C', 1);
@@ -134,7 +136,7 @@ for ($j = 0; $j < $fileCount; $j++) {
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(270, 10, $title, 0, 1, 'C');
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->setFillColor(230,230,230);
+    $pdf->setFillColor(230, 230, 230);
     $pdf->Cell(15, 10, 'Line No', 1, 0, 'C', 1);
     $pdf->Cell(210, 10, 'Program statements', 1, 0, 'C', 1);
     $pdf->Cell(14, 10, 'Wtcs', 1, 0, 'C', 1);

@@ -91,7 +91,7 @@ function bracketcount($lines, $linesno)
         checkCASE($lines, $linesno, $brackets);//Checking 'case' function called
         checkFor($lines, $linesno, $brackets);//Checking 'for' function called
         checkWhile($lines, $linesno, $brackets);//Checking 'while' loop function called
-        checkDoWhile($lines, $linesno, $brackets);//Checking 'while' loop function called
+        checkDoWhile($lines, $linesno, $brackets);//Checking 'do-while' loop function called
     }
 }
 
@@ -286,7 +286,7 @@ function checkFor($lines, $linesno, $brackets)
     //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw, $dowhilearray;
 
-    //Checking 'for' in line with space from bracket
+    //Checking 'for' in line with space before bracket
     if ((strpos($lines, 'for (') !== false)) {
         $nc[$linesno]++;//add nc
         $wtcs[$linesno] += $wfw;//assign 'for' weight to wtcs
@@ -320,7 +320,7 @@ function checkFor($lines, $linesno, $brackets)
         }
     }
 
-    //Checking 'for' in line without space from bracket
+    //Checking 'for' in line without space before bracket
     if ((strpos($lines, 'for(') !== false)) {
         $nc[$linesno]++;//add nc
         $wtcs[$linesno] += $wfw;//assign 'for' weight to wtcs
@@ -362,7 +362,7 @@ function checkWhile($lines, $linesno, $brackets)
     //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw, $dowhilearray;
 
-    //Checking 'while' in line with space for bracket
+    //Checking 'while' in line with space before bracket
     if ((strpos($lines, 'while (') !== false)) {
         if (strpos($lines, ');') !== false) {//checking if ths while has already been noted as a do while lopp
             //Do nothing
@@ -399,7 +399,7 @@ function checkWhile($lines, $linesno, $brackets)
             }
         }
     }
-    //Checking 'while' in line without space for bracket
+    //Checking 'while' in line without space before bracket
     if ((strpos($lines, 'while(') !== false)) {
         if (strpos($lines, ');') !== false) {//checking if ths while has already been noted as a do while lopp
             //Do nothing
@@ -443,7 +443,7 @@ function checkDoWhile($lines, $linesno, $brackets)
     //global variable declaration
     global $ccs, $wtcs, $nc, $ccspps, $forarray, $colons, $switcharray, $casearray, $newccs, $ifarray, $whilearray, $wfw, $dowhilearray;
 
-    //Checking 'do' in line without space for bracket
+    //Checking 'do' in line without space before bracket
     if (preg_match("/do{/", $lines) > 0) {
         $nc[$linesno]++;//add nc
         $wtcs[$linesno] += $wfw;//assign wtcs with weight given for while loop
@@ -477,7 +477,8 @@ function checkDoWhile($lines, $linesno, $brackets)
         }
 
     }
-    //Checking 'do' in line with space for bracket
+
+    //Checking 'do' in line with space before bracket
     if (preg_match("/do {/", $lines) > 0) {
         $nc[$linesno]++;//add nc
         $wtcs[$linesno] += $wfw;//assign wtcs with weight given for while loop
